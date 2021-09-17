@@ -1,0 +1,58 @@
+﻿@model BookingTravel.Models.BinhLuan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BinhLuan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KiemDuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KiemDuyet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaiViet.TieuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaiViet.TieuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.HoVaten)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

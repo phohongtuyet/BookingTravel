@@ -1,0 +1,82 @@
+﻿@model BookingTravel.Models.BaiViet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BaiViet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TomTat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TomTat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LuotXem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuotXem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KiemDuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KiemDuyet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThaiBinhLuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThaiBinhLuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.HoVaTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

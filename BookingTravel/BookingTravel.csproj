@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -128,7 +128,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaiVietController.cs" />
+    <Compile Include="Controllers\BinhLuanController.cs" />
+    <Compile Include="Controllers\ChiTietDiaDiemThamQuanController.cs" />
+    <Compile Include="Controllers\DatTourController.cs" />
+    <Compile Include="Controllers\DatTour_ChiTietController.cs" />
+    <Compile Include="Controllers\DiaDiemThamQuanController.cs" />
+    <Compile Include="Controllers\HinhAnhController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\KhachSanController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\PhuongTienController.cs" />
+    <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,6 +292,66 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\NhanVien\Create.cshtml" />
+    <Content Include="Views\NhanVien\Delete.cshtml" />
+    <Content Include="Views\NhanVien\Details.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\NhanVien\Index.cshtml" />
+    <Content Include="Views\KhachHang\Create.cshtml" />
+    <Content Include="Views\KhachHang\Delete.cshtml" />
+    <Content Include="Views\KhachHang\Details.cshtml" />
+    <Content Include="Views\KhachHang\Edit.cshtml" />
+    <Content Include="Views\KhachHang\Index.cshtml" />
+    <Content Include="Views\PhuongTien\Create.cshtml" />
+    <Content Include="Views\PhuongTien\Delete.cshtml" />
+    <Content Include="Views\PhuongTien\Details.cshtml" />
+    <Content Include="Views\PhuongTien\Edit.cshtml" />
+    <Content Include="Views\PhuongTien\Index.cshtml" />
+    <Content Include="Views\KhachSan\Create.cshtml" />
+    <Content Include="Views\KhachSan\Delete.cshtml" />
+    <Content Include="Views\KhachSan\Details.cshtml" />
+    <Content Include="Views\KhachSan\Edit.cshtml" />
+    <Content Include="Views\KhachSan\Index.cshtml" />
+    <Content Include="Views\DiaDiemThamQuan\Create.cshtml" />
+    <Content Include="Views\DiaDiemThamQuan\Delete.cshtml" />
+    <Content Include="Views\DiaDiemThamQuan\Details.cshtml" />
+    <Content Include="Views\DiaDiemThamQuan\Edit.cshtml" />
+    <Content Include="Views\DiaDiemThamQuan\Index.cshtml" />
+    <Content Include="Views\BaiViet\Create.cshtml" />
+    <Content Include="Views\BaiViet\Delete.cshtml" />
+    <Content Include="Views\BaiViet\Details.cshtml" />
+    <Content Include="Views\BaiViet\Edit.cshtml" />
+    <Content Include="Views\BaiViet\Index.cshtml" />
+    <Content Include="Views\BinhLuan\Create.cshtml" />
+    <Content Include="Views\BinhLuan\Delete.cshtml" />
+    <Content Include="Views\BinhLuan\Details.cshtml" />
+    <Content Include="Views\BinhLuan\Edit.cshtml" />
+    <Content Include="Views\BinhLuan\Index.cshtml" />
+    <Content Include="Views\Tour\Create.cshtml" />
+    <Content Include="Views\Tour\Delete.cshtml" />
+    <Content Include="Views\Tour\Details.cshtml" />
+    <Content Include="Views\Tour\Edit.cshtml" />
+    <Content Include="Views\Tour\Index.cshtml" />
+    <Content Include="Views\ChiTietDiaDiemThamQuan\Create.cshtml" />
+    <Content Include="Views\ChiTietDiaDiemThamQuan\Delete.cshtml" />
+    <Content Include="Views\ChiTietDiaDiemThamQuan\Details.cshtml" />
+    <Content Include="Views\ChiTietDiaDiemThamQuan\Edit.cshtml" />
+    <Content Include="Views\ChiTietDiaDiemThamQuan\Index.cshtml" />
+    <Content Include="Views\DatTour\Create.cshtml" />
+    <Content Include="Views\DatTour\Delete.cshtml" />
+    <Content Include="Views\DatTour\Details.cshtml" />
+    <Content Include="Views\DatTour\Edit.cshtml" />
+    <Content Include="Views\DatTour\Index.cshtml" />
+    <Content Include="Views\DatTour_ChiTiet\Create.cshtml" />
+    <Content Include="Views\DatTour_ChiTiet\Delete.cshtml" />
+    <Content Include="Views\DatTour_ChiTiet\Details.cshtml" />
+    <Content Include="Views\DatTour_ChiTiet\Edit.cshtml" />
+    <Content Include="Views\DatTour_ChiTiet\Index.cshtml" />
+    <Content Include="Views\HinhAnh\Create.cshtml" />
+    <Content Include="Views\HinhAnh\Delete.cshtml" />
+    <Content Include="Views\HinhAnh\Details.cshtml" />
+    <Content Include="Views\HinhAnh\Edit.cshtml" />
+    <Content Include="Views\HinhAnh\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

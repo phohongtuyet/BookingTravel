@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BookingTravel.Models.DatTour>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DienThoaiDatTour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoVaTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDatHang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienThoaiDatTour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoVaTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDatHang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TinhTrang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KhachHang.HoVaten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

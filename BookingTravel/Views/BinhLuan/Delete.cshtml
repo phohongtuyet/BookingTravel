@@ -1,0 +1,64 @@
+﻿@model BookingTravel.Models.BinhLuan
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BinhLuan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KiemDuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KiemDuyet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BaiViet.TieuDe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaiViet.TieuDe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.HoVaten)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BookingTravel.Models.BaiViet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TomTat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayDang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LuotXem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KiemDuyet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThaiBinhLuan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TomTat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoiDung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LuotXem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KiemDuyet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThaiBinhLuan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

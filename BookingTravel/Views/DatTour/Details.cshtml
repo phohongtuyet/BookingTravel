@@ -1,0 +1,66 @@
+﻿@model BookingTravel.Models.DatTour
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DatTour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoaiDatTour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienThoaiDatTour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoVaTen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDatHang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDatHang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KhachHang.HoVaten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanVien.HoVaTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
