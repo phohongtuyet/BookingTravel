@@ -1,45 +1,70 @@
 ﻿@model IEnumerable<BookingTravel.Models.PhuongTien>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Phương tiện";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenPhuongTien)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiPhuongTien)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoCho)
-        </th>
-        <th></th>
-    </tr>
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
+        </p>
+        <table class="table table-bordered table-hover table-sm mb-0">
+            <tr>
+                <th width="5%">#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenPhuongTien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LoaiPhuongTien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoCho)
+                </th>
+                <th width="5%">Sửa</th>
+                <th width="5%">Xóa</th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenPhuongTien)
+                    </td>
+                    <td>
+                        @if (item.LoaiPhuongTien == 0)
+                        {
+                        <span>máy bay</span>
+                        }
+                        else if (item.LoaiPhuongTien == 1)
+                        {
+                    <span>tàu thủy</span>
+                        }
+                        else if (item.LoaiPhuongTien == 2)
+                        {
+                            <span>Tàu hỏa</span>
+                        }
+                        else
+                        {
+                        < span >xe khách</ span >
+                        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoCho)
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenPhuongTien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiPhuongTien)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoCho)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>
