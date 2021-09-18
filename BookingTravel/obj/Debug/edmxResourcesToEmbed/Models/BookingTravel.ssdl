@@ -130,8 +130,8 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PhuongTien_ID" Type="int" />
     <Property Name="TenTour" Type="nvarchar" MaxLength="255" />
-    <Property Name="LoaiTour" Type="nvarchar" MaxLength="255" />
-    <Property Name="NoiKhoiHanh" Type="nvarchar" MaxLength="255" />
+    <Property Name="LoaiTour" Type="smallint" />
+    <Property Name="NoiKhoiHanh" Type="smallint" />
     <Property Name="NgayBD" Type="datetime" />
     <Property Name="NgayKT" Type="datetime" />
     <Property Name="DonGia" Type="int" />

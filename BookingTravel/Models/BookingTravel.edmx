@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BookingTravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BookingTravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BaiViet">
           <Key>
             <PropertyRef Name="ID" />
@@ -135,8 +135,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PhuongTien_ID" Type="int" />
           <Property Name="TenTour" Type="nvarchar" MaxLength="255" />
-          <Property Name="LoaiTour" Type="nvarchar" MaxLength="255" />
-          <Property Name="NoiKhoiHanh" Type="nvarchar" MaxLength="255" />
+          <Property Name="LoaiTour" Type="smallint" />
+          <Property Name="NoiKhoiHanh" Type="smallint" />
           <Property Name="NgayBD" Type="datetime" />
           <Property Name="NgayKT" Type="datetime" />
           <Property Name="DonGia" Type="int" />
@@ -351,8 +351,7 @@
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BookingTravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -393,7 +392,7 @@
           <Property Name="Tour_ID" Type="Int32" />
           <Property Name="DiaDiemThamQuan_ID" Type="Int32" />
           <NavigationProperty Name="DiaDiemThamQuan" Relationship="Self.FK__ChiTietDi__DiaDi__534D60F1" FromRole="ChiTietDiaDiemThamQuan" ToRole="DiaDiemThamQuan" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__ChiTietDi__Tour___52593CB8" FromRole="ChiTietDiaDiemThamQuan" ToRole="Tour" />
+          <NavigationProperty Name="Tour" Relationship="BookingTravelModel.FK__ChiTietDi__Tour___52593CB8" FromRole="ChiTietDiaDiemThamQuan" ToRole="Tour" />
         </EntityType>
         <EntityType Name="DatTour">
           <Key>
@@ -420,7 +419,7 @@
           <Property Name="SoLuong" Type="Int16" />
           <Property Name="DonGia" Type="Int32" />
           <NavigationProperty Name="DatTour" Relationship="Self.FK__DatTour_C__DatTo__5629CD9C" FromRole="DatTour_ChiTiet" ToRole="DatTour" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__DatTour_C__Tour___571DF1D5" FromRole="DatTour_ChiTiet" ToRole="Tour" />
+          <NavigationProperty Name="Tour" Relationship="BookingTravelModel.FK__DatTour_C__Tour___571DF1D5" FromRole="DatTour_ChiTiet" ToRole="Tour" />
         </EntityType>
         <EntityType Name="DiaDiemThamQuan">
           <Key>
@@ -440,7 +439,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tour_ID" Type="Int32" />
           <Property Name="HinhAnh1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__HinhAnh__Tour_ID__4BAC3F29" FromRole="HinhAnh" ToRole="Tour" />
+          <NavigationProperty Name="Tour" Relationship="BookingTravelModel.FK__HinhAnh__Tour_ID__4BAC3F29" FromRole="HinhAnh" ToRole="Tour" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
@@ -487,7 +486,7 @@
           <Property Name="TenPhuongTien" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="LoaiPhuongTien" Type="Int16" />
           <Property Name="SoCho" Type="Int32" />
-          <NavigationProperty Name="Tour" Relationship="Self.FK__Tour__PhuongTien__48CFD27E" FromRole="PhuongTien" ToRole="Tour" />
+          <NavigationProperty Name="Tour" Relationship="BookingTravelModel.FK__Tour__PhuongTien__48CFD27E" FromRole="PhuongTien" ToRole="Tour" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -498,26 +497,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Tour">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PhuongTien_ID" Type="Int32" />
-          <Property Name="TenTour" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="LoaiTour" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NoiKhoiHanh" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="NgayBD" Type="DateTime" Precision="3" />
-          <Property Name="NgayKT" Type="DateTime" Precision="3" />
-          <Property Name="DonGia" Type="Int32" />
-          <Property Name="SoLuong" Type="Int32" />
-          <Property Name="TrangThai" Type="Int16" />
-          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ChiTietDiaDiemThamQuan" Relationship="Self.FK__ChiTietDi__Tour___52593CB8" FromRole="Tour" ToRole="ChiTietDiaDiemThamQuan" />
-          <NavigationProperty Name="DatTour_ChiTiet" Relationship="Self.FK__DatTour_C__Tour___571DF1D5" FromRole="Tour" ToRole="DatTour_ChiTiet" />
-          <NavigationProperty Name="HinhAnh" Relationship="Self.FK__HinhAnh__Tour_ID__4BAC3F29" FromRole="Tour" ToRole="HinhAnh" />
-          <NavigationProperty Name="PhuongTien" Relationship="Self.FK__Tour__PhuongTien__48CFD27E" FromRole="Tour" ToRole="PhuongTien" />
         </EntityType>
         <Association Name="FK__BaiViet__NhanVie__4222D4EF">
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
@@ -567,18 +546,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ChiTietDi__Tour___52593CB8">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
-          <End Role="ChiTietDiaDiemThamQuan" Type="Self.ChiTietDiaDiemThamQuan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tour">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ChiTietDiaDiemThamQuan">
-              <PropertyRef Name="Tour_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__DatTour__KhachHa__4F7CD00D">
           <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
           <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
@@ -615,18 +582,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DatTour_C__Tour___571DF1D5">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
-          <End Role="DatTour_ChiTiet" Type="Self.DatTour_ChiTiet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tour">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DatTour_ChiTiet">
-              <PropertyRef Name="Tour_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__DiaDiemTh__Khach__3F466844">
           <End Role="KhachSan" Type="Self.KhachSan" Multiplicity="0..1" />
           <End Role="DiaDiemThamQuan" Type="Self.DiaDiemThamQuan" Multiplicity="*" />
@@ -636,30 +591,6 @@
             </Principal>
             <Dependent Role="DiaDiemThamQuan">
               <PropertyRef Name="KhachSan_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HinhAnh__Tour_ID__4BAC3F29">
-          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
-          <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tour">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="HinhAnh">
-              <PropertyRef Name="Tour_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Tour__PhuongTien__48CFD27E">
-          <End Role="PhuongTien" Type="Self.PhuongTien" Multiplicity="0..1" />
-          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PhuongTien">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Tour">
-              <PropertyRef Name="PhuongTien_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -676,7 +607,6 @@
           <EntitySet Name="NhanVien" EntityType="Self.NhanVien" />
           <EntitySet Name="PhuongTien" EntityType="Self.PhuongTien" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Tour" EntityType="Self.Tour" />
           <AssociationSet Name="FK__BaiViet__NhanVie__4222D4EF" Association="Self.FK__BaiViet__NhanVie__4222D4EF">
             <End Role="NhanVien" EntitySet="NhanVien" />
             <End Role="BaiViet" EntitySet="BaiViet" />
@@ -693,10 +623,6 @@
             <End Role="DiaDiemThamQuan" EntitySet="DiaDiemThamQuan" />
             <End Role="ChiTietDiaDiemThamQuan" EntitySet="ChiTietDiaDiemThamQuan" />
           </AssociationSet>
-          <AssociationSet Name="FK__ChiTietDi__Tour___52593CB8" Association="Self.FK__ChiTietDi__Tour___52593CB8">
-            <End Role="Tour" EntitySet="Tour" />
-            <End Role="ChiTietDiaDiemThamQuan" EntitySet="ChiTietDiaDiemThamQuan" />
-          </AssociationSet>
           <AssociationSet Name="FK__DatTour__KhachHa__4F7CD00D" Association="Self.FK__DatTour__KhachHa__4F7CD00D">
             <End Role="KhachHang" EntitySet="KhachHang" />
             <End Role="DatTour" EntitySet="DatTour" />
@@ -709,23 +635,96 @@
             <End Role="DatTour" EntitySet="DatTour" />
             <End Role="DatTour_ChiTiet" EntitySet="DatTour_ChiTiet" />
           </AssociationSet>
-          <AssociationSet Name="FK__DatTour_C__Tour___571DF1D5" Association="Self.FK__DatTour_C__Tour___571DF1D5">
-            <End Role="Tour" EntitySet="Tour" />
-            <End Role="DatTour_ChiTiet" EntitySet="DatTour_ChiTiet" />
-          </AssociationSet>
           <AssociationSet Name="FK__DiaDiemTh__Khach__3F466844" Association="Self.FK__DiaDiemTh__Khach__3F466844">
             <End Role="KhachSan" EntitySet="KhachSan" />
             <End Role="DiaDiemThamQuan" EntitySet="DiaDiemThamQuan" />
           </AssociationSet>
-          <AssociationSet Name="FK__HinhAnh__Tour_ID__4BAC3F29" Association="Self.FK__HinhAnh__Tour_ID__4BAC3F29">
+          <EntitySet Name="Tour" EntityType="BookingTravelModel.Tour" />
+          <AssociationSet Name="FK__ChiTietDi__Tour___52593CB8" Association="BookingTravelModel.FK__ChiTietDi__Tour___52593CB8">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="ChiTietDiaDiemThamQuan" EntitySet="ChiTietDiaDiemThamQuan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DatTour_C__Tour___571DF1D5" Association="BookingTravelModel.FK__DatTour_C__Tour___571DF1D5">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="DatTour_ChiTiet" EntitySet="DatTour_ChiTiet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HinhAnh__Tour_ID__4BAC3F29" Association="BookingTravelModel.FK__HinhAnh__Tour_ID__4BAC3F29">
             <End Role="Tour" EntitySet="Tour" />
             <End Role="HinhAnh" EntitySet="HinhAnh" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tour__PhuongTien__48CFD27E" Association="Self.FK__Tour__PhuongTien__48CFD27E">
+          <AssociationSet Name="FK__Tour__PhuongTien__48CFD27E" Association="BookingTravelModel.FK__Tour__PhuongTien__48CFD27E">
             <End Role="PhuongTien" EntitySet="PhuongTien" />
             <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhuongTien_ID" Type="Int32" />
+          <Property Name="TenTour" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiTour" Type="Int16" />
+          <Property Name="NoiKhoiHanh" Type="Int16" />
+          <Property Name="NgayBD" Type="DateTime" Precision="3" />
+          <Property Name="NgayKT" Type="DateTime" Precision="3" />
+          <Property Name="DonGia" Type="Int32" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="TrangThai" Type="Int16" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChiTietDiaDiemThamQuan" Relationship="BookingTravelModel.FK__ChiTietDi__Tour___52593CB8" FromRole="Tour" ToRole="ChiTietDiaDiemThamQuan" />
+          <NavigationProperty Name="DatTour_ChiTiet" Relationship="BookingTravelModel.FK__DatTour_C__Tour___571DF1D5" FromRole="Tour" ToRole="DatTour_ChiTiet" />
+          <NavigationProperty Name="HinhAnh" Relationship="BookingTravelModel.FK__HinhAnh__Tour_ID__4BAC3F29" FromRole="Tour" ToRole="HinhAnh" />
+          <NavigationProperty Name="PhuongTien" Relationship="BookingTravelModel.FK__Tour__PhuongTien__48CFD27E" FromRole="Tour" ToRole="PhuongTien" />
+        </EntityType>
+        <Association Name="FK__ChiTietDi__Tour___52593CB8">
+          <End Type="BookingTravelModel.Tour" Role="Tour" Multiplicity="0..1" />
+          <End Type="BookingTravelModel.ChiTietDiaDiemThamQuan" Role="ChiTietDiaDiemThamQuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ChiTietDiaDiemThamQuan">
+              <PropertyRef Name="Tour_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DatTour_C__Tour___571DF1D5">
+          <End Type="BookingTravelModel.Tour" Role="Tour" Multiplicity="0..1" />
+          <End Type="BookingTravelModel.DatTour_ChiTiet" Role="DatTour_ChiTiet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DatTour_ChiTiet">
+              <PropertyRef Name="Tour_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HinhAnh__Tour_ID__4BAC3F29">
+          <End Type="BookingTravelModel.Tour" Role="Tour" Multiplicity="0..1" />
+          <End Type="BookingTravelModel.HinhAnh" Role="HinhAnh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HinhAnh">
+              <PropertyRef Name="Tour_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tour__PhuongTien__48CFD27E">
+          <End Type="BookingTravelModel.PhuongTien" Role="PhuongTien" Multiplicity="0..1" />
+          <End Type="BookingTravelModel.Tour" Role="Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhuongTien">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="PhuongTien_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -870,17 +869,17 @@
           <EntitySetMapping Name="Tour">
             <EntityTypeMapping TypeName="BookingTravelModel.Tour">
               <MappingFragment StoreEntitySet="Tour">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PhuongTien_ID" ColumnName="PhuongTien_ID" />
-                <ScalarProperty Name="TenTour" ColumnName="TenTour" />
-                <ScalarProperty Name="LoaiTour" ColumnName="LoaiTour" />
-                <ScalarProperty Name="NoiKhoiHanh" ColumnName="NoiKhoiHanh" />
-                <ScalarProperty Name="NgayBD" ColumnName="NgayBD" />
-                <ScalarProperty Name="NgayKT" ColumnName="NgayKT" />
-                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
-                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="NgayKT" ColumnName="NgayKT" />
+                <ScalarProperty Name="NgayBD" ColumnName="NgayBD" />
+                <ScalarProperty Name="NoiKhoiHanh" ColumnName="NoiKhoiHanh" />
+                <ScalarProperty Name="LoaiTour" ColumnName="LoaiTour" />
+                <ScalarProperty Name="TenTour" ColumnName="TenTour" />
+                <ScalarProperty Name="PhuongTien_ID" ColumnName="PhuongTien_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

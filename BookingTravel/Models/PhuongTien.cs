@@ -11,8 +11,7 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PhuongTien
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,20 +19,10 @@ namespace BookingTravel.Models
         {
             this.Tour = new HashSet<Tour>();
         }
-
-        [Display(Name = "Mã phương tiện")]
+    
         public int ID { get; set; }
-
-        [Display(Name = "Tên phương loại")]
-        [Required(ErrorMessage = "Tên phương loại không được bỏ trống")]
         public string TenPhuongTien { get; set; }
-
-        [Display(Name = "Loại phương tiện loại")]
-        [Required(ErrorMessage = "Loại phương tiện loại không được bỏ trống")]
         public Nullable<short> LoaiPhuongTien { get; set; }
-
-        [Display(Name = "Số chỗ ")]
-        [Required(ErrorMessage = "Số chỗ không được bỏ trống")]
         public Nullable<int> SoCho { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
