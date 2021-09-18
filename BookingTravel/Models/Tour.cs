@@ -11,7 +11,9 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web;
+
     public partial class Tour
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,17 +23,48 @@ namespace BookingTravel.Models
             this.DatTour_ChiTiet = new HashSet<DatTour_ChiTiet>();
             this.HinhAnh = new HashSet<HinhAnh>();
         }
-    
+
+        [Display(Name = "Mã Tour")]
         public int ID { get; set; }
+
+        [Display(Name = "Phương tiện")]
+        [Required(ErrorMessage = "Chưa chọn Phương tiện!")]
         public Nullable<int> PhuongTien_ID { get; set; }
+
+        [Display(Name = "Tên Tour")]
+        [Required(ErrorMessage = "Tên Tour không được bỏ trống!")]
         public string TenTour { get; set; }
+
+        [Display(Name = "Loại Tour")]
+        [Required(ErrorMessage = "Chưa chọn loại Tou!")]
         public Nullable<short> LoaiTour { get; set; }
+
+        [Display(Name = "Nơi khởi hành")]
+        [Required(ErrorMessage = "Chưa chọn nơi khởi hành!")]
         public Nullable<short> NoiKhoiHanh { get; set; }
+
+        [Display(Name = "Ngày bắt đầu")]
+        [Required(ErrorMessage = "Chưa chọn Ngày bắt đầu!")]
         public Nullable<System.DateTime> NgayBD { get; set; }
+
+        [Display(Name = "Ngày kết thúc")]
+        [Required(ErrorMessage = "Chưa chọn ngày kết thúc!")]
         public Nullable<System.DateTime> NgayKT { get; set; }
+
+        [Display(Name = "Đơn giá")]
+        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public Nullable<int> DonGia { get; set; }
+
+        [Display(Name = "Số lượng")]
+        [Required(ErrorMessage = "Số lượng không được bỏ trống!")]
         public Nullable<int> SoLuong { get; set; }
+
+        [Display(Name = "Trạng thái Tour")]
+        [Required(ErrorMessage = "Chưa chọn trạng thái Tour!")]
         public Nullable<short> TrangThai { get; set; }
+
+        [Display(Name = "Mô tả")]
+        [DataType(DataType.MultilineText)]
         public string MoTa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
