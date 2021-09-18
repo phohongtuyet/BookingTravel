@@ -80,3 +80,4 @@ D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\EntityFrame
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\EntityFramework.SqlServer.dll
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\EntityFramework.xml
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\EntityFramework.SqlServer.xml
+D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.AssemblyReference.cache
