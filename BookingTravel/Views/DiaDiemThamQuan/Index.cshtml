@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "DS Địa Điểm Tham Quan";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
 
 <div class="card mt-3">
@@ -23,7 +24,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.KhachSan.TenKhachSan)
                 </th>
-                <th></th>
+               
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
             </tr>
@@ -36,8 +37,35 @@
                 @Html.DisplayFor(modelItem => item.TenDiaDanh)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tinh)
-            </td>
+                @if (item.Tinh == 0)
+                {
+                    <span>An Giang</span>
+                }
+                else if (item.Tinh == 1)
+                {
+                    <span>Cần Thơ</span>
+                }
+                else if (item.Tinh == 2)
+                {
+                    <span>Kiên Giang</span>
+                }
+                else if (item.Tinh == 3)
+                {
+                    <span>Bạc Liêu</span>
+                }
+                else if (item.Tinh == 4)
+                {
+                    <span>Sóc Trăng</span>
+                }
+                else if (item.Tinh == 5)
+                {
+                    <span>Trà Vinh</span>
+                }
+                else
+                {
+                    <span>Long An</span>
+                }
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.KhachSan.TenKhachSan)
             </td>
