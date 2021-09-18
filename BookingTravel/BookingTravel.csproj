@@ -144,6 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Libs\SHA1.cs" />
     <Compile Include="Models\BaiViet.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
@@ -356,7 +357,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Libs\" />
     <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>

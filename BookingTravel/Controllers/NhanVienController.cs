@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
+using BookingTravel.Libs;
 
 namespace BookingTravel.Controllers
 {
@@ -46,10 +47,13 @@ namespace BookingTravel.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,HoVaTen,DienThoai,DiaChi,TenDangNhap,MatKhau,Quyen,Khoa")] NhanVien nhanVien)
+        public ActionResult Create([Bind(Include = "ID,HoVaTen,DienThoai,DiaChi,TenDangNhap,MatKhau,XacNhanMatKhau,Quyen,Khoa")] NhanVien nhanVien)
         {
             if (ModelState.IsValid)
             {
+
+                nhanVien.MatKhau = SHA1.ComputeHash(nhanVien.MatKhau);
+                nhanVien.XacNhanMatKhau = SHA1.ComputeHash(nhanVien.XacNhanMatKhau);
                 db.NhanVien.Add(nhanVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");

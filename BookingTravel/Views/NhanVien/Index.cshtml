@@ -32,6 +32,9 @@
                     @Html.DisplayNameFor(model => model.MatKhau)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.XacNhanMatKhau)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Quyen)
                 </th>
                 <th>
@@ -43,45 +46,48 @@
             @{ int stt = 1; }
             @foreach (var item in Model)
             {
-        <tr>
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoVaTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenDangNhap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.XacNhanMatKhau)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quyen)
+                    </td>
+                    <td class="text-center">
+                        @if (item.Khoa == true)
+                        {
+                            <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fal fa-check-circle text-primary"></i></a>
+                        }
+                        else
+                        {
 
-            <td>
-                @Html.DisplayFor(modelItem => item.HoVaTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DienThoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDangNhap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quyen)
-            </td>
-            <td class="text-center">
-                @if (item.Khoa == true)
-                {
-                    <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fal fa-check-circle text-primary"></i></a>
-                }
-                else
-                {
+                            <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fal fa-ban text-danger"></i></a>
+                        }
 
-                    <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fal fa-ban text-danger"></i></a>
-                }
-
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-            </td>
-        </tr>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
                 stt++;
             }
 
