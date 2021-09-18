@@ -11,13 +11,26 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class DatTour_ChiTiet
     {
+        [Display(Name = "Mã đặt tour chi tiết")]
         public int ID { get; set; }
+
+        [Display(Name = "Đặt tuor")]
+        [Required(ErrorMessage = "Chưa chọn đặt tuor!")]
         public Nullable<int> DatTour_ID { get; set; }
+
+        [Display(Name = "Tour")]
+        [Required(ErrorMessage = "Chưa chọn tour!")]
         public Nullable<int> Tour_ID { get; set; }
+
+        [Display(Name = "Số lượng")]
+        [Required(ErrorMessage = "Chưa chọn số lượng!")]
         public Nullable<short> SoLuong { get; set; }
+
+        [Display(Name = "Đơn giá")]
+        [Required(ErrorMessage = "Chưa chọn đơn giá!")]
         public Nullable<int> DonGia { get; set; }
     
         public virtual DatTour DatTour { get; set; }

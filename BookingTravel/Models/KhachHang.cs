@@ -11,7 +11,7 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class KhachHang
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +20,28 @@ namespace BookingTravel.Models
             this.BinhLuan = new HashSet<BinhLuan>();
             this.DatTour = new HashSet<DatTour>();
         }
-    
+
+        [Display(Name = "Mã hình ảnh")]
         public int ID { get; set; }
+
+        [Display(Name = "Họ và tên")]
+        [Required(ErrorMessage = "Họ và tên không được bỏ trống!")]
         public string HoVaten { get; set; }
+
+        [Display(Name = "Điện thoại")]
+        [Required(ErrorMessage = "Điện thoại không được bỏ trống!")]
         public string DienThoai { get; set; }
+
+        [Display(Name = "Địa chỉ")]
+        [Required(ErrorMessage = "Đỉa chỉ không được bỏ trống!")]
         public string DiaChi { get; set; }
+
+        [Display(Name = "Tên đăng nhập")]
+        [Required(ErrorMessage = "Tên đăng nhập không được bỏ trống!")]
         public string TenDangNhap { get; set; }
+
+        [Display(Name = "Mật khẩu")]
+        [Required(ErrorMessage = "Mật khẩu không được bỏ trống!")]
         public string MatKhau { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

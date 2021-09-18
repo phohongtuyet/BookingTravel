@@ -1,45 +1,58 @@
 ﻿@model IEnumerable<BookingTravel.Models.DiaDiemThamQuan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "DS Địa Điểm Tham Quan";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDiaDanh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KhachSan.TenKhachSan)
-        </th>
-        <th></th>
-    </tr>
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
+        </p>
+        <table class="table table-bordered table-hover table-sm mb-0">
+            <tr>
+                <th width="5%">#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenDiaDanh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tinh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KhachSan.TenKhachSan)
+                </th>
+                <th></th>
+                <th width="5%">Sửa</th>
+                <th width="5%">Xóa</th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@stt</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDiaDanh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhachSan.TenKhachSan)
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+            </td>
+        </tr>
+                stt++;
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenDiaDanh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KhachSan.TenKhachSan)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+        </table>
+    </div>
+</div>
 
-</table>
+

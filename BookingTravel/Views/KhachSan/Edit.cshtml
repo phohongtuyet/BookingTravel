@@ -1,48 +1,35 @@
 ﻿@model BookingTravel.Models.KhachSan
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Cập nhật";
 }
 
-<h2>Edit</h2>
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>KhachSan</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenKhachSan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenKhachSan, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenKhachSan)
+                @Html.EditorFor(model => model.TenKhachSan, new { htmlAttributes = new { @class = "form-control col-md-12" } })
                 @Html.ValidationMessageFor(model => model.TenKhachSan, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaChi)
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control col-md-12" } })
                 @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group mb-0">
+
+                <button type="submit" class="btn btn-success"><i class="fas fa-cog"></i> Cập Nhật</button> hoặc @Html.ActionLink("Quay về danh sách", "Index")
             </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

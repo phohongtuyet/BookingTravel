@@ -4,53 +4,62 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>DiaDiemThamQuan</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TenDiaDanh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TenDiaDanh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenDiaDanh, "", new { @class = "text-danger" })
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenDiaDanh, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TenDiaDanh, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenDiaDanh, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tinh, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Tinh, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tinh)
+                @Html.DropDownListFor(model => model.Tinh, new SelectList(new[] {
+                    new SelectListItem {Value = null, Text = "-- Chọn --" },
+                    new SelectListItem {Value = "0", Text = "An Giang" },
+                    new SelectListItem {Value = "1", Text = "Cần Thơ" },
+                    new SelectListItem {Value = "2", Text = "Kiên Giang" },
+                    new SelectListItem {Value = "3", Text = "Bạc Liêu" },
+                    new SelectListItem {Value = "3", Text = "Sóc Trăng" },
+                    new SelectListItem {Value = "3", Text = "Trà Vinh" },
+                    new SelectListItem {Value = "3", Text = "Long An" }
+                }, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Tinh, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.KhachSan_ID, "KhachSan_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("KhachSan_ID", null, htmlAttributes: new { @class = "form-control" })
+
+
+
+            <div class="form-group  col-md-4">
+                @Html.LabelFor(model => model.KhachSan_ID)
+                @Html.DropDownList("KhachSan_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control col-md-12" })
                 @Html.ValidationMessageFor(model => model.KhachSan_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+          
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
             </div>
-        </div>
-    </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+        }
+
+
+    </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+

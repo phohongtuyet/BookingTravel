@@ -34,7 +34,7 @@ namespace BookingTravel.Models
 
 
         [Display(Name = "Khách sạn")]
-        [Required(ErrorMessage = "Chưa chọn kshách sạn!")]
+        [Required(ErrorMessage = "Chưa chọn khách sạn!")]
         public Nullable<int> KhachSan_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

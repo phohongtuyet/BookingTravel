@@ -1,40 +1,25 @@
 ﻿@model BookingTravel.Models.KhachSan
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Xóa";
 }
 
-<h2>Delete</h2>
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>KhachSan</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenKhachSan)
-        </dt>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Bạn có muốn xóa khách sạn <strong>@Model.ID</strong> không?
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenKhachSan)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+            </div>
+        }
+    </div>
