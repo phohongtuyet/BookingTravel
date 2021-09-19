@@ -102,7 +102,7 @@
     <Property Name="TenDangNhap" Type="nvarchar" MaxLength="50" />
     <Property Name="MatKhau" Type="nvarchar" MaxLength="255" />
     <Property Name="Quyen" Type="bit" />
-    <Property Name="Khoa" Type="bit" />
+    <Property Name="Khoa" Type="tinyint" />
   </EntityType>
   <EntityType Name="PhuongTien">
     <Key>

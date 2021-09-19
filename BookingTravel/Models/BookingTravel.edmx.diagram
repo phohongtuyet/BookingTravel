@@ -14,15 +14,12 @@
         <EntityTypeShape EntityType="BookingTravelModel.HinhAnh" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingTravelModel.KhachHang" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingTravelModel.KhachSan" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookingTravelModel.NhanVien" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingTravelModel.PhuongTien" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BookingTravelModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="BookingTravelModel.FK__BaiViet__NhanVie__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="BookingTravelModel.FK__BinhLuan__BaiVie__44FF419A" ManuallyRouted="false" />
         <AssociationConnector Association="BookingTravelModel.FK__BinhLuan__KhachH__45F365D3" ManuallyRouted="false" />
         <AssociationConnector Association="BookingTravelModel.FK__ChiTietDi__DiaDi__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="BookingTravelModel.FK__DatTour__KhachHa__4F7CD00D" ManuallyRouted="false" />
-        <AssociationConnector Association="BookingTravelModel.FK__DatTour__NhanVie__4E88ABD4" ManuallyRouted="false" />
         <AssociationConnector Association="BookingTravelModel.FK__DatTour_C__DatTo__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="BookingTravelModel.FK__DiaDiemTh__Khach__3F466844" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BookingTravelModel.Tour" Width="1.5" PointX="3" PointY="3.875" />
@@ -30,6 +27,9 @@
         <AssociationConnector Association="BookingTravelModel.FK__DatTour_C__Tour___571DF1D5" />
         <AssociationConnector Association="BookingTravelModel.FK__HinhAnh__Tour_ID__4BAC3F29" />
         <AssociationConnector Association="BookingTravelModel.FK__Tour__PhuongTien__48CFD27E" />
+        <EntityTypeShape EntityType="BookingTravelModel.NhanVien" Width="1.5" PointX="0.75" PointY="13.5" />
+        <AssociationConnector Association="BookingTravelModel.FK__BaiViet__NhanVie__4222D4EF" />
+        <AssociationConnector Association="BookingTravelModel.FK__DatTour__NhanVie__4E88ABD4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

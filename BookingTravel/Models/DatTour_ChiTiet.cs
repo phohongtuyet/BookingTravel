@@ -17,8 +17,8 @@ namespace BookingTravel.Models
         [Display(Name = "Mã đặt tour chi tiết")]
         public int ID { get; set; }
 
-        [Display(Name = "Đặt tuor")]
-        [Required(ErrorMessage = "Chưa chọn đặt tuor!")]
+        [Display(Name = "Đơn đặt tuor")]
+        [Required(ErrorMessage = "Chưa chọn đơn đặt tuor!")]
         public Nullable<int> DatTour_ID { get; set; }
 
         [Display(Name = "Tour")]

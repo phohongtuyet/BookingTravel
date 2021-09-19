@@ -101,20 +101,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="NhanVien">
-      <EntityTypeMapping TypeName="BookingTravelModel.NhanVien">
-        <MappingFragment StoreEntitySet="NhanVien">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
-          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
-          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
-          <ScalarProperty Name="Khoa" ColumnName="Khoa" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PhuongTien">
       <EntityTypeMapping TypeName="BookingTravelModel.PhuongTien">
         <MappingFragment StoreEntitySet="PhuongTien">
@@ -149,6 +135,20 @@
           <ScalarProperty Name="LoaiTour" ColumnName="LoaiTour" />
           <ScalarProperty Name="TenTour" ColumnName="TenTour" />
           <ScalarProperty Name="PhuongTien_ID" ColumnName="PhuongTien_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NhanVien">
+      <EntityTypeMapping TypeName="BookingTravelModel.NhanVien">
+        <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

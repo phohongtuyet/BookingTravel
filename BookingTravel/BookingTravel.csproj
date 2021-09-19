@@ -190,6 +190,7 @@
     <Compile Include="Models\NhanVien.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\NhanVienModels.cs" />
     <Compile Include="Models\PhuongTien.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>

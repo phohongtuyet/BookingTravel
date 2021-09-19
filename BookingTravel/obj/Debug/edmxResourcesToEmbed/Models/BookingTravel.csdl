@@ -13,8 +13,8 @@
     <Property Name="LuotXem" Type="Int32" />
     <Property Name="KiemDuyet" Type="Byte" />
     <Property Name="TrangThaiBinhLuan" Type="Byte" />
-    <NavigationProperty Name="NhanVien" Relationship="Self.FK__BaiViet__NhanVie__4222D4EF" FromRole="BaiViet" ToRole="NhanVien" />
     <NavigationProperty Name="BinhLuan" Relationship="Self.FK__BinhLuan__BaiVie__44FF419A" FromRole="BaiViet" ToRole="BinhLuan" />
+    <NavigationProperty Name="NhanVien" Relationship="BookingTravelModel.FK__BaiViet__NhanVie__4222D4EF" FromRole="BaiViet" ToRole="NhanVien" />
   </EntityType>
   <EntityType Name="BinhLuan">
     <Key>
@@ -51,8 +51,8 @@
     <Property Name="NgayDatHang" Type="DateTime" Precision="3" />
     <Property Name="TinhTrang" Type="Int16" />
     <NavigationProperty Name="KhachHang" Relationship="Self.FK__DatTour__KhachHa__4F7CD00D" FromRole="DatTour" ToRole="KhachHang" />
-    <NavigationProperty Name="NhanVien" Relationship="Self.FK__DatTour__NhanVie__4E88ABD4" FromRole="DatTour" ToRole="NhanVien" />
     <NavigationProperty Name="DatTour_ChiTiet" Relationship="Self.FK__DatTour_C__DatTo__5629CD9C" FromRole="DatTour" ToRole="DatTour_ChiTiet" />
+    <NavigationProperty Name="NhanVien" Relationship="BookingTravelModel.FK__DatTour__NhanVie__4E88ABD4" FromRole="DatTour" ToRole="NhanVien" />
   </EntityType>
   <EntityType Name="DatTour_ChiTiet">
     <Key>
@@ -108,21 +108,6 @@
     <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DiaDiemThamQuan" Relationship="Self.FK__DiaDiemTh__Khach__3F466844" FromRole="KhachSan" ToRole="DiaDiemThamQuan" />
   </EntityType>
-  <EntityType Name="NhanVien">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="HoVaTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="Quyen" Type="Boolean" />
-    <Property Name="Khoa" Type="Boolean" />
-    <NavigationProperty Name="BaiViet" Relationship="Self.FK__BaiViet__NhanVie__4222D4EF" FromRole="NhanVien" ToRole="BaiViet" />
-    <NavigationProperty Name="DatTour" Relationship="Self.FK__DatTour__NhanVie__4E88ABD4" FromRole="NhanVien" ToRole="DatTour" />
-  </EntityType>
   <EntityType Name="PhuongTien">
     <Key>
       <PropertyRef Name="ID" />
@@ -143,18 +128,6 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <Association Name="FK__BaiViet__NhanVie__4222D4EF">
-    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
-    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NhanVien">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BaiViet">
-        <PropertyRef Name="NhanVien_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__BinhLuan__BaiVie__44FF419A">
     <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="0..1" />
     <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
@@ -203,18 +176,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DatTour__NhanVie__4E88ABD4">
-    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
-    <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NhanVien">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="DatTour">
-        <PropertyRef Name="NhanVien_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__DatTour_C__DatTo__5629CD9C">
     <End Role="DatTour" Type="Self.DatTour" Multiplicity="0..1" />
     <End Role="DatTour_ChiTiet" Type="Self.DatTour_ChiTiet" Multiplicity="*" />
@@ -249,13 +210,8 @@
     <EntitySet Name="HinhAnh" EntityType="Self.HinhAnh" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" />
     <EntitySet Name="KhachSan" EntityType="Self.KhachSan" />
-    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" />
     <EntitySet Name="PhuongTien" EntityType="Self.PhuongTien" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-    <AssociationSet Name="FK__BaiViet__NhanVie__4222D4EF" Association="Self.FK__BaiViet__NhanVie__4222D4EF">
-      <End Role="NhanVien" EntitySet="NhanVien" />
-      <End Role="BaiViet" EntitySet="BaiViet" />
-    </AssociationSet>
     <AssociationSet Name="FK__BinhLuan__BaiVie__44FF419A" Association="Self.FK__BinhLuan__BaiVie__44FF419A">
       <End Role="BaiViet" EntitySet="BaiViet" />
       <End Role="BinhLuan" EntitySet="BinhLuan" />
@@ -270,10 +226,6 @@
     </AssociationSet>
     <AssociationSet Name="FK__DatTour__KhachHa__4F7CD00D" Association="Self.FK__DatTour__KhachHa__4F7CD00D">
       <End Role="KhachHang" EntitySet="KhachHang" />
-      <End Role="DatTour" EntitySet="DatTour" />
-    </AssociationSet>
-    <AssociationSet Name="FK__DatTour__NhanVie__4E88ABD4" Association="Self.FK__DatTour__NhanVie__4E88ABD4">
-      <End Role="NhanVien" EntitySet="NhanVien" />
       <End Role="DatTour" EntitySet="DatTour" />
     </AssociationSet>
     <AssociationSet Name="FK__DatTour_C__DatTo__5629CD9C" Association="Self.FK__DatTour_C__DatTo__5629CD9C">
@@ -300,6 +252,15 @@
     <AssociationSet Name="FK__Tour__PhuongTien__48CFD27E" Association="BookingTravelModel.FK__Tour__PhuongTien__48CFD27E">
       <End Role="PhuongTien" EntitySet="PhuongTien" />
       <End Role="Tour" EntitySet="Tour" />
+    </AssociationSet>
+    <EntitySet Name="NhanVien" EntityType="BookingTravelModel.NhanVien" />
+    <AssociationSet Name="FK__BaiViet__NhanVie__4222D4EF" Association="BookingTravelModel.FK__BaiViet__NhanVie__4222D4EF">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="BaiViet" EntitySet="BaiViet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DatTour__NhanVie__4E88ABD4" Association="BookingTravelModel.FK__DatTour__NhanVie__4E88ABD4">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="DatTour" EntitySet="DatTour" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Tour">
@@ -367,6 +328,45 @@
       </Principal>
       <Dependent Role="Tour">
         <PropertyRef Name="PhuongTien_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoVaTen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TenDangNhap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Quyen" Type="Boolean" />
+    <Property Name="Khoa" Type="Byte" />
+    <NavigationProperty Name="BaiViet" Relationship="BookingTravelModel.FK__BaiViet__NhanVie__4222D4EF" FromRole="NhanVien" ToRole="BaiViet" />
+    <NavigationProperty Name="DatTour" Relationship="BookingTravelModel.FK__DatTour__NhanVie__4E88ABD4" FromRole="NhanVien" ToRole="DatTour" />
+  </EntityType>
+  <Association Name="FK__BaiViet__NhanVie__4222D4EF">
+    <End Type="BookingTravelModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
+    <End Type="BookingTravelModel.BaiViet" Role="BaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BaiViet">
+        <PropertyRef Name="NhanVien_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DatTour__NhanVie__4E88ABD4">
+    <End Type="BookingTravelModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
+    <End Type="BookingTravelModel.DatTour" Role="DatTour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DatTour">
+        <PropertyRef Name="NhanVien_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

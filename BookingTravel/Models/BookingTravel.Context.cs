@@ -34,9 +34,9 @@ namespace BookingTravel.Models
         public virtual DbSet<HinhAnh> HinhAnh { get; set; }
         public virtual DbSet<KhachHang> KhachHang { get; set; }
         public virtual DbSet<KhachSan> KhachSan { get; set; }
-        public virtual DbSet<NhanVien> NhanVien { get; set; }
         public virtual DbSet<PhuongTien> PhuongTien { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
+        public virtual DbSet<NhanVien> NhanVien { get; set; }
     }
 }

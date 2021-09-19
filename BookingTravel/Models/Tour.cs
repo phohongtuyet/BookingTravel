@@ -12,7 +12,6 @@ namespace BookingTravel.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Web;
 
     public partial class Tour
     {
@@ -24,19 +23,19 @@ namespace BookingTravel.Models
             this.HinhAnh = new HashSet<HinhAnh>();
         }
 
-        [Display(Name = "Mã Tour")]
+        [Display(Name = "Mã Tour ")]
         public int ID { get; set; }
 
         [Display(Name = "Phương tiện")]
-        [Required(ErrorMessage = "Chưa chọn Phương tiện!")]
+        [Required(ErrorMessage = "Chưa chọn phương tiện!")]
         public Nullable<int> PhuongTien_ID { get; set; }
 
-        [Display(Name = "Tên Tour")]
+        [Display(Name = "Tên Tour ")]
         [Required(ErrorMessage = "Tên Tour không được bỏ trống!")]
         public string TenTour { get; set; }
 
         [Display(Name = "Loại Tour")]
-        [Required(ErrorMessage = "Chưa chọn loại Tou!")]
+        [Required(ErrorMessage = "Chưa chọn Loại Tour!")]
         public Nullable<short> LoaiTour { get; set; }
 
         [Display(Name = "Nơi khởi hành")]
@@ -44,11 +43,13 @@ namespace BookingTravel.Models
         public Nullable<short> NoiKhoiHanh { get; set; }
 
         [Display(Name = "Ngày bắt đầu")]
-        [Required(ErrorMessage = "Chưa chọn Ngày bắt đầu!")]
+        [Required(ErrorMessage = "Chưa chọn ngày bắt đầu!")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> NgayBD { get; set; }
 
         [Display(Name = "Ngày kết thúc")]
         [Required(ErrorMessage = "Chưa chọn ngày kết thúc!")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> NgayKT { get; set; }
 
         [Display(Name = "Đơn giá")]
@@ -59,9 +60,11 @@ namespace BookingTravel.Models
         [Required(ErrorMessage = "Số lượng không được bỏ trống!")]
         public Nullable<int> SoLuong { get; set; }
 
+
         [Display(Name = "Trạng thái Tour")]
-        [Required(ErrorMessage = "Chưa chọn trạng thái Tour!")]
+        [Required(ErrorMessage = "Chưa chọn trạng thái tour!")]
         public Nullable<short> TrangThai { get; set; }
+
 
         [Display(Name = "Mô tả")]
         [DataType(DataType.MultilineText)]

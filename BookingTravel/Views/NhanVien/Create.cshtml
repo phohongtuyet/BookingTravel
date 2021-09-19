@@ -76,8 +76,8 @@
                 @Html.LabelFor(model => model.Khoa)
                 @Html.DropDownListFor(model => model.Khoa, new SelectList(new[] {
                     new SelectListItem { Value = null, Text = "-- Khóa --"},
-                    new SelectListItem { Value = "true", Text = "Đang hoạt động"},
-                    new SelectListItem { Value = "false", Text = "Đã khóa"}
+                    new SelectListItem { Value = "1", Text = "Đang hoạt động"},
+                    new SelectListItem { Value = "0", Text = "Đã khóa"}
                 }, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Khoa, "", new { @class = "text-danger" })
             </div>

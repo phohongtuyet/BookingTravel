@@ -12,6 +12,7 @@ namespace BookingTravel.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     public partial class DiaDiemThamQuan
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,6 @@ namespace BookingTravel.Models
         {
             this.ChiTietDiaDiemThamQuan = new HashSet<ChiTietDiaDiemThamQuan>();
         }
-
         [Display(Name = "Mã địa danh")]
         public int ID { get; set; }
 
@@ -27,11 +27,9 @@ namespace BookingTravel.Models
         [Required(ErrorMessage = "Tên địa danh không được bỏ trống!")]
         public string TenDiaDanh { get; set; }
 
-
         [Display(Name = "Tỉnh")]
         [Required(ErrorMessage = "Chưa chọn tỉnh!")]
         public Nullable<short> Tinh { get; set; }
-
 
         [Display(Name = "Khách sạn")]
         [Required(ErrorMessage = "Chưa chọn khách sạn!")]

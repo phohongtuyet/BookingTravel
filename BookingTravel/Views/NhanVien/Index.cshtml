@@ -4,7 +4,7 @@
     ViewBag.Title = "Nhân viên";
 }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
 <div class="card mt-3">
@@ -46,48 +46,56 @@
             @{ int stt = 1; }
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@stt</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HoVaTen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DienThoai)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenDangNhap)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MatKhau)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.XacNhanMatKhau)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quyen)
-                    </td>
-                    <td class="text-center">
-                        @if (item.Khoa == true)
-                        {
-                            <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fal fa-check-circle text-primary"></i></a>
-                        }
-                        else
-                        {
+        <tr>
+            <td>@stt</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDangNhap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.XacNhanMatKhau)
+            </td>
 
-                            <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fal fa-ban text-danger"></i></a>
-                        }
+            <td class="text-center">
+                @if (item.Quyen == true)
+                {
+                    <span class="badge bg-info text-dark">Quản lý</span>
+                }
+                else
+                {
+                    <span class="badge bg-dark ">Hướng dẫn viên </span>
+                }
+            </td>
+            <td class="text-center">
+                @if (item.Khoa == 1)
+                {
+                    <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fas fa-check-circle text-info"></i></a>
+                }
+                else
+                {
 
-                    </td>
-                    <td class="text-center">
-                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-                    </td>
-                    <td class="text-center">
-                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-                    </td>
-                </tr>
+                    <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fas fa-ban text-danger"></i></a>
+                }
+
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+            </td>
+        </tr>
                 stt++;
             }
 

@@ -30,8 +30,8 @@ namespace BookingTravel.Models
         public Nullable<byte> KiemDuyet { get; set; }
         public Nullable<byte> TrangThaiBinhLuan { get; set; }
     
-        public virtual NhanVien NhanVien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuan { get; set; }
+        public virtual NhanVien NhanVien { get; set; }
     }
 }

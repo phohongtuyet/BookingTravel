@@ -20,7 +20,6 @@ namespace BookingTravel.Models
         {
             this.Tour = new HashSet<Tour>();
         }
-
         [Display(Name = "Mã phương tiện")]
         public int ID { get; set; }
 

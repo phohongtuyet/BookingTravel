@@ -29,8 +29,8 @@ namespace BookingTravel.Models
         public Nullable<short> TinhTrang { get; set; }
     
         public virtual KhachHang KhachHang { get; set; }
-        public virtual NhanVien NhanVien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatTour_ChiTiet> DatTour_ChiTiet { get; set; }
+        public virtual NhanVien NhanVien { get; set; }
     }
 }

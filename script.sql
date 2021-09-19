@@ -41,7 +41,7 @@ CREATE TABLE NhanVien
 	TenDangNhap nvarchar(50) NULL,
 	MatKhau 	nvarchar(255) NULL,
 	Quyen 		bit NULL,/*0 admin 1 hướng dẫn viên*/
-	Khoa		bit NULL,/*0 bị khóa, 1 không bị khóa*/
+	Khoa		tinyint NULL,/*0 bị khóa, 1 không bị khóa*/
 	primary key (ID)
 )
 GO
