@@ -1,57 +1,72 @@
 ﻿@model IEnumerable<BookingTravel.Models.KhachHang>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Khách Hàng";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.HoVaten)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DienThoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenDangNhap)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </th>
-        <th></th>
-    </tr>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
+        </p>
+        <table class="table table-bordered table-hover table-sm mb-0">
+            <tr>
+                <th width="5%">#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HoVaten)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DienThoai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DiaChi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenDangNhap)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MatKhau)
+                </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoVaten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DienThoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenDangNhap)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatKhau)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+                <th width="5%">Sửa</th>
+                <th width="5%">Xóa</th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@stt</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoVaten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DienThoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDangNhap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+            </td>
+            <td class="text-center">
+                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+            </td>
+        </tr>
+                stt++;
+            }
 
-</table>
+        </table>
+    </div>
+</div>
+
+
+

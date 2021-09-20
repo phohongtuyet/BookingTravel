@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
@@ -46,10 +47,12 @@ namespace BookingTravel.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,HoVaten,DienThoai,DiaChi,TenDangNhap,MatKhau")] KhachHang khachHang)
+        public ActionResult Create([Bind(Include = "ID,HoVaten,DienThoai,DiaChi,TenDangNhap,MatKhau,XacNhanMatKhau")] KhachHang khachHang)
         {
             if (ModelState.IsValid)
             {
+                khachHang.MatKhau = Libs.SHA1.ComputeHash(khachHang.MatKhau);
+                khachHang.XacNhanMatKhau = Libs.SHA1.ComputeHash(khachHang.XacNhanMatKhau);
                 db.KhachHang.Add(khachHang);
                 db.SaveChanges();
                 return RedirectToAction("Index");
