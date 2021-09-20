@@ -42,7 +42,10 @@
 
                 @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
-
+                @if (ViewBag.error != null)
+                {
+                    <span class="badge bg-danger mt-2">@ViewBag.error</span>
+                }
             </div>
 
             <div class="form-group">

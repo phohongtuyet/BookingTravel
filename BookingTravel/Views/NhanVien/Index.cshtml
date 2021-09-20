@@ -5,100 +5,146 @@
 }
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
+<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
 
 
 <div class="card mt-3">
     <h5 class="card-header">@ViewBag.Title</h5>
     <div class="card-body">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
         <p>
-            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">
+
+                <lord-icon src="https://cdn.lordicon.com/mecwbjnp.json"
+                           trigger="loop-on-hover"
+                           colors="primary:#121331,secondary:#000000"
+                           style="width:30px;height:30px">
+                </lord-icon>
+                Thêm mới
+            </a>
         </p>
-        <table class="table table-bordered table-hover table-sm mb-0">
-            <tr>
-                <th width="5%">#</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HoVaTen)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DienThoai)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DiaChi)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TenDangNhap)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MatKhau)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.XacNhanMatKhau)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Quyen)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Khoa)
-                </th>
-                <th width="5%">Sửa</th>
-                <th width="5%">Xóa</th>
-            </tr>
-            @{ int stt = 1; }
-            @foreach (var item in Model)
-            {
-        <tr>
-            <td>@stt</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoVaTen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DienThoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDangNhap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.XacNhanMatKhau)
-            </td>
+        <table id="Panigation" class="table table-bordered table-hover display">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HoVaTen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DienThoai)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiaChi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TenDangNhap)
+                    </th>
 
-            <td class="text-center">
-                @if (item.Quyen == true)
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quyen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Khoa)
+                    </th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
                 {
-                    <span class="badge bg-info text-dark">Quản lý</span>
-                }
-                else
-                {
-                    <span class="badge bg-dark ">Hướng dẫn viên </span>
-                }
-            </td>
-            <td class="text-center">
-                @if (item.Khoa == 1)
-                {
-                    <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fas fa-check-circle text-info"></i></a>
-                }
-                else
-                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoVaTen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DienThoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDangNhap)
+                        </td>
 
-                    <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fas fa-ban text-danger"></i></a>
+
+                        <td class="text-center">
+                            @if (item.Quyen == true)
+                            {
+                                <span class="badge bg-info text-dark">Quản lý</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-dark ">Hướng dẫn viên </span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            @if (item.Khoa == 1)
+                            {
+                                <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fas fa-check-circle text-info"></i></a>
+                            }
+                            else
+                            {
+
+                                <a href="@Url.Action("OnOff",new { id= item.ID})"><i class="fas fa-ban text-danger"></i></a>
+                            }
+
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })">
+                                
+                                <lord-icon src="https://cdn.lordicon.com/wloilxuq.json"
+                                           trigger="loop-on-hover"
+                                           colors="primary:#000000,secondary:#30c9e8"
+                                           style="width:40px;height:40px">
+                                </lord-icon>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })">
+                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
+                                           trigger="loop-on-hover"
+                                           colors="primary:#121331,secondary:#30c9e8"
+                                           style="width:40px;height:40px">
+                                </lord-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    stt++;
                 }
-
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-            </td>
-        </tr>
-                stt++;
-            }
-
+            </tbody>
         </table>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+
+        $(function () {
+            $('#AlertBox').removeClass('hide');
+            $('#AlertBox').delay(2000).slideUp(500);
+        });
+
+        $(document).ready(function () {
+            $('#Panigation').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
+
+}

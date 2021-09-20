@@ -24,9 +24,17 @@ namespace BookingTravel.Controllers
         // GET: Admin/NguoiDung/OnOff/1
         public ActionResult OnOff(int id)
         {
-            NhanVien nv = db.NhanVien.Find(id);
-            nv.Khoa = System.Convert.ToByte(1 - nv.Khoa); // 1 -> 0 và 0 -> 1
-            db.Entry(nv).State = EntityState.Modified;
+            NhanVien n = db.NhanVien.Find(id);
+            n.ID = n.ID;
+            n.HoVaTen = n.HoVaTen;
+            n.DienThoai = n.DienThoai;
+            n.DiaChi = n.DiaChi;
+            n.TenDangNhap = n.TenDangNhap;
+            n.XacNhanMatKhau = n.MatKhau;
+            n.Quyen = n.Quyen;
+            n.Khoa = System.Convert.ToByte(1 - n.Khoa);// 1 -> 0 và 0 -> 1
+          
+            db.Entry(n).State = EntityState.Modified;
             db.SaveChanges();
 
             return RedirectToAction("Index");
@@ -63,12 +71,21 @@ namespace BookingTravel.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                nhanVien.MatKhau = SHA1.ComputeHash(nhanVien.MatKhau);
-                nhanVien.XacNhanMatKhau = SHA1.ComputeHash(nhanVien.XacNhanMatKhau);
-                db.NhanVien.Add(nhanVien);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var check = db.NhanVien.FirstOrDefault(r => r.TenDangNhap == nhanVien.TenDangNhap);
+                if (check == null)
+                {
+                    nhanVien.MatKhau = SHA1.ComputeHash(nhanVien.MatKhau);
+                    nhanVien.XacNhanMatKhau = SHA1.ComputeHash(nhanVien.XacNhanMatKhau);
+                    db.NhanVien.Add(nhanVien);
+                    db.SaveChanges();
+                   /// SetAlert("Thêm mới thành công", "success");
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.error = "Tên đăng nhập đã tồn tại !!!";
+                    return View();
+                }
             }
 
             return View(nhanVien);

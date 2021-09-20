@@ -131,6 +131,7 @@
     <Compile Include="Controllers\BaiVietController.cs" />
     <Compile Include="Controllers\BinhLuanController.cs" />
     <Compile Include="Controllers\ChiTietDiaDiemThamQuanController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DatTourController.cs" />
     <Compile Include="Controllers\DatTour_ChiTietController.cs" />
     <Compile Include="Controllers\DiaDiemThamQuanController.cs" />
@@ -222,6 +223,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\passport.png" />
     <Content Include="Models\BookingTravel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BookingTravel.Context.cs</LastGenOutput>
@@ -357,7 +359,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
