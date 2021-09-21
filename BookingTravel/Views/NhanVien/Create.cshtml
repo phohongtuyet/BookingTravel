@@ -69,7 +69,7 @@
                 @Html.DropDownListFor(model => model.Quyen, new SelectList(new[] {
                     new SelectListItem { Value = null, Text = "-- Chọn quyền --"},
                     new SelectListItem { Value = "true", Text = "Quản lý"},
-                    new SelectListItem { Value = "false", Text = "Hướng dẫn viên"}
+                    new SelectListItem { Value = "false", Text = "Nhân viên"}
                 }, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Quyen, "", new { @class = "text-danger" })
 
