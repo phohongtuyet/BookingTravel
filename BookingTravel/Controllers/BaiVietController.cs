@@ -21,6 +21,28 @@ namespace BookingTravel.Controllers
             return View(baiViet.ToList());
         }
 
+
+        // GET: Admin/BaiViet/Approved/1
+        public ActionResult Approved(int id)
+        {
+            BaiViet bv = db.BaiViet.Find(id);
+            bv.KiemDuyet = System.Convert.ToByte(1 - bv.KiemDuyet); // 1 -> 0 và 0 -> 1
+            db.Entry(bv).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: Admin/BaiViet/CommentStatus/1
+        public ActionResult CommentStatus(int id)
+        {
+            BaiViet bv = db.BaiViet.Find(id);
+            bv.TrangThaiBinhLuan = System.Convert.ToByte(1 - bv.TrangThaiBinhLuan); // 1 -> 0 và 0 -> 1
+            db.Entry(bv).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         // GET: BaiViet/Details/5
         public ActionResult Details(int? id)
         {

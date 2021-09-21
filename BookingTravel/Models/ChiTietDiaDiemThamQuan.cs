@@ -11,11 +11,19 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ChiTietDiaDiemThamQuan
     {
+        [Display(Name = "Mã địa danh")]
         public int ID { get; set; }
+
+        [Display(Name = "Tour")]
+        [Required(ErrorMessage = "Chưa chọn Tour!")]
         public Nullable<int> Tour_ID { get; set; }
+
+        [Display(Name = "Địa danh")]
+        [Required(ErrorMessage = "Chưa chọn Địa danh!")]
         public Nullable<int> DiaDiemThamQuan_ID { get; set; }
     
         public virtual DiaDiemThamQuan DiaDiemThamQuan { get; set; }

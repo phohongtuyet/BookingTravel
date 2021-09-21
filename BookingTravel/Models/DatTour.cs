@@ -11,7 +11,8 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DatTour
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +20,29 @@ namespace BookingTravel.Models
         {
             this.DatTour_ChiTiet = new HashSet<DatTour_ChiTiet>();
         }
-    
+
+        [Display(Name = "Mã đặt tour")]
         public int ID { get; set; }
+
+
+        [Display(Name = "Nhân viên")]
         public Nullable<int> NhanVien_ID { get; set; }
+
+        [Display(Name = "Khách hàng")]
         public Nullable<int> KhachHang_ID { get; set; }
+
+        [Display(Name = "Điện thoại")]
+        [Required(ErrorMessage = "Điện thoại không được bỏ trống!")]
         public string DienThoaiDatTour { get; set; }
+
+        [Display(Name = "Họ và tên")]
+        [Required(ErrorMessage = "Họ và tên không được bỏ trống!")]
         public string HoVaTen { get; set; }
+
+        [Display(Name = "Ngày đặt")]
         public Nullable<System.DateTime> NgayDatHang { get; set; }
+
+        [Display(Name = "Tình trạng")]
         public Nullable<short> TinhTrang { get; set; }
     
         public virtual KhachHang KhachHang { get; set; }

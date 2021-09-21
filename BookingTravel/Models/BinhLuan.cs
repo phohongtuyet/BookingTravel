@@ -11,14 +11,27 @@ namespace BookingTravel.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class BinhLuan
     {
+        [Display(Name = "ID")]
         public int ID { get; set; }
+
+        [Display(Name = "Bài viết")]
         public Nullable<int> BaiViet_ID { get; set; }
+
+        [Display(Name = "Khách hàng")]
         public Nullable<int> KhachHang_ID { get; set; }
+
+        [Display(Name = "Nội dung")]
+        [Required(ErrorMessage = "Nội dung không được bỏ trống!")]
         public string NoiDung { get; set; }
+
+        [Display(Name = "Ngày đăng")]
         public Nullable<System.DateTime> NgayDang { get; set; }
+
+        [Display(Name = "Duyệt?")]
         public Nullable<byte> KiemDuyet { get; set; }
     
         public virtual BaiViet BaiViet { get; set; }
