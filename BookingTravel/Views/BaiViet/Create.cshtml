@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Thêm bài viết";
 }
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <div class="card mt-3">
     <h5 class="card-header">@ViewBag.Title</h5>
     <div class="card-body">
@@ -12,13 +12,13 @@
             @Html.AntiForgeryToken()
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.NhanVien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.NhanVien_ID, htmlAttributes: new { @class = "control-label col-md-2" })
 
-            @Html.DropDownList("NhanVien_ID", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.NhanVien, "", new { @class = "text-danger" })
+                @Html.DropDownList("NhanVien_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NhanVien_ID, "", new { @class = "text-danger" })
 
-        </div>
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -38,11 +38,15 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
-
                 @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
 
             </div>
+
+
+
+
+
 
 
             <div class="form-group">
@@ -61,10 +65,10 @@
     </div>
 </div>
 
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/ckeditor5/build/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+
     <script>
         ClassicEditor
             .create(document.querySelector('#NoiDung'), {
@@ -97,12 +101,8 @@
                 },
                 language: 'vi',
                 image: {
-                    toolbar: [
-                        'imageTextAlternative',
-                        'imageStyle:full',
-                        'imageStyle:side',
-                        'linkImage'
-                    ]
+                    toolbar: ['imageStyle:inline', 'imageStyle:block', 'imageStyle:side', '|', 'imageTextAlternative']
+
                 },
                 table: {
                     contentToolbar: [

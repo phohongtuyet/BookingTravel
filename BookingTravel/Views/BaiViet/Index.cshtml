@@ -46,44 +46,89 @@
             @{ int stt = 1; }
             @foreach (var item in Model)
             {
-        <tr>
-            <td>@stt</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TieuDe)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TomTat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoiDung)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgayDang)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LuotXem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.KiemDuyet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TrangThaiBinhLuan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-            </td>
-        </tr>
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TieuDe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TomTat)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LuotXem)
+                    </td>
+                    <td class="text-center">
+                        @if (item.KiemDuyet == 1)
+                        {
+
+
+                            <a href="@Url.Action("Approved", new { id = item.ID })"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Approved", new { id = item.ID })"><input class="form-check-label" type="checkbox" value="" id="defaultCheck2"></a>
+                        }
+                    </td>
+                    <td class="text-center">
+                        @if (item.TrangThaiBinhLuan == 1)
+                        {
+                            <a href="@Url.Action("CommentStatus", new { id = item.ID })"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CommentStatus", new { id = item.ID })"><input class="form-check-label" type="checkbox" value="" id="defaultCheck2"></a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+                    </td>
+
+
+
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
                 stt++;
             }
 
         </table>
     </div>
 </div>
-
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#Pagination').DataTable({
+                "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Tất cả"]],
+                "iDisplayLength": 25,
+                'oLanguage': {
+                    'sProcessing': 'Đang xử lý...',
+                    'sLengthMenu': 'Hiển thị _MENU_ dòng',
+                    'sZeroRecords': 'Không tìm thấy dòng nào phù hợp',
+                    'sInfo': 'Đang xem _START_ đến _END_ trong tổng số _TOTAL_ dòng',
+                    'sInfoEmpty': 'Đang xem 0 đến 0 trong tổng số 0 dòng',
+                    "sEmptyTable": "Không có dữ liệu",
+                    'sInfoFiltered': '(được lọc từ _MAX_ dòng)',
+                    'sInfoPostFix': '',
+                    'sSearch': 'Tìm kiếm:',
+                    'sUrl': '',
+                    'oPaginate': {
+                        'sFirst': '<i class="fal fa-arrow-alt-to-left"></i>',
+                        'sPrevious': '<i class="fal fa-arrow-alt-left"></i>',
+                        'sNext': '<i class="fal fa-arrow-alt-right"></i>',
+                        'sLast': '<i class="fal fa-arrow-alt-to-right"></i>'
+                    }
+                }
+            });
+            $("#Pagination").wrap('<div class="table-responsive"></div>');
+        });
+    </script>
+}
 
