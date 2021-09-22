@@ -1,87 +1,101 @@
 ﻿@model IEnumerable<BookingTravel.Models.Tour>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tour";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenTour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiTour)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoiKhoiHanh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayBD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayKT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhuongTien.TenPhuongTien)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenTour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiTour)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoiKhoiHanh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayBD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayKT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonGia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MoTa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhuongTien.TenPhuongTien)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
+        </p>
+        <table class="table table-bordered table-hover table-sm mb-0">
+            <tr>
+                <th width="5%">#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenTour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LoaiTour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NoiKhoiHanh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayBD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayKT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhuongTien.TenPhuongTien)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DonGia)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SoLuong)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TrangThai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MoTa)
+                </th>
 
-</table>
+                <th width="5%">Sửa</th>
+                <th width="5%">Xóa</th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenTour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiTour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoiKhoiHanh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayBD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayKT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhuongTien.TenPhuongTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MoTa)
+                    </td>
+
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>

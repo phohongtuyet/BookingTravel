@@ -1,64 +1,46 @@
 ﻿@model BookingTravel.Models.DatTour_ChiTiet
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Sửa đặt Tour chi tiết";
 }
 
-<h2>Edit</h2>
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>DatTour_ChiTiet</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.ID)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DatTour_ID, "DatTour_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DatTour_ID", null, htmlAttributes: new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DatTour_ID)
+                @Html.DropDownList("DatTour_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DatTour_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tour_ID, "Tour_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Tour_ID", null, htmlAttributes: new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tour_ID)
+                @Html.DropDownList("Tour_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Tour_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SoLuong)
                 @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DonGia)
                 @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group mb-0">
+                <input type="submit" value="Cập nhật" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
             </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
