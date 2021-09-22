@@ -27,9 +27,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.TenDangNhap)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MatKhau)
-                </th>
+                
 
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
@@ -37,30 +35,28 @@
             @{ int stt = 1; }
             @foreach (var item in Model)
             {
-        <tr>
-            <td>@stt</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HoVaten)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DienThoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DiaChi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenDangNhap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MatKhau)
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-            </td>
-            <td class="text-center">
-                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-            </td>
-        </tr>
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoVaten)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DienThoai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenDangNhap)
+                    </td>
+            
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
                 stt++;
             }
 

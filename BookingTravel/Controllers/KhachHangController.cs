@@ -73,7 +73,7 @@ namespace BookingTravel.Controllers
             {
                 return HttpNotFound();
             }
-            return View(khachHang);
+            return View(new KhachHangEdit(khachHang));
         }
 
         // POST: KhachHang/Edit/5
@@ -81,11 +81,35 @@ namespace BookingTravel.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,HoVaten,DienThoai,DiaChi,TenDangNhap,MatKhau")] KhachHang khachHang)
+        public ActionResult Edit([Bind(Include = "ID,HoVaten,DienThoai,DiaChi,TenDangNhap,MatKhau,XacNhanMatKhau")] KhachHangEdit khachHang)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachHang).State = EntityState.Modified;
+                KhachHang n = db.KhachHang.Find(khachHang.ID);
+
+                // Giữ nguyên mật khẩu cũ
+                if (khachHang.MatKhau == null)
+                {
+                    n.ID = khachHang.ID;
+                    n.HoVaten = khachHang.HoVaten;
+                    n.DienThoai = khachHang.DienThoai;
+                    n.DiaChi = khachHang.DiaChi;
+                    n.TenDangNhap = khachHang.TenDangNhap;
+                    n.XacNhanMatKhau = n.MatKhau;
+
+                }
+                else // Cập nhật mật khẩu mới
+                {
+                    n.ID = khachHang.ID;
+                    n.HoVaten = khachHang.HoVaten;
+                    n.DienThoai = khachHang.DienThoai;
+                    n.DiaChi = khachHang.DiaChi;
+                    n.TenDangNhap = khachHang.TenDangNhap;
+                    n.MatKhau = Libs.SHA1.ComputeHash(khachHang.MatKhau);
+                    n.XacNhanMatKhau = Libs.SHA1.ComputeHash(khachHang.XacNhanMatKhau);
+
+                }
+                db.Entry(n).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

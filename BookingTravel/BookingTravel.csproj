@@ -170,6 +170,7 @@
     <Compile Include="Models\ChiTietDiaDiemThamQuan.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KhachHangModels.cs" />
     <Compile Include="Models\DatTour.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
