@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BookingTravel.Areas.Admin.Controllers
+namespace BookingTravel.Controllers
 {
     public class HomeController : Controller
     {

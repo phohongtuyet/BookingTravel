@@ -2363,6 +2363,8 @@
     <Content Include="Areas\Admin\ThemesAdmin\plugins\summernote\summernote.js.map" />
     <Content Include="Areas\Admin\ThemesAdmin\plugins\summernote\summernote.min.js.map" />
     <Content Include="Areas\Admin\ThemesAdmin\plugins\toastr\toastr.js.map" />
+    <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Unauthorized.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
