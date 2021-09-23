@@ -70,10 +70,26 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+
         public ActionResult Create([Bind(Include = "ID,NhanVien_ID,TieuDe,TomTat,NoiDung,NgayDang,LuotXem,KiemDuyet,TrangThaiBinhLuan")] BaiViet baiViet)
         {
             if (ModelState.IsValid)
             {
+                baiViet.NhanVien_ID = Convert.ToInt32(Session["MaNhanVien"]);
+                baiViet.NgayDang = DateTime.Now;
+                baiViet.LuotXem = 0;
+
+                if (Convert.ToBoolean(Session["Quyen"]) == true)
+                    baiViet.KiemDuyet = 1;
+                else
+                    baiViet.KiemDuyet = 0;
+
+                if (baiViet.TrangThaiBinhLuan.HasValue)
+                    baiViet.TrangThaiBinhLuan = 1;
+                else
+                    baiViet.TrangThaiBinhLuan = 0;
+
                 db.BaiViet.Add(baiViet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -104,11 +120,36 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+
         public ActionResult Edit([Bind(Include = "ID,NhanVien_ID,TieuDe,TomTat,NoiDung,NgayDang,LuotXem,KiemDuyet,TrangThaiBinhLuan")] BaiViet baiViet)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(baiViet).State = EntityState.Modified;
+                BaiViet bv = db.BaiViet.Find(baiViet.ID);
+
+                bv.NhanVien_ID = baiViet.NhanVien_ID;
+                bv.TieuDe = baiViet.TieuDe;
+                bv.TomTat = baiViet.TomTat;
+                bv.NoiDung = baiViet.NoiDung;
+                bv.NgayDang = DateTime.Now;
+                bv.LuotXem = baiViet.LuotXem;
+
+
+                bv.NhanVien_ID = bv.NhanVien_ID;
+
+                if (Session["Quyen"].ToString().ToLower() == "admin")
+                    bv.KiemDuyet = 1;
+                else
+                    bv.KiemDuyet = 0;
+
+                if (baiViet.TrangThaiBinhLuan.HasValue)
+                    bv.TrangThaiBinhLuan = 1;
+                else
+                    bv.TrangThaiBinhLuan = 0;
+
+
+                db.Entry(bv).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

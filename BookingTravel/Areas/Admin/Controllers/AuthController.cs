@@ -12,7 +12,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+           /* string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             if (Session["MaNhanVien"] == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Login", controller = "Home" }));
@@ -27,7 +27,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                     }
                 }
             }
-            base.OnActionExecuting(filterContext);
+            base.OnActionExecuting(filterContext);*/
         }
         
         protected void SetAlert(string message, string type)

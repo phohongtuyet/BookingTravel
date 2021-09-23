@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\BookingTravel.dll.config
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\BookingTravel.dll
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\BookingTravel.pdb
@@ -80,6 +81,8 @@ D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\Booki
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.CopyComplete
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.dll
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.pdb
+=======
+>>>>>>> Stashed changes
 D:\DPM185215\DoAn2\DoAn\BookingTravel\bin\BookingTravel.dll.config
 D:\DPM185215\DoAn2\DoAn\BookingTravel\bin\BookingTravel.dll
 D:\DPM185215\DoAn2\DoAn\BookingTravel\bin\BookingTravel.pdb

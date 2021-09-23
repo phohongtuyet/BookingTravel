@@ -47,6 +47,8 @@
 
             </div>
 
+            
+
             <div class="form-group">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="TrangThaiBinhLuan" name="TrangThaiBinhLuan" value="1" />
@@ -64,7 +66,8 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/ckeditor5/build/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+
     <script>
         ClassicEditor
             .create(document.querySelector('#NoiDung'), {
@@ -97,12 +100,8 @@
                 },
                 language: 'vi',
                 image: {
-                    toolbar: [
-                        'imageTextAlternative',
-                        'imageStyle:full',
-                        'imageStyle:side',
-                        'linkImage'
-                    ]
+                    toolbar: ['imageStyle:inline', 'imageStyle:block', 'imageStyle:side', '|', 'imageTextAlternative']
+
                 },
                 table: {
                     contentToolbar: [
@@ -123,4 +122,3 @@
             });
     </script>
 }
-
