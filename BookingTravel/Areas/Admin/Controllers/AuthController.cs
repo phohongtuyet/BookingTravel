@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.Mvc;
 
-namespace BookingTravel.Controllers
+namespace BookingTravel.Areas.Admin.Controllers
 {
     public class AuthController : Controller
     {
-        /*
+        
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
@@ -29,7 +29,7 @@ namespace BookingTravel.Controllers
             }
             base.OnActionExecuting(filterContext);
         }
-        */
+        
         protected void SetAlert(string message, string type)
         {
             TempData["AlertMessage"] = message;

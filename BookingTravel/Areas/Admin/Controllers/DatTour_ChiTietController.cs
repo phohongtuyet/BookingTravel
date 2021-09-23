@@ -8,114 +8,118 @@ using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
 
-namespace BookingTravel.Controllers
+namespace BookingTravel.Areas.Admin.Controllers
 {
-    public class HinhAnhController : Controller
+    public class DatTour_ChiTietController : AuthController
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 
-        // GET: HinhAnh
+        // GET: DatTour_ChiTiet
         public ActionResult Index()
         {
-            var hinhAnh = db.HinhAnh.Include(h => h.Tour);
-            return View(hinhAnh.ToList());
+            var datTour_ChiTiet = db.DatTour_ChiTiet.Include(d => d.DatTour).Include(d => d.Tour);
+            return View(datTour_ChiTiet.ToList());
         }
 
-        // GET: HinhAnh/Details/5
+        // GET: DatTour_ChiTiet/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HinhAnh hinhAnh = db.HinhAnh.Find(id);
-            if (hinhAnh == null)
+            DatTour_ChiTiet datTour_ChiTiet = db.DatTour_ChiTiet.Find(id);
+            if (datTour_ChiTiet == null)
             {
                 return HttpNotFound();
             }
-            return View(hinhAnh);
+            return View(datTour_ChiTiet);
         }
 
-        // GET: HinhAnh/Create
+        // GET: DatTour_ChiTiet/Create
         public ActionResult Create()
         {
+            ViewBag.DatTour_ID = new SelectList(db.DatTour, "ID", "DienThoaiDatTour");
             ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour");
             return View();
         }
 
-        // POST: HinhAnh/Create
+        // POST: DatTour_ChiTiet/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Tour_ID,HinhAnh1")] HinhAnh hinhAnh)
+        public ActionResult Create([Bind(Include = "ID,DatTour_ID,Tour_ID,SoLuong,DonGia")] DatTour_ChiTiet datTour_ChiTiet)
         {
             if (ModelState.IsValid)
             {
-                db.HinhAnh.Add(hinhAnh);
+                db.DatTour_ChiTiet.Add(datTour_ChiTiet);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", hinhAnh.Tour_ID);
-            return View(hinhAnh);
+            ViewBag.DatTour_ID = new SelectList(db.DatTour, "ID", "DienThoaiDatTour", datTour_ChiTiet.DatTour_ID);
+            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", datTour_ChiTiet.Tour_ID);
+            return View(datTour_ChiTiet);
         }
 
-        // GET: HinhAnh/Edit/5
+        // GET: DatTour_ChiTiet/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HinhAnh hinhAnh = db.HinhAnh.Find(id);
-            if (hinhAnh == null)
+            DatTour_ChiTiet datTour_ChiTiet = db.DatTour_ChiTiet.Find(id);
+            if (datTour_ChiTiet == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", hinhAnh.Tour_ID);
-            return View(hinhAnh);
+            ViewBag.DatTour_ID = new SelectList(db.DatTour, "ID", "DienThoaiDatTour", datTour_ChiTiet.DatTour_ID);
+            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", datTour_ChiTiet.Tour_ID);
+            return View(datTour_ChiTiet);
         }
 
-        // POST: HinhAnh/Edit/5
+        // POST: DatTour_ChiTiet/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Tour_ID,HinhAnh1")] HinhAnh hinhAnh)
+        public ActionResult Edit([Bind(Include = "ID,DatTour_ID,Tour_ID,SoLuong,DonGia")] DatTour_ChiTiet datTour_ChiTiet)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hinhAnh).State = EntityState.Modified;
+                db.Entry(datTour_ChiTiet).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", hinhAnh.Tour_ID);
-            return View(hinhAnh);
+            ViewBag.DatTour_ID = new SelectList(db.DatTour, "ID", "DienThoaiDatTour", datTour_ChiTiet.DatTour_ID);
+            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", datTour_ChiTiet.Tour_ID);
+            return View(datTour_ChiTiet);
         }
 
-        // GET: HinhAnh/Delete/5
+        // GET: DatTour_ChiTiet/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HinhAnh hinhAnh = db.HinhAnh.Find(id);
-            if (hinhAnh == null)
+            DatTour_ChiTiet datTour_ChiTiet = db.DatTour_ChiTiet.Find(id);
+            if (datTour_ChiTiet == null)
             {
                 return HttpNotFound();
             }
-            return View(hinhAnh);
+            return View(datTour_ChiTiet);
         }
 
-        // POST: HinhAnh/Delete/5
+        // POST: DatTour_ChiTiet/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            HinhAnh hinhAnh = db.HinhAnh.Find(id);
-            db.HinhAnh.Remove(hinhAnh);
+            DatTour_ChiTiet datTour_ChiTiet = db.DatTour_ChiTiet.Find(id);
+            db.DatTour_ChiTiet.Remove(datTour_ChiTiet);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

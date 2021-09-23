@@ -9,9 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
 
-namespace BookingTravel.Controllers
+namespace BookingTravel.Areas.Admin.Controllers
 {
-    public class KhachHangController : Controller
+    public class KhachHangController : AuthController
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 

@@ -8,114 +8,109 @@ using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
 
-namespace BookingTravel.Controllers
+namespace BookingTravel.Areas.Admin.Controllers
 {
-    public class DiaDiemThamQuanController : Controller
+    public class KhachSanController : AuthController
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 
-        // GET: DiaDiemThamQuan
+        // GET: KhachSan
         public ActionResult Index()
         {
-            var diaDiemThamQuan = db.DiaDiemThamQuan.Include(d => d.KhachSan);
-            return View(diaDiemThamQuan.ToList());
+            return View(db.KhachSan.ToList());
         }
 
-        // GET: DiaDiemThamQuan/Details/5
+        // GET: KhachSan/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiaDiemThamQuan diaDiemThamQuan = db.DiaDiemThamQuan.Find(id);
-            if (diaDiemThamQuan == null)
+            KhachSan khachSan = db.KhachSan.Find(id);
+            if (khachSan == null)
             {
                 return HttpNotFound();
             }
-            return View(diaDiemThamQuan);
+            return View(khachSan);
         }
 
-        // GET: DiaDiemThamQuan/Create
+        // GET: KhachSan/Create
         public ActionResult Create()
         {
-            ViewBag.KhachSan_ID = new SelectList(db.KhachSan, "ID", "TenKhachSan");
             return View();
         }
 
-        // POST: DiaDiemThamQuan/Create
+        // POST: KhachSan/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,TenDiaDanh,Tinh,KhachSan_ID")] DiaDiemThamQuan diaDiemThamQuan)
+        public ActionResult Create([Bind(Include = "ID,TenKhachSan,DiaChi")] KhachSan khachSan)
         {
             if (ModelState.IsValid)
             {
-                db.DiaDiemThamQuan.Add(diaDiemThamQuan);
+                db.KhachSan.Add(khachSan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.KhachSan_ID = new SelectList(db.KhachSan, "ID", "TenKhachSan", diaDiemThamQuan.KhachSan_ID);
-            return View(diaDiemThamQuan);
+            return View(khachSan);
         }
 
-        // GET: DiaDiemThamQuan/Edit/5
+        // GET: KhachSan/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiaDiemThamQuan diaDiemThamQuan = db.DiaDiemThamQuan.Find(id);
-            if (diaDiemThamQuan == null)
+            KhachSan khachSan = db.KhachSan.Find(id);
+            if (khachSan == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.KhachSan_ID = new SelectList(db.KhachSan, "ID", "TenKhachSan", diaDiemThamQuan.KhachSan_ID);
-            return View(diaDiemThamQuan);
+            return View(khachSan);
         }
 
-        // POST: DiaDiemThamQuan/Edit/5
+        // POST: KhachSan/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,TenDiaDanh,Tinh,KhachSan_ID")] DiaDiemThamQuan diaDiemThamQuan)
+        public ActionResult Edit([Bind(Include = "ID,TenKhachSan,DiaChi")] KhachSan khachSan)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(diaDiemThamQuan).State = EntityState.Modified;
+                db.Entry(khachSan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.KhachSan_ID = new SelectList(db.KhachSan, "ID", "TenKhachSan", diaDiemThamQuan.KhachSan_ID);
-            return View(diaDiemThamQuan);
+            return View(khachSan);
         }
 
-        // GET: DiaDiemThamQuan/Delete/5
+        // GET: KhachSan/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DiaDiemThamQuan diaDiemThamQuan = db.DiaDiemThamQuan.Find(id);
-            if (diaDiemThamQuan == null)
+            KhachSan khachSan = db.KhachSan.Find(id);
+            if (khachSan == null)
             {
                 return HttpNotFound();
             }
-            return View(diaDiemThamQuan);
+            return View(khachSan);
         }
 
-        // POST: DiaDiemThamQuan/Delete/5
+        // POST: KhachSan/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DiaDiemThamQuan diaDiemThamQuan = db.DiaDiemThamQuan.Find(id);
-            db.DiaDiemThamQuan.Remove(diaDiemThamQuan);
+            KhachSan khachSan = db.KhachSan.Find(id);
+            db.KhachSan.Remove(khachSan);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

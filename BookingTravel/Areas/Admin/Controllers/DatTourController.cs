@@ -8,136 +8,118 @@ using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
 
-namespace BookingTravel.Controllers
+namespace BookingTravel.Areas.Admin.Controllers
 {
-    public class BaiVietController : Controller
+    public class DatTourController : AuthController
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 
-        // GET: BaiViet
+        // GET: DatTour
         public ActionResult Index()
         {
-            var baiViet = db.BaiViet.Include(b => b.NhanVien);
-            return View(baiViet.ToList());
+            var datTour = db.DatTour.Include(d => d.KhachHang).Include(d => d.NhanVien);
+            return View(datTour.ToList());
         }
 
-
-        // GET: Admin/BaiViet/Approved/1
-        public ActionResult Approved(int id)
-        {
-            BaiViet bv = db.BaiViet.Find(id);
-            bv.KiemDuyet = System.Convert.ToByte(1 - bv.KiemDuyet); // 1 -> 0 và 0 -> 1
-            db.Entry(bv).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-
-        // GET: Admin/BaiViet/CommentStatus/1
-        public ActionResult CommentStatus(int id)
-        {
-            BaiViet bv = db.BaiViet.Find(id);
-            bv.TrangThaiBinhLuan = System.Convert.ToByte(1 - bv.TrangThaiBinhLuan); // 1 -> 0 và 0 -> 1
-            db.Entry(bv).State = EntityState.Modified;
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-        // GET: BaiViet/Details/5
+        // GET: DatTour/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViet.Find(id);
-            if (baiViet == null)
+            DatTour datTour = db.DatTour.Find(id);
+            if (datTour == null)
             {
                 return HttpNotFound();
             }
-            return View(baiViet);
+            return View(datTour);
         }
 
-        // GET: BaiViet/Create
+        // GET: DatTour/Create
         public ActionResult Create()
         {
+            ViewBag.KhachHang_ID = new SelectList(db.KhachHang, "ID", "HoVaten");
             ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen");
             return View();
         }
 
-        // POST: BaiViet/Create
+        // POST: DatTour/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,NhanVien_ID,TieuDe,TomTat,NoiDung,NgayDang,LuotXem,KiemDuyet,TrangThaiBinhLuan")] BaiViet baiViet)
+        public ActionResult Create([Bind(Include = "ID,NhanVien_ID,KhachHang_ID,DienThoaiDatTour,HoVaTen,NgayDatHang,TinhTrang")] DatTour datTour)
         {
             if (ModelState.IsValid)
             {
-                db.BaiViet.Add(baiViet);
+                db.DatTour.Add(datTour);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", baiViet.NhanVien_ID);
-            return View(baiViet);
+            ViewBag.KhachHang_ID = new SelectList(db.KhachHang, "ID", "HoVaten", datTour.KhachHang_ID);
+            ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", datTour.NhanVien_ID);
+            return View(datTour);
         }
 
-        // GET: BaiViet/Edit/5
+        // GET: DatTour/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViet.Find(id);
-            if (baiViet == null)
+            DatTour datTour = db.DatTour.Find(id);
+            if (datTour == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", baiViet.NhanVien_ID);
-            return View(baiViet);
+            ViewBag.KhachHang_ID = new SelectList(db.KhachHang, "ID", "HoVaten", datTour.KhachHang_ID);
+            ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", datTour.NhanVien_ID);
+            return View(datTour);
         }
 
-        // POST: BaiViet/Edit/5
+        // POST: DatTour/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,NhanVien_ID,TieuDe,TomTat,NoiDung,NgayDang,LuotXem,KiemDuyet,TrangThaiBinhLuan")] BaiViet baiViet)
+        public ActionResult Edit([Bind(Include = "ID,NhanVien_ID,KhachHang_ID,DienThoaiDatTour,HoVaTen,NgayDatHang,TinhTrang")] DatTour datTour)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(baiViet).State = EntityState.Modified;
+                db.Entry(datTour).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", baiViet.NhanVien_ID);
-            return View(baiViet);
+            ViewBag.KhachHang_ID = new SelectList(db.KhachHang, "ID", "HoVaten", datTour.KhachHang_ID);
+            ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", datTour.NhanVien_ID);
+            return View(datTour);
         }
 
-        // GET: BaiViet/Delete/5
+        // GET: DatTour/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BaiViet baiViet = db.BaiViet.Find(id);
-            if (baiViet == null)
+            DatTour datTour = db.DatTour.Find(id);
+            if (datTour == null)
             {
                 return HttpNotFound();
             }
-            return View(baiViet);
+            return View(datTour);
         }
 
-        // POST: BaiViet/Delete/5
+        // POST: DatTour/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BaiViet baiViet = db.BaiViet.Find(id);
-            db.BaiViet.Remove(baiViet);
+            DatTour datTour = db.DatTour.Find(id);
+            db.DatTour.Remove(datTour);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
