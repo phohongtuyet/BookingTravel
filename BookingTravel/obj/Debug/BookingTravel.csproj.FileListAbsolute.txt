@@ -163,3 +163,4 @@ D:\DPM185215\DoAn2\DoAn\BookingTravel\obj\Debug\BookingTravel.csproj.CoreCompile
 D:\DPM185215\DoAn2\DoAn\BookingTravel\obj\Debug\BookingTravel.csproj.CopyComplete
 D:\DPM185215\DoAn2\DoAn\BookingTravel\obj\Debug\BookingTravel.dll
 D:\DPM185215\DoAn2\DoAn\BookingTravel\obj\Debug\BookingTravel.pdb
+D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.AssemblyReference.cache
