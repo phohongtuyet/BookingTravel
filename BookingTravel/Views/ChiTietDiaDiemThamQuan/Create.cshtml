@@ -1,46 +1,36 @@
 ﻿@model BookingTravel.Models.ChiTietDiaDiemThamQuan
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Chi tiết địa điểm";
 }
 
-<h2>Create</h2>
 
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ChiTietDiaDiemThamQuan</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tour_ID, "Tour_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Tour_ID", null, htmlAttributes: new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tour_ID)
+                @Html.DropDownList("Tour_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Tour_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DiaDiemThamQuan_ID, "DiaDiemThamQuan_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("DiaDiemThamQuan_ID", null, htmlAttributes: new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaDiemThamQuan_ID)
+                @Html.DropDownList("DiaDiemThamQuan_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.DiaDiemThamQuan_ID, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
             </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

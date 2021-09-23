@@ -1,39 +1,54 @@
 ﻿@model IEnumerable<BookingTravel.Models.ChiTietDiaDiemThamQuan>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Chi tiết địa điểm tham quan";
 }
 
-<h2>Index</h2>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaDiemThamQuan.TenDiaDanh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tour.TenTour)
-        </th>
-        <th></th>
-    </tr>
+<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaDiemThamQuan.TenDiaDanh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tour.TenTour)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p><a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a></p>
+        <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tour.TenTour)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiaDiemThamQuan.TenDiaDanh)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiaDiemThamQuan.TenDiaDanh)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tour.TenTour)
+                    </th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tour.TenTour)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaDiemThamQuan.TenDiaDanh)
+                        </td>
+                       
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
