@@ -49,18 +49,28 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+
         public ActionResult Create([Bind(Include = "ID,BaiViet_ID,KhachHang_ID,NoiDung,NgayDang,KiemDuyet")] BinhLuan binhLuan)
         {
             if (ModelState.IsValid)
             {
+
+               // binhLuan.KhachHang_ID = Convert.ToInt32(Session["MaKhachHang"]);
+                binhLuan.NgayDang = DateTime.Now;
+                binhLuan.KiemDuyet = Convert.ToByte(Session["Quyen"].ToString() == "admin" ? 1 : 0);
+
                 db.BinhLuan.Add(binhLuan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                //return RedirectToAction("Details", "Home", new { id = binhLuan.BaiViet_ID, area = "" });
+
             }
 
             ViewBag.BaiViet_ID = new SelectList(db.BaiViet, "ID", "TieuDe", binhLuan.BaiViet_ID);
             ViewBag.KhachHang_ID = new SelectList(db.KhachHang, "ID", "HoVaten", binhLuan.KhachHang_ID);
             return View(binhLuan);
+             
         }
 
         // GET: BinhLuan/Edit/5
