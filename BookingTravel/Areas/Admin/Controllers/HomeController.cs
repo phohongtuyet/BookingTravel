@@ -28,6 +28,15 @@ namespace BookingTravel.Areas.Admin.Controllers
 			return View();
 		}
 
+		public ActionResult Logout()
+		{
+			// Xóa SESSION
+			Session.RemoveAll();
+
+			// Quay về trang chủ
+			return RedirectToAction("Index", "Home");
+		}
+
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Login(NhanVienLogin nhanVien)
