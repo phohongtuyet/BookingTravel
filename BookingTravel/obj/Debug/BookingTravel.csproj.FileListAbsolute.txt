@@ -76,8 +76,8 @@ D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\System.Web.
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\Newtonsoft.Json.xml
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\Antlr3.Runtime.pdb
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.AssemblyReference.cache
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.CoreCompileInputs.cache
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.CopyComplete
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.dll
 D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.pdb
+D:\DH19PM\2021-2022\DoAn2\Nhom7\Code\BookingTravel\BookingTravel\obj\Debug\BookingTravel.csproj.AssemblyReference.cache

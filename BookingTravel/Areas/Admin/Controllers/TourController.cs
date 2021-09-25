@@ -52,6 +52,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                tour.TrangThai = 0;
                 db.Tour.Add(tour);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -62,7 +62,7 @@ namespace BookingTravel.Models
 
 
         [Display(Name = "Trạng thái Tour")]
-        [Required(ErrorMessage = "Chưa chọn trạng thái tour!")]
+       // [Required(ErrorMessage = "Chưa chọn trạng thái tour!")]
         public Nullable<short> TrangThai { get; set; }
 
 

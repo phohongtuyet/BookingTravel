@@ -1,47 +1,34 @@
 ﻿@model BookingTravel.Models.HinhAnh
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "HinhAnh", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>HinhAnh</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Tour_ID, "Tour_ID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Tour_ID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Tour_ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    //@Html.HiddenFor(model => model.Tour_ID)
+    //<input type="text" name="Tour_ID" value="Tour_ID" />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HinhAnh1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HinhAnh1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HinhAnh1, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="form-group" hidden>
+        @Html.LabelFor(model => model.Tour_ID)
+        @Html.DropDownList("Tour_ID", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Tour_ID, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DuLieuHinhAnh, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(model => model.DuLieuHinhAnh, "", new { @type = "file", @multiple = "multiple" })
+        @Html.ValidationMessageFor(model => model.DuLieuHinhAnh, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    </div>
+    <div class="form-group mb-0">
+        <button type="submit" class="btn btn-info">Thêm mới</button> hoặc @Html.ActionLink("Quay về danh sách", "Index", "Tour")
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10 text-success">
+            @ViewBag.UploadStatus
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -46,6 +46,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.MoTa)
                 </th>
+                <th>
+                    Hinh anh
+                </th>
 
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
@@ -53,16 +56,286 @@
             @{ int stt = 1; }
             @foreach (var item in Model)
             {
-                <tr>
+                 <tr>
                     <td>@stt</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TenTour)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LoaiTour)
+                        @if (item.LoaiTour == 0)
+                        {
+                            <span>Tour Khuyễn mãi</span>
+                        }
+                        else if (item.LoaiTour == 1)
+                        {
+                            <span>Tour chọn gói</span>
+                        }
+                        else if (item.LoaiTour == 2)
+                        {
+                            <span>Tour cao cấp</span>
+                        }
+                        else
+                        {
+                            <span>Tour </span>
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.NoiKhoiHanh)
+                        @if (item.NoiKhoiHanh == 0)
+                        {
+                            <span>An Giang</span>
+                        }
+                        else if (item.NoiKhoiHanh == 1)
+                        {
+                            <span>Bà rịa – Vũng tàu</span>
+                        }
+                        else if (item.NoiKhoiHanh == 2)
+                        {
+                            <span>Bắc Giang</span>
+                        }
+                        else if (item.NoiKhoiHanh == 3)
+                        {
+                            <span>Bắc Kạn</span>
+                        }
+                        else if (item.NoiKhoiHanh == 4)
+                        {
+                            <span>Bạc Liêu</span>
+                        }
+                        else if (item.NoiKhoiHanh == 5)
+                        {
+                            <span>Bắc Ninh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 6)
+                        {
+                            <span>Bến Tre</span>
+                        }
+                        else if (item.NoiKhoiHanh == 7)
+                        {
+                            <span>Bình Định</span>
+                        }
+                        else if (item.NoiKhoiHanh == 8)
+                        {
+                            <span>Bình Dương</span>
+                        }
+                        else if (item.NoiKhoiHanh == 9)
+                        {
+                            <span>Bình Phước</span>
+                        }
+                        else if (item.NoiKhoiHanh == 10)
+                        {
+                            <span>Bình Thuận</span>
+                        }
+                        else if (item.NoiKhoiHanh == 11)
+                        {
+                            <span>Cà Mau</span>
+                        }
+                        else if (item.NoiKhoiHanh == 12)
+                        {
+                            <span>Cần Thơ</span>
+                        }
+                        else if (item.NoiKhoiHanh == 13)
+                        {
+                            <span>Cao Bằng </span>
+                        }
+                        else if (item.NoiKhoiHanh == 14)
+                        {
+                            <span>Đà Nẵng</span>
+                        }
+                        else if (item.NoiKhoiHanh == 15)
+                        {
+                            <span>Đắk Lắk</span>
+                        }
+                        else if (item.NoiKhoiHanh == 16)
+                        {
+                            <span>Đắk Nông</span>
+                        }
+                        else if (item.NoiKhoiHanh == 17)
+                        {
+                            <span>Điện Biên</span>
+                        }
+                        else if (item.NoiKhoiHanh == 18)
+                        {
+                            <span>Đồng Nai</span>
+                        }
+                        else if (item.NoiKhoiHanh == 19)
+                        {
+                            <span>Đồng Tháp</span>
+                        }
+                        else if (item.NoiKhoiHanh == 20)
+                        {
+                            <span>Gia Lai</span>
+                        }
+                        else if (item.NoiKhoiHanh == 21)
+                        {
+                            <span>Hà Giang</span>
+                        }
+                        else if (item.NoiKhoiHanh == 22)
+                        {
+                            <span>Hà Nam</span>
+                        }
+                        else if (item.NoiKhoiHanh == 23)
+                        {
+                            <span>Hà Nội </span>
+                        }
+                        else if (item.NoiKhoiHanh == 24)
+                        {
+                            <span>Hà Tĩnh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 25)
+                        {
+                            <span>Hải Dương</span>
+                        }
+                        else if (item.NoiKhoiHanh == 26)
+                        {
+                            <span>Hải Phòng</span>
+                        }
+                        else if (item.NoiKhoiHanh == 27)
+                        {
+                            <span>Hòa Bình</span>
+                        }
+                        else if (item.NoiKhoiHanh == 28)
+                        {
+                            <span>Hưng Yên</span>
+                        }
+                        else if (item.NoiKhoiHanh == 29)
+                        {
+                            <span>Khánh Hòa</span>
+                        }
+                        else if (item.NoiKhoiHanh == 30)
+                        {
+                            <span>Kiên Giang</span>
+                        }
+                        else if (item.NoiKhoiHanh == 31)
+                        {
+                            <span>Kon Tum</span>
+                        }
+                        else if (item.NoiKhoiHanh == 32)
+                        {
+                            <span>Lai Châu</span>
+                        }
+                        else if (item.NoiKhoiHanh == 33)
+                        {
+                            <span>Lâm Đồng</span>
+                        }
+                        else if (item.NoiKhoiHanh == 34)
+                        {
+                            <span>Lạng Sơn</span>
+                        }
+                        else if (item.NoiKhoiHanh == 35)
+                        {
+                            <span>Lào Cai</span>
+                        }
+                        else if (item.NoiKhoiHanh == 36)
+                        {
+                            <span>Nam Định</span>
+                        }
+                        else if (item.NoiKhoiHanh == 37)
+                        {
+                            <span>Nghệ An</span>
+                        }
+                        else if (item.NoiKhoiHanh == 38)
+                        {
+                            <span>Ninh Bình</span>
+                        }
+                        else if (item.NoiKhoiHanh == 39)
+                        {
+                            <span>Ninh Thuận</span>
+                        }
+                        else if (item.NoiKhoiHanh == 40)
+                        {
+                            <span>Phú Thọ</span>
+                        }
+                        else if (item.NoiKhoiHanh == 41)
+                        {
+                            <span>Phú Yên</span>
+                        }
+                        else if (item.NoiKhoiHanh == 42)
+                        {
+                            <span>Quảng Bình</span>
+                        }
+                        else if (item.NoiKhoiHanh == 43)
+                        {
+                            <span>Quảng Nam</span>
+                        }
+                        else if (item.NoiKhoiHanh == 44)
+                        {
+                            <span>Quảng Ngãi</span>
+                        }
+                        else if (item.NoiKhoiHanh == 45)
+                        {
+                            <span>Quảng Ninh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 46)
+                        {
+                            <span>Quảng Trị</span>
+                        }
+                        else if (item.NoiKhoiHanh == 47)
+                        {
+                            <span>Sóc Trăng</span>
+                        }
+                        else if (item.NoiKhoiHanh == 48)
+                        {
+                            <span>Sơn La</span>
+                        }
+                        else if (item.NoiKhoiHanh == 49)
+                        {
+                            <span>Tây Ninh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 50)
+                        {
+                            <span>Thái Bình</span>
+                        }
+                        else if (item.NoiKhoiHanh == 51)
+                        {
+                            <span>Thái Nguyên</span>
+                        }
+                        else if (item.NoiKhoiHanh == 52)
+                        {
+                            <span>Thanh Hóa</span>
+                        }
+                        else if (item.NoiKhoiHanh == 53)
+                        {
+                            <span>Thừa Thiên Huế</span>
+                        }
+                        else if (item.NoiKhoiHanh == 54)
+                        {
+                            <span>Tiền Giang</span>
+                        }
+                        else if (item.NoiKhoiHanh == 55)
+                        {
+                            <span>Thành phố Hồ Chí Minh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 56)
+                        {
+                            <span>Trà Vinh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 57)
+                        {
+                            <span>Tuyên Quang</span>
+                        }
+                        else if (item.NoiKhoiHanh == 58)
+                        {
+                            <span>Trà Vinh</span>
+                        }
+                        else if (item.NoiKhoiHanh == 59)
+                        {
+                            <span>Vĩnh Long</span>
+                        }
+                        else if (item.NoiKhoiHanh == 60)
+                        {
+                            <span>Vĩnh Phúc</span>
+                        }
+                        else if (item.NoiKhoiHanh == 61)
+                        {
+                            <span>Yên Bái</span>
+                        }
+                        else if (item.NoiKhoiHanh == 62)
+                        {
+                            <span>Hậu Giang</span>
+                        }
+                        else
+                        {
+                            <span>Long An</span>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.NgayBD)
@@ -80,12 +353,21 @@
                         @Html.DisplayFor(modelItem => item.SoLuong)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TrangThai)
+                        @if (item.TrangThai == 0)
+                        {
+                            <span>Chưa hoạt động</span>
+                        }
+                        else
+                        {
+                            <span>Đang hoạt động</span>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.MoTa)
                     </td>
-
+                    <td>
+                        <a href="@Url.Action("Create","HinhAnh", new { Tour_ID = item.ID,  area ="Admin" })">Hinh anh</a>
+                    </td>
                     <td class="text-center">
                         <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
                     </td>

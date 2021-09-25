@@ -12,6 +12,7 @@ namespace BookingTravel.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class HinhAnh
     {
@@ -23,9 +24,11 @@ namespace BookingTravel.Models
         public Nullable<int> Tour_ID { get; set; }
 
         [Display(Name = "Hình ảnh")]
-        [Required(ErrorMessage = "Chưa chọn hình ảnh!")]
         public string HinhAnh1 { get; set; }
-    
+
+        [Display(Name = "Hình ảnh bìa")]
+        public HttpPostedFileBase DuLieuHinhAnh{ get; set; }
+
         public virtual Tour Tour { get; set; }
     }
 }
