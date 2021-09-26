@@ -26,7 +26,7 @@ namespace BookingTravel.Models
         [Display(Name = "Hình ảnh")]
         public string HinhAnh1 { get; set; }
 
-        [Display(Name = "Hình ảnh bìa")]
+        [Display(Name = "Hình ảnh ")]
         public HttpPostedFileBase DuLieuHinhAnh{ get; set; }
 
         public virtual Tour Tour { get; set; }

@@ -17,7 +17,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         // GET: Tour
         public ActionResult Index()
         {
-            var tour = db.Tour.Include(t => t.PhuongTien);
+            var tour = db.Tour.Include(t => t.PhuongTien).Include(h => h.HinhAnh);
             return View(tour.ToList());
         }
 

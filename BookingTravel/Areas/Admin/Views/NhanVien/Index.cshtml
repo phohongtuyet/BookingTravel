@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
-<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
 
 
 <div class="card mt-3">
@@ -19,13 +18,7 @@
             </div>
         }
         <p>
-            <a class="btn btn-info" href="@Url.Action("Create")" role="button">
-
-                <lord-icon src="https://cdn.lordicon.com/mecwbjnp.json"
-                           trigger="loop-on-hover"
-                           colors="primary:#121331,secondary:#000000"
-                           style="width:30px;height:30px">
-                </lord-icon>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">      
                 Thêm mới
             </a>
         </p>
@@ -99,23 +92,10 @@
 
                         </td>
                         <td class="text-center">
-                            <a href="@Url.Action("Edit", new { id = item.ID })">
-                                
-                                <lord-icon src="https://cdn.lordicon.com/wloilxuq.json"
-                                           trigger="loop-on-hover"
-                                           colors="primary:#000000,secondary:#30c9e8"
-                                           style="width:40px;height:40px">
-                                </lord-icon>
-                            </a>
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
                         </td>
                         <td class="text-center">
-                            <a href="@Url.Action("Delete", new { id = item.ID })">
-                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json"
-                                           trigger="loop-on-hover"
-                                           colors="primary:#121331,secondary:#30c9e8"
-                                           style="width:40px;height:40px">
-                                </lord-icon>
-                            </a>
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
                         </td>
                     </tr>
                     stt++;

@@ -50,54 +50,78 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Tour_ID,DuLieuHinhAnh")] HinhAnh hinhAnh)
+        /*  public ActionResult Create([Bind(Include = "ID,Tour_ID,DuLieuHinhAnh")] HinhAnh hinhAnh)
+          {
+             if (ModelState.IsValid)
+              {
+                  // Upload              
+                  if (!Object.Equals(hinhAnh.DuLieuHinhAnh, null))
+                  {
+                      string folder = "Storage/";
+                      string fileName = DateTime.Now.ToFileTime() + "_" + hinhAnh.DuLieuHinhAnh.FileName;
+                      string fileExtension = Path.GetExtension(fileName).ToLower();
+
+                      // Kiểm tra kiểu
+                      var fileTypeSupported = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                      if (!fileTypeSupported.Contains(fileExtension))
+                      {
+                          ModelState.AddModelError("UploadError", "Chỉ cho phép tập tin JPG, PNG, GIF!");
+                          return View(hinhAnh);
+                      }
+                      else
+                      {
+
+
+                          string filePath = Path.Combine(Server.MapPath("~/" + folder), fileName);
+                          hinhAnh.DuLieuHinhAnh.SaveAs(filePath);
+
+                          // Cập nhật đường dẫn vào CSDL
+                          hinhAnh.Tour_ID = hinhAnh.Tour_ID;
+                          hinhAnh.HinhAnh1 = folder + fileName;
+                          db.HinhAnh.Add(hinhAnh);
+                          db.SaveChanges();
+                          //ViewBag.UploadStatus = hinhAnh.Count().ToString() + " files uploaded successfully.";
+                          return RedirectToAction("Index","Tour");
+                      }
+                  }
+                  else
+                  {
+                      ModelState.AddModelError("UploadError", "Hình ảnh bìa không được bỏ trống!");
+                      return View(hinhAnh);
+                  }
+              }
+              return View(hinhAnh);
+
+          }
+        **/
+
+        public ActionResult Create(IEnumerable<HttpPostedFileBase> DuLieuHinhAnh, int id)
         {
-            if (ModelState.IsValid)
+            string folder = "Storage/";
+
+            foreach (var n in DuLieuHinhAnh)
             {
-                // Upload              
-                if (!Object.Equals(hinhAnh.DuLieuHinhAnh, null))
+                var imageToUpload = "~/"+folder + DateTime.Now.ToFileTime() + "_" + n.FileName;
+                var photoUrl = Server.MapPath(imageToUpload);
+
+                if (n != null && n.ContentLength > 0)
                 {
-                    string folder = "Storage/";
-                    string fileName = DateTime.Now.ToFileTime() + "_" + hinhAnh.DuLieuHinhAnh.FileName;
-                    string fileExtension = Path.GetExtension(fileName).ToLower();
 
-                    // Kiểm tra kiểu
-                    var fileTypeSupported = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-                    if (!fileTypeSupported.Contains(fileExtension))
+                    n.SaveAs(photoUrl);      // save to folder
+
+                    var images = new HinhAnh
                     {
-                        ModelState.AddModelError("UploadError", "Chỉ cho phép tập tin JPG, PNG, GIF!");
-                        return View(hinhAnh);
-                    }
-                    else
-                    {
-                        
-                        string filePath = Path.Combine(Server.MapPath("~/" + folder), fileName);
-                        hinhAnh.DuLieuHinhAnh.SaveAs(filePath);
+                        HinhAnh1 = imageToUpload,
+                        Tour_ID = id
 
-                        // Cập nhật đường dẫn vào CSDL
-                        hinhAnh.Tour_ID = hinhAnh.Tour_ID;
-                        hinhAnh.HinhAnh1 = folder + fileName;
+                    };
 
-                      
-
-
-
-
-                        db.HinhAnh.Add(hinhAnh);
-                        db.SaveChanges();
-                        //ViewBag.UploadStatus = hinhAnh.Count().ToString() + " files uploaded successfully.";
-                        return RedirectToAction("Index","Tour");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("UploadError", "Hình ảnh bìa không được bỏ trống!");
-                    return View(hinhAnh);
+                    db.HinhAnh.Add(images); // add to repository
+                    db.SaveChanges();        // save repositorychanges
                 }
             }
-            return View(hinhAnh);
+            return RedirectToAction("Index", "Tour");
         }
-
         // GET: HinhAnh/Edit/5
         public ActionResult Edit(int? id)
         {

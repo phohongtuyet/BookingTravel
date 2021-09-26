@@ -4,8 +4,6 @@
     ViewBag.Title = "Tour";
 }
 
-
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 <div class="card mt-3">
     <h5 class="card-header">@ViewBag.Title</h5>
@@ -366,7 +364,7 @@
                         @Html.DisplayFor(modelItem => item.MoTa)
                     </td>
                     <td>
-                        <a href="@Url.Action("Create","HinhAnh", new { Tour_ID = item.ID,  area ="Admin" })">Hinh anh</a>
+                        <a href="@Url.Action("Create","HinhAnh", new { id = item.ID})">Hinh anh</a>
                     </td>
                     <td class="text-center">
                         <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
