@@ -23,27 +23,29 @@
                         @Html.DisplayNameFor(model => model.DiaDiemThamQuan.TenDiaDanh)
                     </th>
                
-                    <th>
-                        @Html.DisplayNameFor(model => model.Tour.TenTour)
-                    </th>
                     <th width="5%">Sửa</th>
-                    <th width="5%">Xóa</th
+                    <th width="5%">Xóa</th>
                 </tr>
             </thead>
             <tbody>
                 @{ int stt = 1; }
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>@stt</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tour.TenTour)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DiaDiemThamQuan.TenDiaDanh)
-                        </td>
-                       
-                    </tr>
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tour.TenTour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaDiemThamQuan.TenDiaDanh)
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
                     stt++;
                 }
             </tbody>

@@ -47,14 +47,16 @@
                 <th>
                     Hinh anh
                 </th>
-
+                <th>
+                   dia diem
+                </th>
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
             </tr>
             @{ int stt = 1; }
             @foreach (var item in Model)
             {
-                 <tr>
+                <tr>
                     <td>@stt</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.TenTour)
@@ -365,6 +367,9 @@
                     </td>
                     <td>
                         <a href="@Url.Action("Create","HinhAnh", new { id = item.ID})">Hinh anh</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Create","ChiTietDiaDiemThamQuan", new { id = item.ID})"> dia danh</a>
                     </td>
                     <td class="text-center">
                         <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>

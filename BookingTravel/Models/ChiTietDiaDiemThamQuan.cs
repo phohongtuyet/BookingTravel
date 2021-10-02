@@ -25,7 +25,10 @@ namespace BookingTravel.Models
         [Display(Name = "Địa danh")]
         [Required(ErrorMessage = "Chưa chọn Địa danh!")]
         public Nullable<int> DiaDiemThamQuan_ID { get; set; }
-    
+
+        public List<int> selectedLocation { get; set; }
+
+
         public virtual DiaDiemThamQuan DiaDiemThamQuan { get; set; }
         public virtual Tour Tour { get; set; }
     }

@@ -49,18 +49,26 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Tour_ID,DiaDiemThamQuan_ID")] ChiTietDiaDiemThamQuan chiTietDiaDiemThamQuan)
+        public ActionResult Create(ChiTietDiaDiemThamQuan ct, int id)
         {
-            if (ModelState.IsValid)
-            {
-                db.ChiTietDiaDiemThamQuan.Add(chiTietDiaDiemThamQuan);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", chiTietDiaDiemThamQuan.DiaDiemThamQuan_ID);
-            ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", chiTietDiaDiemThamQuan.Tour_ID);
-            return View(chiTietDiaDiemThamQuan);
+            foreach (var n in ct.selectedLocation)
+            {
+                if (n != null && n > 0)
+                {
+                    var location = new ChiTietDiaDiemThamQuan
+                    {
+                        DiaDiemThamQuan_ID = n,
+                        Tour_ID = id
+
+                    };
+
+                    db.ChiTietDiaDiemThamQuan.Add(location);
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("Index", "Tour");
+
         }
 
         // GET: ChiTietDiaDiemThamQuan/Edit/5
