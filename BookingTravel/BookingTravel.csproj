@@ -147,6 +147,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Libs\Images.cs" />
     <Compile Include="Libs\SHA1.cs" />
     <Compile Include="Models\BaiViet.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
@@ -2452,6 +2453,8 @@
     <Content Include="Areas\Admin\Views\HinhAnh\Details.cshtml" />
     <Content Include="Areas\Admin\Views\HinhAnh\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\HinhAnh\Index.cshtml" />
+    <Content Include="Views\Home\Review.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

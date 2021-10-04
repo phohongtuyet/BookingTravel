@@ -1,0 +1,67 @@
+﻿@model BookingTravel.Models.BaiViet
+
+@{
+    ViewBag.Title = Model.TieuDe;
+}
+
+<div class="card mt-2">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p class="small text-muted">
+            <i class="fa-solid fa-calendar"></i> @Model.NgayDang
+            <i class="fa-solid fa-user"></i> @Model.NhanVien.HoVaTen
+            <i class="fa-solid fa-eye"></i> @Model.LuotXem
+        </p>
+        <p>@Model.TomTat</p>
+        <p>@Html.Raw(Model.NoiDung)</p>
+    </div>
+</div>
+
+@if (Model.TrangThaiBinhLuan == 1)
+{
+    <div class="card mt-2">
+        <h5 class="card-header">Ý kiến (@Model.BinhLuan.Where(r => r.KiemDuyet == 1).Count())</h5>
+        <div class="card-body">
+            @foreach (var item in Model.BinhLuan)
+            {
+                if (item.KiemDuyet == 1)
+                {
+                    <div class="media mb-2">
+                        <img src="~/Images/noimage.png" class="mr-3 " alt="..." width="80">
+                        <div class="media-body">
+                            <h5 class="mt-0">@item.KhachHang.HoVaten</h5>
+                            <p>@item.NoiDung</p>
+                        </div>
+
+                    </div>
+                    <p class="float-right">@item.NgayDang</p>
+                }
+
+            }
+
+            @if (Session["MaKhachHang"] == null)
+            {
+                <p>Vui lòng <a href="@Url.Action("Login","Home",new { area ="Admin"})">đăng nhập </a>  để gửi ý kiến</p>
+            }
+            else
+            {
+                using (Html.BeginForm("Create", "BinhLuan", FormMethod.Post, new { area = "Admin" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <input type="text" name="BaiViet_ID" value="@Model.ID" hidden />
+
+                    <div class="form-group">
+                        <label for="NoiDung">Ý kiến của bạn</label>
+                        <textarea class="form-control" id="NoiDung" name="NoiDung" required></textarea>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <button type="submit" class="btn btn-success"><i class="fal fa-save"></i> Bình luận </button>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+}
