@@ -1,124 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="BookingTravelModelStoreContainer" CdmEntityContainer="BookingTravelEntities">
+    <EntitySetMapping Name="PhuongTien">
+      <EntityTypeMapping TypeName="BookingTravelModel.PhuongTien">
+        <MappingFragment StoreEntitySet="PhuongTien">
+          <ScalarProperty Name="SoCho" ColumnName="SoCho" />
+          <ScalarProperty Name="LoaiPhuongTien" ColumnName="LoaiPhuongTien" />
+          <ScalarProperty Name="TenPhuongTien" ColumnName="TenPhuongTien" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="BaiViet">
       <EntityTypeMapping TypeName="BookingTravelModel.BaiViet">
         <MappingFragment StoreEntitySet="BaiViet">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="NhanVien_ID" ColumnName="NhanVien_ID" />
-          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-          <ScalarProperty Name="TomTat" ColumnName="TomTat" />
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-          <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
-          <ScalarProperty Name="KiemDuyet" ColumnName="KiemDuyet" />
           <ScalarProperty Name="TrangThaiBinhLuan" ColumnName="TrangThaiBinhLuan" />
+          <ScalarProperty Name="KiemDuyet" ColumnName="KiemDuyet" />
+          <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="TomTat" ColumnName="TomTat" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+          <ScalarProperty Name="NhanVien_ID" ColumnName="NhanVien_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="BinhLuan">
       <EntityTypeMapping TypeName="BookingTravelModel.BinhLuan">
         <MappingFragment StoreEntitySet="BinhLuan">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="BaiViet_ID" ColumnName="BaiViet_ID" />
-          <ScalarProperty Name="KhachHang_ID" ColumnName="KhachHang_ID" />
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
           <ScalarProperty Name="KiemDuyet" ColumnName="KiemDuyet" />
+          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="KhachHang_ID" ColumnName="KhachHang_ID" />
+          <ScalarProperty Name="BaiViet_ID" ColumnName="BaiViet_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ChiTietDiaDiemThamQuan">
       <EntityTypeMapping TypeName="BookingTravelModel.ChiTietDiaDiemThamQuan">
         <MappingFragment StoreEntitySet="ChiTietDiaDiemThamQuan">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
           <ScalarProperty Name="DiaDiemThamQuan_ID" ColumnName="DiaDiemThamQuan_ID" />
+          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChiTietPhuongTien">
+      <EntityTypeMapping TypeName="BookingTravelModel.ChiTietPhuongTien">
+        <MappingFragment StoreEntitySet="ChiTietPhuongTien">
+          <ScalarProperty Name="PhuongTien_ID" ColumnName="PhuongTien_ID" />
+          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DatTour">
       <EntityTypeMapping TypeName="BookingTravelModel.DatTour">
         <MappingFragment StoreEntitySet="DatTour">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="NhanVien_ID" ColumnName="NhanVien_ID" />
-          <ScalarProperty Name="KhachHang_ID" ColumnName="KhachHang_ID" />
-          <ScalarProperty Name="DienThoaiDatTour" ColumnName="DienThoaiDatTour" />
-          <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
-          <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
           <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+          <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+          <ScalarProperty Name="DienThoaiDatTour" ColumnName="DienThoaiDatTour" />
+          <ScalarProperty Name="KhachHang_ID" ColumnName="KhachHang_ID" />
+          <ScalarProperty Name="NhanVien_ID" ColumnName="NhanVien_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DatTour_ChiTiet">
       <EntityTypeMapping TypeName="BookingTravelModel.DatTour_ChiTiet">
         <MappingFragment StoreEntitySet="DatTour_ChiTiet">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="DatTour_ID" ColumnName="DatTour_ID" />
-          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
-          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
           <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
+          <ScalarProperty Name="DatTour_ID" ColumnName="DatTour_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DiaDiemThamQuan">
       <EntityTypeMapping TypeName="BookingTravelModel.DiaDiemThamQuan">
         <MappingFragment StoreEntitySet="DiaDiemThamQuan">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TenDiaDanh" ColumnName="TenDiaDanh" />
-          <ScalarProperty Name="Tinh" ColumnName="Tinh" />
           <ScalarProperty Name="KhachSan_ID" ColumnName="KhachSan_ID" />
+          <ScalarProperty Name="Tinh" ColumnName="Tinh" />
+          <ScalarProperty Name="TenDiaDanh" ColumnName="TenDiaDanh" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="HinhAnh">
       <EntityTypeMapping TypeName="BookingTravelModel.HinhAnh">
         <MappingFragment StoreEntitySet="HinhAnh">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
           <ScalarProperty Name="HinhAnh1" ColumnName="HinhAnh" />
+          <ScalarProperty Name="Tour_ID" ColumnName="Tour_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KhachHang">
       <EntityTypeMapping TypeName="BookingTravelModel.KhachHang">
         <MappingFragment StoreEntitySet="KhachHang">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="HoVaten" ColumnName="HoVaten" />
-          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
           <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="HoVaten" ColumnName="HoVaten" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="KhachSan">
       <EntityTypeMapping TypeName="BookingTravelModel.KhachSan">
         <MappingFragment StoreEntitySet="KhachSan">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TenKhachSan" ColumnName="TenKhachSan" />
           <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PhuongTien">
-      <EntityTypeMapping TypeName="BookingTravelModel.PhuongTien">
-        <MappingFragment StoreEntitySet="PhuongTien">
+          <ScalarProperty Name="TenKhachSan" ColumnName="TenKhachSan" />
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="TenPhuongTien" ColumnName="TenPhuongTien" />
-          <ScalarProperty Name="LoaiPhuongTien" ColumnName="LoaiPhuongTien" />
-          <ScalarProperty Name="SoCho" ColumnName="SoCho" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="BookingTravelModel.sysdiagrams">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
+    <EntitySetMapping Name="NhanVien">
+      <EntityTypeMapping TypeName="BookingTravelModel.NhanVien">
+        <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -134,21 +146,6 @@
           <ScalarProperty Name="NoiKhoiHanh" ColumnName="NoiKhoiHanh" />
           <ScalarProperty Name="LoaiTour" ColumnName="LoaiTour" />
           <ScalarProperty Name="TenTour" ColumnName="TenTour" />
-          <ScalarProperty Name="PhuongTien_ID" ColumnName="PhuongTien_ID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="NhanVien">
-      <EntityTypeMapping TypeName="BookingTravelModel.NhanVien">
-        <MappingFragment StoreEntitySet="NhanVien">
-          <ScalarProperty Name="Khoa" ColumnName="Khoa" />
-          <ScalarProperty Name="Quyen" ColumnName="Quyen" />
-          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
-          <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
-          <ScalarProperty Name="HoVaTen" ColumnName="HoVaTen" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

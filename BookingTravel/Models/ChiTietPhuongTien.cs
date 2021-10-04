@@ -12,23 +12,17 @@ namespace BookingTravel.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Web;
 
-    public partial class HinhAnh
+    public partial class ChiTietPhuongTien
     {
-        [Display(Name = "Mã hình ảnh")]
         public int ID { get; set; }
-
-        [Display(Name = "Tour")]
-        [Required(ErrorMessage = "Chưa chọn tuor!")]
         public Nullable<int> Tour_ID { get; set; }
 
-        [Display(Name = "Hình ảnh")]
-        public string HinhAnh1 { get; set; }
-
-        [Display(Name = "Hình ảnh ")]
-        public HttpPostedFileBase DuLieuHinhAnh { get; set; }
-
+        [Display(Name = "Phương tiện ")]
+        [Required(ErrorMessage = "Chưa chọn phương tiện!")]
+        public Nullable<int> PhuongTien_ID { get; set; }
+    
+        public virtual PhuongTien PhuongTien { get; set; }
         public virtual Tour Tour { get; set; }
     }
 }

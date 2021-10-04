@@ -25,18 +25,18 @@ namespace BookingTravel.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<PhuongTien> PhuongTien { get; set; }
         public virtual DbSet<BaiViet> BaiViet { get; set; }
         public virtual DbSet<BinhLuan> BinhLuan { get; set; }
         public virtual DbSet<ChiTietDiaDiemThamQuan> ChiTietDiaDiemThamQuan { get; set; }
+        public virtual DbSet<ChiTietPhuongTien> ChiTietPhuongTien { get; set; }
         public virtual DbSet<DatTour> DatTour { get; set; }
         public virtual DbSet<DatTour_ChiTiet> DatTour_ChiTiet { get; set; }
         public virtual DbSet<DiaDiemThamQuan> DiaDiemThamQuan { get; set; }
         public virtual DbSet<HinhAnh> HinhAnh { get; set; }
         public virtual DbSet<KhachHang> KhachHang { get; set; }
         public virtual DbSet<KhachSan> KhachSan { get; set; }
-        public virtual DbSet<PhuongTien> PhuongTien { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<NhanVien> NhanVien { get; set; }
+        public virtual DbSet<Tour> Tour { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace BookingTravel.Models
 
         [Display(Name = "Duyệt?")]
         public Nullable<byte> KiemDuyet { get; set; }
-    
+
         public virtual BaiViet BaiViet { get; set; }
         public virtual KhachHang KhachHang { get; set; }
     }

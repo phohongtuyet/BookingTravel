@@ -51,7 +51,7 @@ namespace BookingTravel.Models
 
         [Display(Name = "Bình luận?")]
         public Nullable<byte> TrangThaiBinhLuan { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuan { get; set; }
         public virtual NhanVien NhanVien { get; set; }

@@ -18,8 +18,9 @@ namespace BookingTravel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PhuongTien()
         {
-            this.Tour = new HashSet<Tour>();
+            this.ChiTietPhuongTien = new HashSet<ChiTietPhuongTien>();
         }
+
         [Display(Name = "Mã phương tiện")]
         public int ID { get; set; }
 
@@ -34,8 +35,8 @@ namespace BookingTravel.Models
         [Display(Name = "Số chỗ")]
         [Required(ErrorMessage = "Số chỗ không được bỏ trống!")]
         public Nullable<int> SoCho { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour> Tour { get; set; }
+        public virtual ICollection<ChiTietPhuongTien> ChiTietPhuongTien { get; set; }
     }
 }

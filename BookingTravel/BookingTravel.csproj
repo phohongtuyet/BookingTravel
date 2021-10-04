@@ -173,6 +173,9 @@
     <Compile Include="Models\ChiTietDiaDiemThamQuan.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChiTietPhuongTien.cs">
+      <DependentUpon>BookingTravel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\KhachHangModels.cs" />
     <Compile Include="Models\DatTour.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
@@ -2140,6 +2143,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\noimage.png" />
     <Content Include="Images\passport.png" />
     <Content Include="Models\BookingTravel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

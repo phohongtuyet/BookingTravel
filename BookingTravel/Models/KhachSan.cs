@@ -30,7 +30,7 @@ namespace BookingTravel.Models
         [Display(Name = "Địa chỉ")]
         [Required(ErrorMessage = "Địa chỉ không được bỏ trống!")]
         public string DiaChi { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiaDiemThamQuan> DiaDiemThamQuan { get; set; }
     }

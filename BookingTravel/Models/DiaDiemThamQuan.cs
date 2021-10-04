@@ -20,6 +20,7 @@ namespace BookingTravel.Models
         {
             this.ChiTietDiaDiemThamQuan = new HashSet<ChiTietDiaDiemThamQuan>();
         }
+
         [Display(Name = "Mã địa danh")]
         public int ID { get; set; }
 
@@ -34,7 +35,7 @@ namespace BookingTravel.Models
         [Display(Name = "Khách sạn")]
         [Required(ErrorMessage = "Chưa chọn khách sạn!")]
         public Nullable<int> KhachSan_ID { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDiaDiemThamQuan> ChiTietDiaDiemThamQuan { get; set; }
         public virtual KhachSan KhachSan { get; set; }

@@ -15,20 +15,13 @@ namespace BookingTravel.Models
 
     public partial class ChiTietDiaDiemThamQuan
     {
-        [Display(Name = "Mã địa danh")]
         public int ID { get; set; }
-
-        [Display(Name = "Tour")]
-        [Required(ErrorMessage = "Chưa chọn Tour!")]
         public Nullable<int> Tour_ID { get; set; }
 
-        [Display(Name = "Địa danh")]
-        [Required(ErrorMessage = "Chưa chọn Địa danh!")]
+        [Display(Name = "Địa danh ")]
+        [Required(ErrorMessage = "Chưa chọn địa danh!")]
         public Nullable<int> DiaDiemThamQuan_ID { get; set; }
-
         public List<int> selectedLocation { get; set; }
-
-
         public virtual DiaDiemThamQuan DiaDiemThamQuan { get; set; }
         public virtual Tour Tour { get; set; }
     }

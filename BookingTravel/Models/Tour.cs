@@ -12,6 +12,7 @@ namespace BookingTravel.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class Tour
     {
@@ -19,16 +20,13 @@ namespace BookingTravel.Models
         public Tour()
         {
             this.ChiTietDiaDiemThamQuan = new HashSet<ChiTietDiaDiemThamQuan>();
+            this.ChiTietPhuongTien = new HashSet<ChiTietPhuongTien>();
             this.DatTour_ChiTiet = new HashSet<DatTour_ChiTiet>();
             this.HinhAnh = new HashSet<HinhAnh>();
         }
 
         [Display(Name = "Mã Tour ")]
         public int ID { get; set; }
-
-        [Display(Name = "Phương tiện")]
-        [Required(ErrorMessage = "Chưa chọn phương tiện!")]
-        public Nullable<int> PhuongTien_ID { get; set; }
 
         [Display(Name = "Tên Tour ")]
         [Required(ErrorMessage = "Tên Tour không được bỏ trống!")]
@@ -60,22 +58,27 @@ namespace BookingTravel.Models
         [Required(ErrorMessage = "Số lượng không được bỏ trống!")]
         public Nullable<int> SoLuong { get; set; }
 
-
-        [Display(Name = "Trạng thái Tour")]
-       // [Required(ErrorMessage = "Chưa chọn trạng thái tour!")]
+        [Display(Name = "Trạng thái Tour hoạt động")]
         public Nullable<short> TrangThai { get; set; }
-
 
         [Display(Name = "Mô tả")]
         [DataType(DataType.MultilineText)]
         public string MoTa { get; set; }
-    
+
+        [Display(Name = "Hình ảnh ")]
+        public IEnumerable<HttpPostedFileBase> DuLieuHinhAnh { get; set; }
+
+        public List<int> selectedLocation { get; set; }
+
+        public List<int> selectedTranpost { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDiaDiemThamQuan> ChiTietDiaDiemThamQuan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietPhuongTien> ChiTietPhuongTien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatTour_ChiTiet> DatTour_ChiTiet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnh { get; set; }
-        public virtual PhuongTien PhuongTien { get; set; }
     }
 }

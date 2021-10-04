@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,15 +11,25 @@ using BookingTravel.Models;
 
 namespace BookingTravel.Areas.Admin.Controllers
 {
-    public class TourController : Controller
+    public class TourController : AuthController
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 
         // GET: Tour
         public ActionResult Index()
         {
-            var tour = db.Tour.Include(t => t.PhuongTien).Include(h => h.HinhAnh);
+            var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan);
             return View(tour.ToList());
+        }
+
+        public ActionResult Approved(int id)
+        {
+            Tour t = db.Tour.Find(id);
+            t.TrangThai = System.Convert.ToByte(1 - t.TrangThai); // 1 -> 0 và 0 -> 1
+            db.Entry(t).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Tour/Details/5
@@ -39,7 +50,9 @@ namespace BookingTravel.Areas.Admin.Controllers
         // GET: Tour/Create
         public ActionResult Create()
         {
+            ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh");
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien");
+            ModelState.AddModelError("UploadError", "");
             return View();
         }
 
@@ -48,17 +61,83 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,PhuongTien_ID,TenTour,LoaiTour,NoiKhoiHanh,NgayBD,NgayKT,DonGia,SoLuong,TrangThai,MoTa")] Tour tour)
+        [ValidateInput(false)]
+        public ActionResult Create(Tour tour)
         {
+            ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan);
+            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
+            //ViewBag.HinhAnh_ID = new SelectList(db.HinhAnh, "ID", "HinhAnh", tour.HinhAnh);
+
             if (ModelState.IsValid)
             {
-                tour.TrangThai = 0;
-                db.Tour.Add(tour);
+                // them tour 
+                Tour t = new Tour();             
+                t.TenTour = tour.TenTour;
+                t.LoaiTour = tour.LoaiTour;
+                t.NoiKhoiHanh = tour.NoiKhoiHanh;
+                t.NgayBD = tour.NgayBD;
+                t.NgayKT = tour.NgayKT;
+                t.DonGia = tour.DonGia;
+                t.SoLuong = tour.SoLuong;
+                t.TrangThai = 0;
+                t.MoTa = tour.MoTa;
+                db.Tour.Add(t);
                 db.SaveChanges();
+
+                //them chi tiet dia diem tham quan
+                foreach (var n in tour.selectedLocation)
+                {
+                    if (n != null && n > 0)
+                    {
+                        var location = new ChiTietDiaDiemThamQuan
+                        {
+                            DiaDiemThamQuan_ID = n,
+                            Tour_ID = t.ID
+                        };
+                        db.ChiTietDiaDiemThamQuan.Add(location);
+                        db.SaveChanges();
+                    }
+                }
+
+                //them anh
+                if (!Object.Equals(tour.DuLieuHinhAnh, null))
+                {
+                    string folder = "Storage/";
+                    foreach (var n in tour.DuLieuHinhAnh)
+                    {
+                        var imageToUpload = "~/" + folder + DateTime.Now.ToFileTime() + "_" + n.FileName;
+                        var photoUrl = Server.MapPath(imageToUpload);
+                        string fileExtension = Path.GetExtension(n.FileName).ToLower();
+
+                        // Kiểm tra kiểu
+                        var fileTypeSupported = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                        if (!fileTypeSupported.Contains(fileExtension))
+                        {
+                            ModelState.AddModelError("UploadError", "Chỉ cho phép tập tin JPG, PNG, GIF!");
+                            return View(tour);
+                        }
+                        else if (n != null && n.ContentLength > 0)
+                        {
+                            n.SaveAs(photoUrl);
+                            var images = new HinhAnh
+                            {
+                                HinhAnh1 = imageToUpload,
+                                Tour_ID = t.ID
+                            };
+                            db.HinhAnh.Add(images);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("UploadError", "Hình ảnh không được bỏ trống!");
+                    return View(tour);
+                }
+                SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");
             }
-
-            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.PhuongTien_ID);
+            SetAlert("Thêm mới thất bại", "error");
             return View(tour);
         }
 
@@ -74,7 +153,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.PhuongTien_ID);
+            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
             return View(tour);
         }
 
@@ -91,7 +170,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.PhuongTien_ID);
+            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
             return View(tour);
         }
 
