@@ -18,6 +18,11 @@ namespace BookingTravel.Controllers
             return View();
         }
 
+        public ActionResult success()
+        {
+            return View();
+        }
+
         public ActionResult Review()
         {
             var baiViet = db.BaiViet.Where(r => r.KiemDuyet == 1).ToList();
