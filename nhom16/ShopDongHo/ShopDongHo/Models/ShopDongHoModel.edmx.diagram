@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="76f66e7946594875a3ceca3579d10185" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopDongHoModel.ChatLieu" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.DatHang" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.DatHang_ChiTiet" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.DongHo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.KhachHang" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.LoaiDH" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.NhanVien" Width="1.5" PointX="0.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.ThuongHieu" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDongHoModel.XuatXu" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DongHo__ChatLieu__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DatHang__KhachHa__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DatHang__NhanVie__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DatHang_C__DatHa__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DatHang_C__DongH__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DongHo__TenLoai___47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DongHo__ThuongHi__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopDongHoModel.FK__DongHo__XuatXu_I__49C3F6B7" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

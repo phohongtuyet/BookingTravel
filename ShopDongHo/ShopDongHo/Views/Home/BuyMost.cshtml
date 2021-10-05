@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ShopDongHo.Models.BestSaleModels>
+
+@{
+    ViewBag.Title = "Đồng hồ được mua nhiều nhất tại Watch Luxury Store";
+}
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <div class="card-deck">
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="card list-books">
+                        <span class="alert text-danger"  >Bán chạy @stt</span>
+                        <img src="~/@item.HinhAnhDH" class="card-img-top" alt="...">
+
+                        <div class="card-body al">
+                            <h5 class="card-title text-center">@item.TenDongHo</h5>
+                            <p class="card-text text-center">@String.Format("{0:N0}", item.DonGia) VNĐ</p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="@Url.Action("ThemVaoGio", "GioHang", new { maSP = item.ID })" class="btn btn-danger">Giỏ hàng</a>
+                            <a href="@Url.Action("Details", "Home", new { maSP = item.ID })" class="btn btn-info m-1">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                stt++;
+            }
+        </div>
+    </div>
+</div>

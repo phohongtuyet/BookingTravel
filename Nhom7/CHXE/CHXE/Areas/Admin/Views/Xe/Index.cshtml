@@ -1,0 +1,114 @@
+﻿@model IEnumerable<CHXE.Models.Xe>
+
+@{
+    ViewBag.Title = "Xe";
+
+}
+
+<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p><a class="btn btn-dark" href="@Url.Action("Create")" role="button"><i class="fas fa-plus"></i> Thêm mới</a></p>
+        <table id="PhanTrang" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TenXe)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MauXe)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SoLuong)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DonGia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ThoiHanBaoHanh)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HinhAnhBia)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.LoaiXe.TenLoai)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NoiSanXuat.TenNoiSX)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ThuongHieu.TenThuongHieu)
+                    </th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenXe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MauXe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuong)
+                        </td>
+                        <td class="text-right">
+                            @Html.DisplayFor(modelItem => item.DonGia) VND
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThoiHanBaoHanh)
+                        </td>
+                        <td class="text-center">
+                            <img src="~/@item.HinhAnhBia" width="130" height="100" class="img-thumbnail" />
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoaiXe.TenLoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NoiSanXuat.TenNoiSX)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThuongHieu.TenThuongHieu)
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-cog text-warning"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+
+
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#PhanTrang').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+
+
+                }});
+        });
+    </script>
+}

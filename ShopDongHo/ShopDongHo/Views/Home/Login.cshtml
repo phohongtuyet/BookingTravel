@@ -1,0 +1,49 @@
+﻿@model ShopDongHo.Models.KhachHangLogin
+@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+    <div class="card mt-3 w-25 m-auto">
+        <h5 class="card-header text-center alert-info">@ViewBag.Title</h5>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                if (!String.IsNullOrEmpty(ViewData.ModelState["LoginError"].Errors[0].ErrorMessage))
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <span class="d-block text-danger">@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TenDangNhap)
+                    @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MatKhau)
+                    @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group mb-2 float-right">
+                    <a  href="@Url.Action("Register","Home")">Đăng ký</a>
+                </div>
+
+                <div class="form-group mb-0">
+                    <input  type="submit" value="Đăng nhập" class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" />@Html.ActionLink("Quay về trang chủ", "Index", "Home")
+                </div>
+            }
+        </div>
+    </div>
+
+<!-- Default form login -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,66 @@
+﻿@model ShopDongHo.Models.KhachHangEdit
+
+@{
+    ViewBag.Title = "Cập nhật khách hàng";
+}
+
+
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HoVaten)
+                @Html.EditorFor(model => model.HoVaten, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoVaten, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DienThoai)
+                @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaChi)
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenDangNhap)
+                @Html.EditorFor(model => model.TenDangNhap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MatKhau)
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                <span class="d-block mb-2 mt-2 small text-danger">Bỏ trống nếu không muốn cập nhật mật khẩu mới!</span>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.XacNhanMatKhau)
+                @Html.EditorFor(model => model.XacNhanMatKhau, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.XacNhanMatKhau, "", new { @class = "text-danger" })
+                <span class="d-block mb-2 mt-2 small text-danger">Bỏ trống nếu không muốn cập nhật mật khẩu mới!</span>
+            </div>
+
+            <div class="form-group mb-0">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CHXE.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Nhân Viên";
+}
+
+<div class="card mt-2">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p><a class="btn btn-dark" href="@Url.Action("Create")" role="button"><i class="fas fa-plus"></i> Thêm mới</a></p>
+        <table id="PhanTrang" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HovaTen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SDT)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiaChi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TenDangNhap)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Quyen)
+                    </th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+             </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HovaTen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDangNhap)
+                        </td>
+
+                        <td>
+                            @if (item.Quyen == true)
+                            {
+                                <span class="badge badge-pill badge-success">Quản Lý</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-pill badge-primary">Nhân Viên</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-cog text-warning"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#PhanTrang').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+
+
+                }
+            });
+        });
+    </script>
+}

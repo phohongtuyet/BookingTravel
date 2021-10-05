@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ShopDongHo.Models.ThuongHieu>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<!--phân loại-->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-watch"></i> Thương hiệu
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @foreach (var item in Model)
+        {
+            <a class="dropdown-item" href="@Url.Action("SubPosts", "Home", new { id = item.ID })">
+                <i class="fal fa-fw fa-folder-tree"></i> @item.TenThuongHieu
+            </a>
+        }
+    </div>
+</li>

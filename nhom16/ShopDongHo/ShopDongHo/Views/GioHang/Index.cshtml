@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ShopDongHo.Models.DongHo>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    var cart = (List<ShopDongHo.Models.SanPhamTrongGio>)Session["cart"];
+    
+}
+
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @if (cart == null || cart.Count <= 0)
+        {
+            <span class="alert alert-danger">Giỏ hàng chưa có sản phẩm!</span>
+        }
+        else
+        {
+            {
+                string message = TempData["Message"] as string;
+                if (message != null)
+                {
+                    <p class="alert alert-danger">@message</p>
+                }
+            }
+
+        <table class="table table-bordered table-hover table-sm">
+            <tr>
+                <th width="5%">#</th>
+                <th>Hình ảnh</th>
+                <th>Sản phẩm</th>
+                <th width="10%">Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+                <th width="5%"></th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in cart)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td><img src="~/@item.dongho.HinhAnhDH" width="50" /></td>
+                    <td>@item.dongho.TenDongHo</td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><a href="@Url.Action("CapNhatGiam", "GioHang", new { maSP = item.dongho.ID })"><i class="fas fa-minus"></i></a></span>
+
+                            </div>
+                            <input type="text" class="form-control text-center" value="@item.soLuongTrongGio" readonly />
+                            <div class="input-group-append">
+                                <span class="input-group-text"><a href="@Url.Action("CapNhatTang", "GioHang", new { maSP = item.dongho.ID })"><i class="fas fa-plus"></i></a></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="text-right">@String.Format("{0:N0}", item.dongho.DonGia) VNĐ</td>
+                    <td class="text-right">@String.Format("{0:N0}", item.soLuongTrongGio * item.dongho.DonGia) VNĐ</td>
+                    <td class="text-center"><a href="@Url.Action("XoaKhoiGio", "GioHang", new { maSP = item.dongho.ID })">Xóa</a></td>
+                </tr>
+                stt++;
+            }
+
+            <tr>
+                <td colspan="5">Tổng thành tiền</td>
+                <td class="text-right font-weight-bold text-primary">
+                    @{
+                        var total = @String.Format("{0:N0}", cart.Sum(item => item.dongho.DonGia * item.soLuongTrongGio)) + " VNĐ";
+                    }
+                    @total
+                </td>
+                <td></td>
+            </tr>
+        </table>
+
+        <p>
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Tiếp tục mua hàng</a>
+            <a href="@Url.Action("ThanhToan", "Home")" class="btn btn-success">Thanh toán</a>
+        </p>
+    }
+    </div>
+</div>

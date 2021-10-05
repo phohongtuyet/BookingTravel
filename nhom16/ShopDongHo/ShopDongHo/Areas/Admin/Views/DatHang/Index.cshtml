@@ -1,0 +1,134 @@
+﻿@model IEnumerable<ShopDongHo.Models.DatHang>
+
+@{
+    ViewBag.Title = "Đặt hàng";
+}
+<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p><a class="btn btn-success" href="@Url.Action("Create")" role="button">Thêm mới</a></p>
+        <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DienThoaiGiaoHang)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiaChiGiaoHang)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayDatHang)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TinhTrang)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
+                    </th>
+                    <!--
+                        <th>
+                            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+                        </th>
+                     -->
+                   <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DienThoaiGiaoHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChiGiaoHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayDatHang)
+                        </td>
+                        <td>
+                            @if (item.TinhTrang == 0)
+                            {
+                                <span>Đơn hàng mới</span>
+                            }
+                            else if (item.TinhTrang == 1)
+                            {
+                                <span>Đang xác nhận</span>
+                            }
+                            else if (item.TinhTrang == 2)
+                            {
+                                <span>Đã hủy</span>
+                            }
+                            else if (item.TinhTrang == 3)
+                            {
+                                <span>Đang đóng gói</span>
+                            }
+                            else if (item.TinhTrang == 4)
+                            {
+                                <span>Đang gởi vận chuyển</span>
+                            }
+                            else if (item.TinhTrang == 5)
+                            {
+                                <span>Đang chuyển</span>
+                            }
+                            else if (item.TinhTrang == 6)
+                            {
+                                <span>Thất bại</span>
+                            }
+                            else if (item.TinhTrang == 7)
+                            {
+                                <span>Đang chuyển hoàn</span>
+                            }
+                            else if (item.TinhTrang == 8)
+                            {
+                                <span>Đã chuyển hoàn</span>
+                            }
+                            else
+                            {
+                                <span>Thành công</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KhachHang.HoVaten)
+                        </td>
+                        <!--
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+                        </td>
+                         -->
+
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                        </td>
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#Panigation').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top mb-1" style="background-color: #dbedf9;">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                <img src="~/Images/king.png" width="100" class="d-inline-block align-content-center" alt="">
+                Watch Luxury Store
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto p-2 ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="@Url.Action("BuyMost","Home")">Mua nhiều nhất</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "GioHang")">Giỏ hàng</a>
+                    </li>
+
+                    @Html.Action("_Catelogies", "Home")
+                    @if (Session["MaKhachHang"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login", "Home")">Đăng nhập</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Session["HoTenKhachHang"].ToString()
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("MyOrders", "Home")">Đơn hàng của tôi</a>
+                                <a class="dropdown-item" href="@Url.Action("ChangePassword", "Home")">Đổi mật khẩu</a>
+                                <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a>
+                            </div>
+                        </li>
+                    }
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="@Url.Action("Search","Home")" method="post">
+                    <input class="form-control mr-sm-2" type="search" name="Tukhoa" placeholder="Đồng hồ bạn muốn tìm" required />
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Tìm kiếm</button>
+                </form>
+            </div>
+        </nav>
+       
+            <div class="container-fluid body-content">
+                @RenderBody()
+                <hr />
+
+                <!-- Footer -->
+                <footer class="page-footer font-small unique-color-dark">
+
+                    <div style="background-color: #808080;">
+                        <div class="container">
+
+                            <!-- Grid row-->
+                            <div class="row py-4 d-flex align-items-center">
+
+                                <!-- Grid column -->
+                                <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                                    <h6 class="mb-0">
+                                        Hãy kết nối với chúng tôi trên các mạng xã hội!
+                                    </h6>
+                                </div>
+                                <!-- Grid column -->
+                                <!-- Grid column -->
+                                <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+                                    <!-- Facebook -->
+                                    <a class="fb-ic">
+                                        <i class="fab fa-facebook-f white-text mr-4"> </i>
+                                    </a>
+                                    <!-- Twitter -->
+                                    <a class="tw-ic">
+                                        <i class="fab fa-twitter white-text mr-4"> </i>
+                                    </a>
+                                    <!-- Google +-->
+                                    <a class="gplus-ic">
+                                        <i class="fab fa-google-plus-g white-text mr-4"> </i>
+                                    </a>
+                                    <!--Linkedin -->
+                                    <a class="li-ic">
+                                        <i class="fab fa-linkedin-in white-text mr-4"> </i>
+                                    </a>
+                                    <!--Instagram-->
+                                    <a class="ins-ic">
+                                        <i class="fab fa-instagram white-text"> </i>
+                                    </a>
+
+                                </div>
+                                <!-- Grid column -->
+
+                            </div>
+                            <!-- Grid row-->
+
+                        </div>
+                    </div>
+
+                    <!-- Footer Links -->
+                    <div class="container text-center text-md-left mt-5">
+
+                        <!-- Grid row -->
+                        <div class="row mt-3">
+
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+                                <!-- Content -->
+                                <h6 class="text-uppercase font-weight-bold">Watch Luxury Store</h6>
+                                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                                <p>
+                                    Chúng tôi kinh doanh tất cả sản phẩm đồng hồ có mặt trên thế giới <br />
+                                    "Thế giới có gì Việt Nam có cái đó"
+                                </p>
+
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                                <!-- Links -->
+                                <h6 class="text-uppercase font-weight-bold">SẢN PHẨM</h6>
+                                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                                <p>
+                                    <a href="#!">Đồng hồ cơ</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Đồng hồ thông minh</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Đồng thời pin</a>
+                                </p>
+
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                                <!-- Links -->
+                                <h6 class="text-uppercase font-weight-bold">Liên kết nhanh</h6>
+                                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                                <p>
+                                    <a href="#!">Dịch dụ/ Hỗ trợ</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Về với chúng tôi</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Liên hệ</a>
+                                </p>
+                                <p>
+                                    <a href="#!">Tin tức</a>
+                                </p>
+
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                                <!-- Links -->
+                                <h6 class="text-uppercase font-weight-bold">Liên hệ</h6>
+                                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                                <p>
+                                    <i class="fas fa-home mr-3"></i> DH19PM, AGU
+                                </p>
+                                <p>
+                                    <i class="fas fa-envelope mr-3"></i> TTT@gmail.com
+                                </p>
+                                <p>
+                                    <i class="fas fa-phone mr-3"></i> 0989 999 999
+                                </p>
+                                <p>
+                                    <i class="fas fa-print mr-3"></i> 0999 999 999
+                                </p>
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                    </div>
+                    <!-- Footer Links -->
+                    <!-- Copyright -->
+                    <!-- Copyright -->
+                    <!-- Footer -->
+                    <hr />
+                    <p class="text-center">&copy; @DateTime.Now.Year - được thiết kế bởi nhóm Tình - Thắng - Tuyết</p>
+                </footer>
+            </div>
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

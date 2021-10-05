@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - King Watch Luxury</title>
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #f1eeee;">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                <img src="~/Images/king.png" width="150" class="d-inline-block align-content-center" alt="">
+                Quản trị Wactch Luxury store
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    @if (Session["MaNhanVien"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Login", "Home")">Đăng nhập quản lý</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Session["HoTenNhanVien"].ToString()
+                                @if (Convert.ToInt32(Session["Quyen"]) == 1)
+                                {
+                                    <span>(Quản lý)</span>
+                                }
+                                else
+                                {
+                                    <span>(Nhân viên)</span>
+                                }
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (Convert.ToInt32(Session["Quyen"]) == 1)
+                                {
+                                    <a class="dropdown-item" href="@Url.Action("Index", "ChatLieu")">Chất liệu</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "LoaiDH")">Loại đồng hồ</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "ThuongHieu")">Thương hiệu</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "XuatXu")">Xuất xứ</a>
+                                    <a class="dropdown-item" href="@Url.Action("Index", "NhanVien")">Nhân viên</a>
+                                }
+                                <a class="dropdown-item" href="@Url.Action("Index", "KhachHang")">Khách hàng</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "DongHo")">Đồng hồ</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "DatHang")">Đặt hàng</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "DatHang_ChiTiet")">Đặt hàng chi tiết</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("ChangePassword", "Home")">Đổi mật khẩu</a>
+                                <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+        
+        <div class="container-fluid body-content">
+
+            @RenderBody()
+            <hr />
+            <footer class="text-center">
+                <p>&copy; @DateTime.Now.Year - được thiết kế bởi nhóm Tình - Thắng - Tuyết</p>
+            </footer>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+</body>
+</html>

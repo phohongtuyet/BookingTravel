@@ -1,0 +1,106 @@
+﻿@model ShopDongHo.Models.DongHo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DongHo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenDongHo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenDongHo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MauSac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MauSac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HanBaoHanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HanBaoHanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnhDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnhDH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChatLieu.TenChatLieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChatLieu.TenChatLieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiDH.TenLoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiDH.TenLoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThuongHieu.TenThuongHieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThuongHieu.TenThuongHieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XuatXu.TenQG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XuatXu.TenQG)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

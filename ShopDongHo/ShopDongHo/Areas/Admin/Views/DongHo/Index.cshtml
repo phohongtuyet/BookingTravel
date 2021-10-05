@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ShopDongHo.Models.DongHo>
+
+@{
+    ViewBag.Title = "Đồng hồ";
+}
+<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
+        <p><a class="btn btn-success" href="@Url.Action("Create")" role="button">Thêm mới</a></p>
+        <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TenDongHo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MauSac)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HanBaoHanh)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DonGia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SoLuong)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HinhAnhDH)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChatLieu.TenChatLieu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LoaiDH.TenLoai)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ThuongHieu.TenThuongHieu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.XuatXu.TenQG)
+                    </th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDongHo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MauSac)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HanBaoHanh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DonGia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuong)
+                        </td>
+                        <td class="text-center">
+                            <img src="~/@item.HinhAnhDH" width="150" class="img-thumbnail" />
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ChatLieu.TenChatLieu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LoaiDH.TenLoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThuongHieu.TenThuongHieu)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.XuatXu.TenQG)
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                        </td>
+                    </tr>
+                    stt++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    @section Scripts{
+        <script>
+            $(function () {
+                $('#AlertBox').removeClass('hide');
+                $('#AlertBox').delay(2000).slideUp(500);
+            });
+
+            $(document).ready(function () {
+                $('#Panigation').DataTable({
+                    "language": {
+                        "lengthMenu": "Số dòng _MENU_  trên trang ",
+                        "zeroRecords": "Không tìm thấy!!!",
+                        "info": "Trang  _PAGE_ của _PAGES_",
+                        "infoEmpty": "Không có sẵn dữ liệu",
+                        "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+                    }
+                });
+            });
+        </script>
+
+    }

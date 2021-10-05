@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ShopDongHo.Models.ChatLieu>
+
+@{
+    ViewBag.Title = "Chất liệu đồng hồ";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
+
+        <p>
+            <a class="btn btn-success" href="@Url.Action("Create")" role="button">Thêm mới</a>
+        </p>
+        <table class="table table-bordered table-hover table-sm mb-0">
+            <tr>
+                <th width="5%">#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TenChatLieu)
+                </th>
+                <th width="5%">Sửa</th>
+                <th width="5%">Xóa</th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenChatLieu)
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#AlertBox').removeClass('hide');
+            $('#AlertBox').delay(2000).slideUp(500);
+        });
+
+    </script>
+}

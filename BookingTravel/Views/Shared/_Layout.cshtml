@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <!--#-->
@@ -33,18 +32,27 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Review","Home")">Review</a>
                         </li>
-                        <li class="nav-item dropdown ml-3">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user-circle" aria-hidden="true"> Tài khoản</i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
-                                <li><a class="dropdown-item" href="#">chưa có tài khoản? <strong style="color: #85dce7">Đăng ký</strong> ngay</a></li>
-
-                            </ul>
-                        </li>
+                        @if (Session["MaKhachHang"] == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Login", "Home")">Đăng nhập</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    @Session["HoTenKhachHang"].ToString()
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="@Url.Action("MyOrders", "Home")">Đơn hàng của tôi</a>
+                                    <a class="dropdown-item" href="@Url.Action("ChangePassword", "Home")">Đổi mật khẩu</a>
+                                    <a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
-                   
+
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>

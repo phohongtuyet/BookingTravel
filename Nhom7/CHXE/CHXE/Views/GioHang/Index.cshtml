@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CHXE.Models.Xe>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    var cart = (List<CHXE.Models.SanPhamTrongGio>)Session["cart"];
+}
+
+<div class="card mt-2">
+    <h5 class="card-header text-center">@ViewBag.Title</h5>
+    <div class="card-body">
+        @if (cart == null || cart.Count() <0)
+        {
+            <span>Giỏ hàng chưa có sản phẩm!</span>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover table-sm">
+                <tr class="text-center">
+                    <th width="5%">STT</th>
+                    <th>Hình ảnh</th>
+                    <th>Sản phẩm</th>
+                    <th width="10%">Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+                @{ int stt = 1; }
+                @foreach (var item in cart)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td><img src="~/@item.xe.HinhAnhBia" width="50" /></td>
+                        <td>@item.xe.TenXe</td>
+                        <td>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><a href="@Url.Action("CapNhatGiam", "GioHang", new { maSP = item.xe.ID })"><i class="fas fa-minus"></i></a></span>
+                                </div>
+                                <input type="text" class="form-control text-center" value="@item.soLuongTrongGio" readonly />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><a href="@Url.Action("CapNhatTang", "GioHang", new { maSP = item.xe.ID })"><i class="fas fa-plus"></i></a></span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right">@String.Format("{0:N0}", item.xe.DonGia) VND</td>
+                        <td class="text-right">@String.Format("{0:N0}", item.soLuongTrongGio * item.xe.DonGia) VND</td>
+                        <td class="text-center">
+                            <a href="@Url.Action("XoaKhoiGio", "GioHang", new { maSP = item.xe.ID })"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+
+                    </tr>
+                    stt++;
+                }
+                <tr>
+                    <td colspan="5">Tổng thành tiền</td>
+                    <td class="text-right font-weight-bold text-primary">
+                        @{
+                            var total = cart.Sum(item => item.xe.DonGia * item.soLuongTrongGio);
+                        }
+                        @String.Format("{0:N0}", total) VND
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <p>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Tiếp tục mua hàng</a>
+                <a href="@Url.Action("ThanhToan", "Home")" class="btn btn-success"><i class="fas fa-money-check-alt fa-lg "></i> Thanh toán</a>
+            </p>
+        }
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CHXE.Models.ChiTietDonHang>
+
+@{
+    ViewBag.Title = "Mẫu Xe Bán Chạy Nhất";
+}
+
+<div class="card mt-2">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p><a class="btn btn-dark" href="@Url.Action("Create")" role="button"><i class="fas fa-plus"></i> Thêm mới</a></p>
+        <table id="PhanTrang" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SoLuong)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DonGia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DonHang.SDTGiaoHang)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Xe.TenXe)
+                    </th>
+              
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoLuong)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DonGia) VND
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DonHang.SDTGiaoHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Xe.TenXe)
+                        </td>
+                        
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#PhanTrang').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+
+
+                }
+            });
+        });
+    </script>
+}

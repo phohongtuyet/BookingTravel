@@ -1,0 +1,28 @@
+﻿@model CHXE.Models.LoaiXe
+
+@{
+    ViewBag.Title = "Thêm Loại Xe";
+}
+<div class="card mt-2">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenLoai)
+                @Html.EditorFor(model => model.TenLoai, new { htmlAttributes = new { @class = "form-control shadow-none col-md-12", @autocomplete = "off", @placeholder = "Nhập loại xe" } })
+                @Html.ValidationMessageFor(model => model.TenLoai, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group mb-2">
+                <button type="submit" class="btn btn-dark"><i class="fas fa-plus"></i> Thêm mới</button> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

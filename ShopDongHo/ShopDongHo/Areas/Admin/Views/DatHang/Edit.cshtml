@@ -1,0 +1,72 @@
+﻿@model ShopDongHo.Models.DatHang
+
+@{
+    ViewBag.Title = "Sửa đặt hàng";
+}
+
+<div class="card mt-3">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NhanVien_ID)
+                @Html.DropDownList("NhanVien_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NhanVien_ID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.KhachHang_ID)
+                @Html.DropDownList("KhachHang_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.KhachHang_ID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DienThoaiGiaoHang)
+                @Html.EditorFor(model => model.DienThoaiGiaoHang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DienThoaiGiaoHang, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DiaChiGiaoHang)
+                @Html.EditorFor(model => model.DiaChiGiaoHang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChiGiaoHang, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NgayDatHang)
+                @Html.EditorFor(model => model.NgayDatHang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgayDatHang, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TinhTrang)
+                @Html.DropDownListFor(model => model.TinhTrang, new SelectList(new[] {
+                    new SelectListItem {Value = null, Text = "-- Chọn --" },
+                    new SelectListItem {Value = "0", Text = "Đơn hàng mới" },
+                    new SelectListItem {Value = "1", Text = "Đang xác nhận" },
+                    new SelectListItem {Value = "2", Text = "Đã hủy" },
+                    new SelectListItem {Value = "3", Text = "Đang đóng gói" },
+                    new SelectListItem {Value = "4", Text = "Đang gởi vận chuyển" },
+                    new SelectListItem {Value = "5", Text = "Đang chuyển" },
+                    new SelectListItem {Value = "6", Text = "Thất bại" },
+                    new SelectListItem {Value = "7", Text = "Đang chuyển hoàn" },
+                    new SelectListItem {Value = "8", Text = "Đã chuyển hoàn" },
+                    new SelectListItem {Value = "9", Text = "Thành công" }
+                }, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TinhTrang, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-0">
+                <input type="submit" value="Cập nhật" class="btn btn-primary" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

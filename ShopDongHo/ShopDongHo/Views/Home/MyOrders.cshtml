@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ShopDongHo.Models.Myorders>
+
+@{
+    ViewBag.Title = "Đơn hàng của tôi";
+}
+
+<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
+
+<div class="card mt-3">
+    <h5 class="card-header">Đơn hàng của  @Session["HoTenKhachHang"].ToString()</h5>
+    <div class="card-body">
+        <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>Hình ảnh</th>
+                    <th>Sản phẩm</th>
+                    <th width="10%">Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                    <th>Thời gian đặt hàng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td><img src="~/@item.HinhAnhDH" width="150" /></td>
+                        <td>@item.TenDongHo</td>
+                        <td>@item.SoLuong</td>
+                        <td class="text-right">@String.Format("{0:N0}", item.DonGia) VNĐ</td>
+                        <td class="text-right">@String.Format("{0:N0}", item.DonGia * item.SoLuong) VNĐ</td>
+                        <td>@item.NgayDatHang</td>
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            $('#Panigation').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b75bbd9b1f9e44c2b958828fea88d78a" Name="Diagram1">
+        <EntityTypeShape EntityType="CHXEModel.DonHang" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CHXEModel.KhachHang" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CHXEModel.LoaiXe" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CHXEModel.NhanVien" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CHXEModel.NoiSanXuat" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CHXEModel.ThuongHieu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="CHXEModel.FK__DonHang__KhachHa__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="CHXEModel.FK__DonHang__NhanVie__32E0915F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CHXEModel.Xe" Width="1.5" PointX="3" PointY="2.375" />
+        <AssociationConnector Association="CHXEModel.FK__Xe__LoaiXe_ID__300424B4" />
+        <AssociationConnector Association="CHXEModel.FK__Xe__NoiSanXuat_I__2F10007B" />
+        <AssociationConnector Association="CHXEModel.FK__Xe__ThuongHieu_I__2E1BDC42" />
+        <EntityTypeShape EntityType="CHXEModel.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="6.625" />
+        <AssociationConnector Association="CHXEModel.FK__ChiTietDo__DonHa__36B12243" />
+        <AssociationConnector Association="CHXEModel.FK__ChiTietDo__Xe_ID__37A5467C" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

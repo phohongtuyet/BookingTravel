@@ -1,0 +1,10 @@
+﻿@model ShopDongHo.Models.DongHo
+@{
+    ViewBag.Title = Model.TenDongHo;
+}
+<div class="card mt-2">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body">
+        <p>@Html.Raw(Model.MoTa)</p> <!--chuyền nội dung mã hóa-->
+    </div>
+</div>
