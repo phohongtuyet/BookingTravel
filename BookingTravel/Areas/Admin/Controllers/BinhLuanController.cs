@@ -36,6 +36,17 @@ namespace BookingTravel.Areas.Admin.Controllers
             return View(binhLuan);
         }
 
+        // GET: Admin/BaiViet/Approved/1
+        public ActionResult Approved(int id)
+        {
+            BinhLuan bv = db.BinhLuan.Find(id);
+            bv.KiemDuyet = System.Convert.ToByte(1 - bv.KiemDuyet); // 1 -> 0 và 0 -> 1
+            db.Entry(bv).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         // GET: BinhLuan/Create
         public ActionResult Create()
         {
@@ -56,14 +67,14 @@ namespace BookingTravel.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
 
-               // binhLuan.KhachHang_ID = Convert.ToInt32(Session["MaKhachHang"]);
+                binhLuan.KhachHang_ID = Convert.ToInt32(Session["MaKhachHang"]);
                 binhLuan.NgayDang = DateTime.Now;
-                binhLuan.KiemDuyet = Convert.ToByte(Session["Quyen"].ToString() == "admin" ? 1 : 0);
+                binhLuan.KiemDuyet = binhLuan.KiemDuyet = 0;
 
                 db.BinhLuan.Add(binhLuan);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-                //return RedirectToAction("Details", "Home", new { id = binhLuan.BaiViet_ID, area = "" });
+               // return RedirectToAction("Index");
+                return RedirectToAction("Detail", "Home", new { id = binhLuan.BaiViet_ID, area = "" });
 
             }
 

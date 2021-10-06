@@ -41,7 +41,7 @@
 
             @if (Session["MaKhachHang"] == null)
             {
-                <p>Vui lòng <a href="@Url.Action("Login","Home",new { area ="Admin"})">đăng nhập </a>  để gửi ý kiến</p>
+                <p>Vui lòng <a href="@Url.Action("Login","Home")">đăng nhập </a>  để gửi ý kiến</p>
             }
             else
             {

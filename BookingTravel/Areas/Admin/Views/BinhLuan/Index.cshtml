@@ -46,8 +46,17 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NgayDang)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.KiemDuyet)
+                    <td class="text-center">
+                        @if (item.KiemDuyet == 1)
+                        {
+
+
+                            <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-check-circle text-info"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-ban text-danger"></i></a>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.BaiViet.TieuDe)
