@@ -71,11 +71,13 @@ namespace BookingTravel.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 var check = db.NhanVien.FirstOrDefault(r => r.TenDangNhap == nhanVien.TenDangNhap);
                 if (check == null)
                 {
                     nhanVien.MatKhau = SHA1.ComputeHash(nhanVien.MatKhau);
                     nhanVien.XacNhanMatKhau = SHA1.ComputeHash(nhanVien.XacNhanMatKhau);
+                   
                     db.NhanVien.Add(nhanVien);
                     db.SaveChanges();
                    /// SetAlert("Thêm mới thành công", "success");

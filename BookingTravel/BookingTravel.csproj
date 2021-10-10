@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\Controllers\DiaDiemThamQuanController.cs" />
     <Compile Include="Areas\Admin\Controllers\HinhAnhController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachSanController.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Models\ChiTietPhuongTien.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHangModels.cs" />
     <Compile Include="Models\KhachHangModels.cs" />
     <Compile Include="Models\DatTour.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
@@ -2394,8 +2396,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\Create.cshtml" />
     <Content Include="Areas\Admin\Views\NhanVien\Delete.cshtml" />
@@ -2462,6 +2462,9 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\success.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Home\MyOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

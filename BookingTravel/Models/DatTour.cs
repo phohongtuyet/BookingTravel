@@ -35,7 +35,7 @@ namespace BookingTravel.Models
         [Required(ErrorMessage = "Điện thoại không được bỏ trống!")]
         public string DienThoaiDatTour { get; set; }
 
-        [Display(Name = "Họ và tên")]
+        [Display(Name = "Họ và tên đặt Tour")]
         [Required(ErrorMessage = "Họ và tên không được bỏ trống!")]
         public string HoVaTen { get; set; }
 
