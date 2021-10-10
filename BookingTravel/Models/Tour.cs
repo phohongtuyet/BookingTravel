@@ -72,6 +72,10 @@ namespace BookingTravel.Models
 
         public List<int> selectedTranpost { get; set; }
 
+        [Display(Name = "Tỉnh")]
+        //[Required(ErrorMessage = "Chưa chọn tỉnh!")]
+        public Nullable<short> Tinh { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDiaDiemThamQuan> ChiTietDiaDiemThamQuan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

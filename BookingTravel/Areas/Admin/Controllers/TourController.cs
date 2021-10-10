@@ -22,6 +22,14 @@ namespace BookingTravel.Areas.Admin.Controllers
             return View(tour.ToList());
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult GetLocation(int Id)
+        {
+            var diadanh = db.DiaDiemThamQuan.Where(d => d.Tinh == Id).Select(d => new { Id = d.ID, Name = d.TenDiaDanh }).ToList();
+            return Json(new { diadanh = diadanh }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Approved(int id)
         {
             Tour t = db.Tour.Find(id);
@@ -62,51 +70,27 @@ namespace BookingTravel.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create(Tour tour)
+        public ActionResult Create([Bind(Include = "ID,TenTour,LoaiTour,NoiKhoiHanh,NgayBD,NgayKT,DonGia,SoLuong,TrangThai,DuLieuHinhAnh,selectedLocation,selectedTranpost")] Tour tour)
+
         {
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan);
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
-            //ViewBag.HinhAnh_ID = new SelectList(db.HinhAnh, "ID", "HinhAnh", tour.HinhAnh);
 
             if (ModelState.IsValid)
             {
-                // them tour 
-                Tour t = new Tour();             
-                t.TenTour = tour.TenTour;
-                t.LoaiTour = tour.LoaiTour;
-                t.NoiKhoiHanh = tour.NoiKhoiHanh;
-                t.NgayBD = tour.NgayBD;
-                t.NgayKT = tour.NgayKT;
-                t.DonGia = tour.DonGia;
-                t.SoLuong = tour.SoLuong;
-                t.TrangThai = 0;
-                t.MoTa = tour.MoTa;
-                db.Tour.Add(t);
+
+                tour.TrangThai = 0;
+                db.Tour.Add(tour);
                 db.SaveChanges();
 
-                //them chi tiet dia diem tham quan
-                foreach (var n in tour.selectedLocation)
-                {
-                    if (n != null && n > 0)
-                    {
-                        var location = new ChiTietDiaDiemThamQuan
-                        {
-                            DiaDiemThamQuan_ID = n,
-                            Tour_ID = t.ID
-                        };
-                        db.ChiTietDiaDiemThamQuan.Add(location);
-                        db.SaveChanges();
-                    }
-                }
-
-                //them anh
+                // Upload ảnh 
                 if (!Object.Equals(tour.DuLieuHinhAnh, null))
                 {
+
                     string folder = "Storage/";
                     foreach (var n in tour.DuLieuHinhAnh)
-                    {
-                        var imageToUpload = "~/" + folder + DateTime.Now.ToFileTime() + "_" + n.FileName;
-                        var photoUrl = Server.MapPath(imageToUpload);
+                    { 
+                        string fileName = DateTime.Now.ToFileTime() + "_" + n.FileName;
                         string fileExtension = Path.GetExtension(n.FileName).ToLower();
 
                         // Kiểm tra kiểu
@@ -116,28 +100,67 @@ namespace BookingTravel.Areas.Admin.Controllers
                             ModelState.AddModelError("UploadError", "Chỉ cho phép tập tin JPG, PNG, GIF!");
                             return View(tour);
                         }
-                        else if (n != null && n.ContentLength > 0)
+                        else if (n.ContentLength > 2 * 1024 * 1024)
                         {
-                            n.SaveAs(photoUrl);
+                            ModelState.AddModelError("UploadError", "Chỉ cho phép tập tin từ 2MB trở xuống!");
+                            return View(tour);
+                        }
+                        else
+                        {
+                            string filePath = Path.Combine(Server.MapPath("~/" + folder), fileName);
+                            n.SaveAs(filePath);
+
+                            // Cập nhật đường dẫn vào CSDL                         
                             var images = new HinhAnh
                             {
-                                HinhAnh1 = imageToUpload,
-                                Tour_ID = t.ID
+                                HinhAnh1 = folder + fileName,
+                                Tour_ID = tour.ID
                             };
                             db.HinhAnh.Add(images);
-                            db.SaveChanges();
+                            db.SaveChanges();                           
                         }
-                    }
+                    }                 
                 }
                 else
                 {
-                    ModelState.AddModelError("UploadError", "Hình ảnh không được bỏ trống!");
+                    ModelState.AddModelError("UploadError", "Hình ảnh bìa không được bỏ trống!");
                     return View(tour);
                 }
+
+                // them chi tiet phuong tien
+                foreach (var n in tour.selectedTranpost)
+                {
+                    if (n > 0)
+                    {
+                        var transpots = new ChiTietPhuongTien
+                        {
+                            PhuongTien_ID = n,
+                            Tour_ID = tour.ID
+                        };
+                        db.ChiTietPhuongTien.Add(transpots);
+                        db.SaveChanges();
+                    }
+
+                }
+                // them chi tiet dia diem tham quan
+                foreach (var tn in tour.selectedLocation)
+                {
+                    if (tn > 0)
+                    {
+                        var location = new ChiTietDiaDiemThamQuan
+                        {
+                            DiaDiemThamQuan_ID = tn,
+                            Tour_ID = tour.ID
+                        };
+                        db.ChiTietDiaDiemThamQuan.Add(location);
+                        db.SaveChanges();
+                    }
+
+                }
+
                 SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");
             }
-            SetAlert("Thêm mới thất bại", "error");
             return View(tour);
         }
 
