@@ -13,10 +13,8 @@
             if (!String.IsNullOrEmpty(ViewData.ModelState["LoginError"].Errors[0].ErrorMessage))
             {
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <span class="d-block text-danger">@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</span>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <strong>@ViewData.ModelState["LoginError"].Errors[0].ErrorMessage</strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             }
 

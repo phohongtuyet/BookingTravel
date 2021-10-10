@@ -12,7 +12,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-           /* string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+           string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             if (Session["MaNhanVien"] == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Login", controller = "Home" }));
@@ -21,13 +21,13 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 if (Session["Quyen"].ToString().ToLower() == "false")
                 {
-                    if (controllerName != "KhachHang" && controllerName != "DongHo" && controllerName != "DatHang" && controllerName != "DatHang_ChiTiet")
+                    if (controllerName != "KhachHang" && controllerName != "Tour" && controllerName != "DatHang" && controllerName != "DatHang_ChiTiet")
                     {
                         filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Unauthorized", controller = "Home" }));
                     }
                 }
             }
-            base.OnActionExecuting(filterContext);*/
+            base.OnActionExecuting(filterContext);
         }
         
         protected void SetAlert(string message, string type)

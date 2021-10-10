@@ -2192,8 +2192,6 @@
     <Content Include="Models\BookingTravel.edmx.diagram">
       <DependentUpon>BookingTravel.edmx</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Home\About.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Contact.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\Error.cshtml" />
