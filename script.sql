@@ -3,7 +3,7 @@ go
 
 CREATE TABLE KhachSan
 (
-	ID 	  		int NOT NULL IDENTITY(1,1),
+	ID 	  		int NOT NULL IDENTITY(1,1),z
 	TenKhachSan nvarchar(255) null,
 	DiaChi 		nvarchar(255) null,
 	primary key (ID)
@@ -16,6 +16,14 @@ CREATE TABLE PhuongTien
 	TenPhuongTien 	nvarchar(255) null,
 	LoaiPhuongTien 	smallint null, /*1 may bay 2 tau hoa, 3 tàu thủy 4 xe khách*/
 	SoCho			int null,
+	primary key (ID)
+)
+GO
+
+CREATE TABLE DichVu
+(
+	ID 	  		int NOT NULL IDENTITY(1,1),
+	TenDichVu	nvarchar(255) null,
 	primary key (ID)
 )
 GO
@@ -74,7 +82,7 @@ GO
 CREATE TABLE BinhLuan
 (
 	ID 				int IDENTITY(1,1) NOT NULL,
-	BaiViet_ID 		int NULL foreign key(BaiViet_ID) references BaiViet(ID),	
+	BaiViet_ID 		int NULL foreign key(BaiViet_ID) references BaiViet(ID) ON DELETE CASCADE,	
 	KhachHang_ID 	int NULL foreign key(KhachHang_ID) references KhachHang(ID)ON UPDATE CASCADE,
 	NoiDung 		ntext NULL,
 	NgayDang 		datetime NULL,
@@ -94,7 +102,6 @@ CREATE TABLE Tour
 	DonGia				int NULL,
 	SoLuong 			int null,
 	TrangThai 			smallint null,
-	HinhAnh				nvarchar(255) NULL,
 	MoTa				ntext NULL,/*0 chưa hoạt động,1 đã hoạt động*/
 	primary key (ID)			
 )
@@ -132,11 +139,29 @@ CREATE TABLE ChiTietPhuongTien
 )
 GO
 
+CREATE TABLE ChiTietDichVu
+(
+	ID 				INT IDENTITY(1,1) NOT NULL,
+	Tour_ID 		int null foreign key(Tour_ID) references Tour(ID)ON DELETE CASCADE,
+	DichVu_ID		int null foreign key(DichVu_ID) references DichVu(ID) ON DELETE CASCADE,
+	primary key (ID)
+)
+GO
+
+CREATE TABLE HinhAnh
+(
+	ID 				INT IDENTITY(1,1) NOT NULL,
+	Tour_ID 		int null foreign key(Tour_ID) references Tour(ID)ON DELETE CASCADE,
+	HinhAnh			nvarchar(255) NULL,
+	primary key (ID)
+)
+GO
+
 CREATE TABLE DatTour_ChiTiet
 (
 	ID 			INT IDENTITY(1,1) NOT NULL,
-	DatTour_ID	int null foreign key(DatTour_ID) references DatTour(ID),
-	Tour_ID		int null foreign key(Tour_ID)  references  Tour(ID),
+	DatTour_ID	int null foreign key(DatTour_ID) references DatTour(ID)ON DELETE CASCADE,
+	Tour_ID		int null foreign key(Tour_ID)  references  Tour(ID) ON DELETE CASCADE,
 	SoLuong		smallint null,
 	DonGia		int null,
 	primary key (ID)
