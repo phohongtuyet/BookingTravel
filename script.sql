@@ -14,7 +14,7 @@ CREATE TABLE PhuongTien
 (
 	ID 	  			int NOT NULL IDENTITY(1,1),
 	TenPhuongTien 	nvarchar(255) null,
-	LoaiPhuongTien 	smallint null, /*1 may bay 2 tau hoa, 3 tàu thủy 4 xe khách*/
+	LoaiPhuongTien 	smallint null, /*1 may bay, 2 tau hoa, 3 tàu thủy 4 xe khách*/
 	SoCho			int null,
 	primary key (ID)
 )
@@ -101,8 +101,8 @@ CREATE TABLE Tour
 	NgayKT				date null,
 	DonGia				int NULL,
 	SoLuong 			int null,
-	TrangThai 			smallint null,
-	MoTa				ntext NULL,/*0 chưa hoạt động,1 đã hoạt động*/
+	TrangThai 			smallint null,/*0 chưa hoạt động,1 đã hoạt động*/
+	MoTa				ntext NULL,
 	primary key (ID)			
 )
 GO
