@@ -23,6 +23,7 @@ namespace BookingTravel.Models
             this.ChiTietPhuongTien = new HashSet<ChiTietPhuongTien>();
             this.DatTour_ChiTiet = new HashSet<DatTour_ChiTiet>();
             this.HinhAnh = new HashSet<HinhAnh>();
+            this.ChiTietDichVu = new HashSet<ChiTietDichVu>();
         }
 
         [Display(Name = "Mã Tour ")]
@@ -58,7 +59,7 @@ namespace BookingTravel.Models
         [Required(ErrorMessage = "Số lượng không được bỏ trống!")]
         public Nullable<int> SoLuong { get; set; }
 
-        [Display(Name = "Trạng thái Tour hoạt động")]
+        [Display(Name = "Hoạt động")]
         public Nullable<short> TrangThai { get; set; }
 
         [Display(Name = "Mô tả")]
@@ -72,6 +73,8 @@ namespace BookingTravel.Models
 
         public List<int> selectedTranpost { get; set; }
 
+        public List<int> selectedServe { get; set; }
+
         [Display(Name = "Tỉnh")]
         //[Required(ErrorMessage = "Chưa chọn tỉnh!")]
         public Nullable<short> Tinh { get; set; }
@@ -84,5 +87,7 @@ namespace BookingTravel.Models
         public virtual ICollection<DatTour_ChiTiet> DatTour_ChiTiet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnh { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChiTietDichVu> ChiTietDichVu { get; set; }
     }
 }

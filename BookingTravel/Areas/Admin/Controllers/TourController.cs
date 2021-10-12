@@ -40,24 +40,18 @@ namespace BookingTravel.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Tour/Details/5
+        // GET: Tour/Details/5  
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tour tour = db.Tour.Find(id);
-            if (tour == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tour);
+            var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Include(dv=> dv.ChiTietDichVu).Where(t => t.ID == id);
+            return View(tour.ToList());
+           
         }
 
         // GET: Tour/Create
         public ActionResult Create()
         {
+            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu");
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh");
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien");
             ModelState.AddModelError("UploadError", "");
@@ -70,11 +64,12 @@ namespace BookingTravel.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "ID,TenTour,LoaiTour,NoiKhoiHanh,NgayBD,NgayKT,DonGia,SoLuong,TrangThai,DuLieuHinhAnh,selectedLocation,selectedTranpost")] Tour tour)
+        public ActionResult Create([Bind(Include = "ID,TenTour,LoaiTour,NoiKhoiHanh,NgayBD,NgayKT,DonGia,SoLuong,TrangThai,DuLieuHinhAnh,selectedLocation,selectedTranpost,selectedServe")] Tour tour)
 
         {
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan);
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
+            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietDichVu);
 
             if (ModelState.IsValid)
             {
@@ -89,7 +84,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 
                     string folder = "Storage/";
                     foreach (var n in tour.DuLieuHinhAnh)
-                    { 
+                    {
                         string fileName = DateTime.Now.ToFileTime() + "_" + n.FileName;
                         string fileExtension = Path.GetExtension(n.FileName).ToLower();
 
@@ -117,9 +112,9 @@ namespace BookingTravel.Areas.Admin.Controllers
                                 Tour_ID = tour.ID
                             };
                             db.HinhAnh.Add(images);
-                            db.SaveChanges();                           
+                            db.SaveChanges();
                         }
-                    }                 
+                    }
                 }
                 else
                 {
@@ -153,6 +148,22 @@ namespace BookingTravel.Areas.Admin.Controllers
                             Tour_ID = tour.ID
                         };
                         db.ChiTietDiaDiemThamQuan.Add(location);
+                        db.SaveChanges();
+                    }
+
+                }
+
+                // them chi tiet dich vu
+                foreach (var n in tour.selectedServe)
+                {
+                    if (n > 0)
+                    {
+                        var service = new ChiTietDichVu
+                        {
+                            DichVu_ID = n,
+                            Tour_ID = tour.ID
+                        };
+                        db.ChiTietDichVu.Add(service);
                         db.SaveChanges();
                     }
 

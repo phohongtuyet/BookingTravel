@@ -45,7 +45,7 @@
                     @Html.DisplayNameFor(model => model.TrangThai)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MoTa)
+                    Chi tiết
                 </th>
                 
 
@@ -361,8 +361,8 @@
                     <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-ban text-danger"></i></a>
                 }
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
+            <td class="text-center">
+                <a href="@Url.Action("Details", new { id = item.ID })"><i class="fas fa-eye"></i></a>
             </td>
             <td class="text-center">
                 <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>

@@ -3,7 +3,7 @@ go
 
 CREATE TABLE KhachSan
 (
-	ID 	  		int NOT NULL IDENTITY(1,1),z
+	ID 	  		int NOT NULL IDENTITY(1,1),
 	TenKhachSan nvarchar(255) null,
 	DiaChi 		nvarchar(255) null,
 	primary key (ID)

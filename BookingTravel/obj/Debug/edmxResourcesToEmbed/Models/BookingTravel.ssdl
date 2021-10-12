@@ -33,6 +33,14 @@
     <Property Name="Tour_ID" Type="int" />
     <Property Name="DiaDiemThamQuan_ID" Type="int" />
   </EntityType>
+  <EntityType Name="ChiTietDichVu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tour_ID" Type="int" />
+    <Property Name="DichVu_ID" Type="int" />
+  </EntityType>
   <EntityType Name="ChiTietPhuongTien">
     <Key>
       <PropertyRef Name="ID" />
@@ -71,6 +79,13 @@
     <Property Name="TenDiaDanh" Type="nvarchar" MaxLength="255" />
     <Property Name="Tinh" Type="smallint" />
     <Property Name="KhachSan_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="DichVu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDichVu" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="HinhAnh">
     <Key>
@@ -121,6 +136,16 @@
     <Property Name="LoaiPhuongTien" Type="smallint" />
     <Property Name="SoCho" Type="int" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="Tour">
     <Key>
       <PropertyRef Name="ID" />
@@ -149,7 +174,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__BinhLuan__BaiVie__44FF419A">
-    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="0..1" />
+    <End Role="BaiViet" Type="Self.BaiViet" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="BaiViet">
@@ -172,8 +199,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ChiTietDi__DiaDi__52593CB8">
-    <End Role="DiaDiemThamQuan" Type="Self.DiaDiemThamQuan" Multiplicity="0..1" />
+  <Association Name="FK__ChiTietDi__DiaDi__4F7CD00D">
+    <End Role="DiaDiemThamQuan" Type="Self.DiaDiemThamQuan" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ChiTietDiaDiemThamQuan" Type="Self.ChiTietDiaDiemThamQuan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DiaDiemThamQuan">
@@ -184,8 +213,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ChiTietDi__Tour___5165187F">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+  <Association Name="FK__ChiTietDi__DichV__5FB337D6">
+    <End Role="DichVu" Type="Self.DichVu" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChiTietDichVu" Type="Self.ChiTietDichVu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DichVu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietDichVu">
+        <PropertyRef Name="DichVu_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDi__Tour___4E88ABD4">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ChiTietDiaDiemThamQuan" Type="Self.ChiTietDiaDiemThamQuan" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tour">
@@ -196,8 +241,24 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ChiTietPh__Phuon__5629CD9C">
-    <End Role="PhuongTien" Type="Self.PhuongTien" Multiplicity="0..1" />
+  <Association Name="FK__ChiTietDi__Tour___5EBF139D">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ChiTietDichVu" Type="Self.ChiTietDichVu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietDichVu">
+        <PropertyRef Name="Tour_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietPh__Phuon__534D60F1">
+    <End Role="PhuongTien" Type="Self.PhuongTien" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ChiTietPhuongTien" Type="Self.ChiTietPhuongTien" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PhuongTien">
@@ -208,8 +269,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ChiTietPh__Tour___5535A963">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+  <Association Name="FK__ChiTietPh__Tour___52593CB8">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="ChiTietPhuongTien" Type="Self.ChiTietPhuongTien" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tour">
@@ -220,7 +283,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DatTour__KhachHa__4E88ABD4">
+  <Association Name="FK__DatTour__KhachHa__4BAC3F29">
     <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
     <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
     <ReferentialConstraint>
@@ -232,7 +295,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__DatTour__NhanVie__4D94879B">
+  <Association Name="FK__DatTour__NhanVie__4AB81AF0">
     <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
     <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
     <ReferentialConstraint>
@@ -245,7 +308,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__DatTour_C__DatTo__59063A47">
-    <End Role="DatTour" Type="Self.DatTour" Multiplicity="0..1" />
+    <End Role="DatTour" Type="Self.DatTour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="DatTour_ChiTiet" Type="Self.DatTour_ChiTiet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DatTour">
@@ -257,7 +322,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__DatTour_C__Tour___59FA5E80">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="DatTour_ChiTiet" Type="Self.DatTour_ChiTiet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tour">
@@ -280,8 +347,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__HinhAnh__Tour_ID__4AB81AF0">
-    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+  <Association Name="FK__HinhAnh__Tour_ID__5629CD9C">
+    <End Role="Tour" Type="Self.Tour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="HinhAnh" Type="Self.HinhAnh" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Tour">
@@ -296,15 +365,18 @@
     <EntitySet Name="BaiViet" EntityType="Self.BaiViet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietDiaDiemThamQuan" EntityType="Self.ChiTietDiaDiemThamQuan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietDichVu" EntityType="Self.ChiTietDichVu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietPhuongTien" EntityType="Self.ChiTietPhuongTien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DatTour" EntityType="Self.DatTour" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DatTour_ChiTiet" EntityType="Self.DatTour_ChiTiet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DiaDiemThamQuan" EntityType="Self.DiaDiemThamQuan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DichVu" EntityType="Self.DichVu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HinhAnh" EntityType="Self.HinhAnh" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KhachSan" EntityType="Self.KhachSan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhuongTien" EntityType="Self.PhuongTien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__BaiViet__NhanVie__4222D4EF" Association="Self.FK__BaiViet__NhanVie__4222D4EF">
       <End Role="NhanVien" EntitySet="NhanVien" />
@@ -318,27 +390,35 @@
       <End Role="KhachHang" EntitySet="KhachHang" />
       <End Role="BinhLuan" EntitySet="BinhLuan" />
     </AssociationSet>
-    <AssociationSet Name="FK__ChiTietDi__DiaDi__52593CB8" Association="Self.FK__ChiTietDi__DiaDi__52593CB8">
+    <AssociationSet Name="FK__ChiTietDi__DiaDi__4F7CD00D" Association="Self.FK__ChiTietDi__DiaDi__4F7CD00D">
       <End Role="DiaDiemThamQuan" EntitySet="DiaDiemThamQuan" />
       <End Role="ChiTietDiaDiemThamQuan" EntitySet="ChiTietDiaDiemThamQuan" />
     </AssociationSet>
-    <AssociationSet Name="FK__ChiTietDi__Tour___5165187F" Association="Self.FK__ChiTietDi__Tour___5165187F">
+    <AssociationSet Name="FK__ChiTietDi__DichV__5FB337D6" Association="Self.FK__ChiTietDi__DichV__5FB337D6">
+      <End Role="DichVu" EntitySet="DichVu" />
+      <End Role="ChiTietDichVu" EntitySet="ChiTietDichVu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDi__Tour___4E88ABD4" Association="Self.FK__ChiTietDi__Tour___4E88ABD4">
       <End Role="Tour" EntitySet="Tour" />
       <End Role="ChiTietDiaDiemThamQuan" EntitySet="ChiTietDiaDiemThamQuan" />
     </AssociationSet>
-    <AssociationSet Name="FK__ChiTietPh__Phuon__5629CD9C" Association="Self.FK__ChiTietPh__Phuon__5629CD9C">
+    <AssociationSet Name="FK__ChiTietDi__Tour___5EBF139D" Association="Self.FK__ChiTietDi__Tour___5EBF139D">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="ChiTietDichVu" EntitySet="ChiTietDichVu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietPh__Phuon__534D60F1" Association="Self.FK__ChiTietPh__Phuon__534D60F1">
       <End Role="PhuongTien" EntitySet="PhuongTien" />
       <End Role="ChiTietPhuongTien" EntitySet="ChiTietPhuongTien" />
     </AssociationSet>
-    <AssociationSet Name="FK__ChiTietPh__Tour___5535A963" Association="Self.FK__ChiTietPh__Tour___5535A963">
+    <AssociationSet Name="FK__ChiTietPh__Tour___52593CB8" Association="Self.FK__ChiTietPh__Tour___52593CB8">
       <End Role="Tour" EntitySet="Tour" />
       <End Role="ChiTietPhuongTien" EntitySet="ChiTietPhuongTien" />
     </AssociationSet>
-    <AssociationSet Name="FK__DatTour__KhachHa__4E88ABD4" Association="Self.FK__DatTour__KhachHa__4E88ABD4">
+    <AssociationSet Name="FK__DatTour__KhachHa__4BAC3F29" Association="Self.FK__DatTour__KhachHa__4BAC3F29">
       <End Role="KhachHang" EntitySet="KhachHang" />
       <End Role="DatTour" EntitySet="DatTour" />
     </AssociationSet>
-    <AssociationSet Name="FK__DatTour__NhanVie__4D94879B" Association="Self.FK__DatTour__NhanVie__4D94879B">
+    <AssociationSet Name="FK__DatTour__NhanVie__4AB81AF0" Association="Self.FK__DatTour__NhanVie__4AB81AF0">
       <End Role="NhanVien" EntitySet="NhanVien" />
       <End Role="DatTour" EntitySet="DatTour" />
     </AssociationSet>
@@ -354,7 +434,7 @@
       <End Role="KhachSan" EntitySet="KhachSan" />
       <End Role="DiaDiemThamQuan" EntitySet="DiaDiemThamQuan" />
     </AssociationSet>
-    <AssociationSet Name="FK__HinhAnh__Tour_ID__4AB81AF0" Association="Self.FK__HinhAnh__Tour_ID__4AB81AF0">
+    <AssociationSet Name="FK__HinhAnh__Tour_ID__5629CD9C" Association="Self.FK__HinhAnh__Tour_ID__5629CD9C">
       <End Role="Tour" EntitySet="Tour" />
       <End Role="HinhAnh" EntitySet="HinhAnh" />
     </AssociationSet>

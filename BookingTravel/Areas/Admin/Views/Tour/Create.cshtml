@@ -13,7 +13,7 @@
             <div class="form-group">
                 @Html.Label("Phương tiện")
 
-                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost" })
+                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" })
                 @Html.ValidationMessageFor(model => model.ChiTietPhuongTien, "", new { @class = "text-danger" })
             </div>
 
@@ -86,44 +86,48 @@
                             new SelectListItem {Value = "60", Text = "Yên Bái" },
                             new SelectListItem {Value = "61", Text = "Hậu Giang" },
                             new SelectListItem {Value = "62", Text = "Long An" }
-                        }, "Value", "Text"), new { @class = "form-control" })
+                        }, "Value", "Text"), new { @class = "form-control select2Provin" })
                         @Html.ValidationMessageFor(model => model.Tinh, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         @Html.Label("Địa danh")
-                        @Html.DropDownListFor(model => model.ChiTietDiaDiemThamQuan, Enumerable.Empty<SelectListItem>(), "Select", new { @class = "combobox form-control" })
+                        @Html.DropDownListFor(model => model.selectedLocation, Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control select2", @multiple = "multiple", @id = "ChiTietDiaDiemThamQuan" })
                         @Html.ValidationMessageFor(model => model.ChiTietDiaDiemThamQuan, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
-            
-            <div class="form-group">
-                @Html.Label("Địa danh")
-                @Html.ListBox("selectedLocation", new MultiSelectList(ViewBag.DiaDiemThamQuan_ID, "Value", "text"), new { @class = "form-control chosen" })
-                @Html.ValidationMessageFor(model => model.ChiTietDiaDiemThamQuan, "", new { @class = "text-danger" })
-            </div>
-            
             <div class="form-group">
                 @Html.LabelFor(model => model.TenTour, htmlAttributes: new { @class = "control-label col-md-2" })
                 @Html.EditorFor(model => model.TenTour, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenTour, "", new { @class = "text-danger" })
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.LoaiTour)
-                @Html.DropDownListFor(model => model.LoaiTour, new SelectList(new[] {
-                    new SelectListItem { Value = null, Text = "-- Chọn --"},
-                    new SelectListItem { Value = "0", Text = "Tour Khuyễn mãi"},
-                    new SelectListItem { Value = "1", Text = "Tour chọn gói"},
-                    new SelectListItem { Value = "2", Text = "Tour cao cấp"},
-                    new SelectListItem { Value = "3", Text = "Tour"}
-                }, "Value", "Text"), new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.LoaiTour, "", new { @class = "text-danger" })
+            <div class="row g-3">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LoaiTour)
+                        @Html.DropDownListFor(model => model.LoaiTour, new SelectList(new[] {
+                            new SelectListItem { Value = null, Text = "-- Chọn --"},
+                            new SelectListItem { Value = "0", Text = "Tour Khuyễn mãi"},
+                            new SelectListItem { Value = "1", Text = "Tour chọn gói"},
+                            new SelectListItem { Value = "2", Text = "Tour cao cấp"},
+                            new SelectListItem { Value = "3", Text = "Tour"}
+                        }, "Value", "Text"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LoaiTour, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        @Html.Label("Dịch vụ")
+                        @Html.ListBox("selectedServe", new MultiSelectList(ViewBag.DichVu_ID, "Value", "text"), new { @class = "form-control select2Serve" })
+                        @Html.ValidationMessageFor(model => model.ChiTietDichVu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
-
+          
             <div class="form-group">
                 @Html.LabelFor(model => model.NoiKhoiHanh)
                 @Html.DropDownListFor(model => model.NoiKhoiHanh, new SelectList(new[] {
@@ -213,16 +217,21 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+            <div class="row g-3">
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DonGia, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
 
             /*<div class="form-group">
@@ -235,7 +244,6 @@
                 @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
             </div>*/
 
-
             <div class="form-group">
                 @Html.LabelFor(model => model.DuLieuHinhAnh, htmlAttributes: new { @class = "control-label col-md-2" }) <br />
                 @Html.TextBoxFor(model => model.DuLieuHinhAnh, "", new { @type = "file", @multiple = "multiple" })
@@ -244,7 +252,6 @@
                 {
                     <span class="d-block text-danger">@ViewData.ModelState["UploadError"].Errors[0].ErrorMessage</span>
                 }
-
             </div>
 
             <div class="form-group">
@@ -252,7 +259,6 @@
                 @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
             </div>
-
 
             <div class="form-group mt-2">
                 <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
@@ -264,8 +270,8 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
 
 		$(function(){
@@ -298,18 +304,76 @@
             .create(document.querySelector('#MoTa'))
             .catch(error => {
                 console.error(error);
+            });     
+
+        $(document).ready(function () {
+            $(".select2").select2({
+                placeholder: "Chọn địa danh",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy địa danh!!!";
+                    }
+                }
             });
-        $(".chosen").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Không tìm thấy địa điểm tham quan!!!",
-            placeholder_text_multiple: "Địa danh tham quan của Tour",
-            width: "100%"
+
+            $(".select2Tranpost").select2({
+                placeholder: "Chọn phương tiện",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy phương tiện!!!";
+                    }
+                }
+            });
+
+            $(".select2Tranpost").select2({
+                placeholder: "Chọn phương tiện",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy phương tiện!!!";
+                    }
+                }
+            });
+
+            $(".select2Serve").select2({
+                placeholder: "Chọn dịch vụ",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy dịch vụ!!!";
+                    }
+                }
+            });
+
+            $(".select2Provin").select2({
+                placeholder: "Chọn khu vực tham quan",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm!!!";
+                    }
+                }
+            });
         });
-        $(".chosenTranpost").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Không tìm phương tiện!!!",
-            placeholder_text_multiple: "Phương tiện của Tour",
-            width: "100%"
-        });
+
+
+
     </script>
 }

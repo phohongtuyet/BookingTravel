@@ -1,98 +1,95 @@
-﻿@model BookingTravel.Models.Tour
+﻿@model IEnumerable<BookingTravel.Models.Tour>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Thông tin chi tiết của Tour";
 }
 
-<h2>Details</h2>
+<div class="card">
+    @foreach (var item in Model)
+    {
 
-<div>
-    <h4>Tour</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenTour)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenTour)
-        </dd>
+        <h5 class="card-header text-center font-weight-bold text-info" style="font-size:2.5rem">@item.TenTour</h5>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiTour)
-        </dt>
+        <div id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @{
+                    var first = true;
+                }
+                @foreach (var image in item.HinhAnh.Select(h => h.HinhAnh1))
+                {
+                    <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
+                        <img class="d-block w-100" src="~/@image" alt="">
+                    </div>
+                    first = false;
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoaiTour)
-        </dd>
+       
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NoiKhoiHanh)
-        </dt>
+        <div class="card-body">
+            <div class="card-body text-center">
+                <h5 class=" font-italic font-weight-bold text-center">Địa điểm tham qua của Tour </h5>
+                <p class="card-text ml-3">
+                    @foreach (var diadanh in item.ChiTietDiaDiemThamQuan.Select(d => d.DiaDiemThamQuan.TenDiaDanh))
+                    {
+                        <i class="fas fa-map-marker-alt"></i> @diadanh <br>
+                    }
+                </p>
+            </div>
+            <div class="card-body text-center">
+                <h5 class="font-italic font-weight-bold text-center">Phương tiện tham qua của Tour </h5>
+                <p class="card-text ml-3">
+                    @foreach (var pt in item.ChiTietPhuongTien.Select(d => d.PhuongTien.TenPhuongTien))
+                    {
+                        <i class="fas fa-angle-double-right"></i> @pt <br>
+                    }
+                </p>
+            </div>
+            <div class="card-body text-center">
+                <h5 class="font-italic font-weight-bold text-center">Dịch vụ kèm theo tham qua của Tour</h5>
+                <p class="card-text ml-3">
+                    @foreach (var dv in item.ChiTietDichVu.Select(d => d.DichVu.TenDichVu))
+                    {
+                        <i class="fas fa-angle-double-right"></i> @dv <br>
+                    }
+                </p>
+            </div>
+                <a href="@Url.Action("Index")" class="btn btn-info d-flex justify-content-center">Quay về danh sách </a>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoiKhoiHanh)
-        </dd>
+            </div>
+            }
+        </div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    /* Make the image fully responsive */
+    .carousel-inner img {
+        width: 50%;
+        height: 100%;
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayBD)
-        </dt>
+    #carouselExampleControls {
+        width: 50%;
+        height: 50%;     
+        margin: auto;
+    }
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayBD)
-        </dd>
+</style>
+<script>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayKT)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayKT)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DonGia)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoLuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TrangThai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhuongTien.TenPhuongTien)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhuongTien.TenPhuongTien)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    var myCarousel = document.querySelector('#carouselExampleIndicators')
+    var carousel = new bootstrap.Carousel(myCarousel, {
+        interval: 500,
+        wrap: false
+    })
+</script>
