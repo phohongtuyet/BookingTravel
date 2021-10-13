@@ -15,7 +15,8 @@ namespace BookingTravel.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Where(r => r.SoLuong > 0).ToList();
+            return View(tour);
         }
 
         public ActionResult success()
@@ -26,19 +27,6 @@ namespace BookingTravel.Controllers
         public ActionResult Review()
         {
             var baiViet = db.BaiViet.Where(r => r.KiemDuyet == 1).ToList();
-            return View(baiViet);
-        }
-
-        [HttpPost]
-        public ActionResult Search(FormCollection collection)
-        {
-            string tukhoa = collection["Tukhoa"].ToString();
-            var baiViet = db.BaiViet.Where(r => r.KiemDuyet == 1 && (r.TieuDe.Contains(tukhoa) || r.NoiDung.Contains(tukhoa))).ToList();
-            return View(baiViet);
-        }
-        public ActionResult New()
-        {
-            var baiViet = db.BaiViet.Where(r => r.KiemDuyet == 1).OrderByDescending(r => r.NgayDang).ToList();
             return View(baiViet);
         }
 

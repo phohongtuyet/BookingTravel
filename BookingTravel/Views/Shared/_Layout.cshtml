@@ -12,7 +12,7 @@
 <!--#-->
 <body>
     <div class="container mt-3">
-        <nav class="navbar navbar-expand-lg navbar-light "style="background-color: #85dce7" >
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #85dce7">
             <div class="container-fluid">
                 <a class="navbar-brand" href="@Url.Action("Index","Home")">
                     <img src="~/Images/passport.png" width="50" class="d-inline-block align-content-center" alt="">
@@ -27,7 +27,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tour</a>
+                            <a class="nav-link" href="@Url.Action("","")">Tour bán chạy </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Review","Home")">Review</a>
@@ -57,7 +57,7 @@
                                     <li><a class="dropdown-item" href="@Url.Action("Logout", "Home")">Đăng xuất</a></li>
                                 </ul>
                             </li>
-                            
+
                         }
                     </ul>
 
@@ -134,11 +134,11 @@
             </div>
             <!-- Copyright -->
         </footer>
-</div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-   
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
