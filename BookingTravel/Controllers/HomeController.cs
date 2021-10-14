@@ -130,5 +130,48 @@ namespace BookingTravel.Controllers
             // Quay về trang chủ
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ChangePassword()
+        {
+            //ModelState.AddModelError("ErrorChangePassword", "");
+            return View();
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword([Bind(Include = "MatKhau,MatKhauMoi,XacNhanMatKhauMoi")] KhachHangChangePassword khachHangChangePassword)
+        {
+            if (ModelState.IsValid)
+            {
+                int makh = Convert.ToInt32(Session["MaKhachHang"]);
+                KhachHang khachHang = db.KhachHang.Find(makh);
+                if (khachHang == null)
+                {
+                    return HttpNotFound();
+                }
+                khachHangChangePassword.MatKhau = SHA1.ComputeHash(khachHangChangePassword.MatKhau);
+                if (khachHang.MatKhau == khachHangChangePassword.MatKhau)
+                {
+                    khachHangChangePassword.MatKhauMoi = SHA1.ComputeHash(khachHangChangePassword.MatKhauMoi);
+                    khachHangChangePassword.XacNhanMatKhauMoi = khachHangChangePassword.MatKhauMoi;
+
+                    khachHang.MatKhau = khachHangChangePassword.MatKhauMoi;
+                    khachHang.XacNhanMatKhau = khachHangChangePassword.MatKhauMoi;
+
+                    db.Entry(khachHang).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ViewBag.error = "Mật khẩu cũ không đúng !!!";
+                    return View();
+                }
+
+
+            }
+            return View(khachHangChangePassword);
+        }
+
     }
 }
