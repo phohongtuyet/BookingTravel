@@ -19,7 +19,10 @@
 
             <div class="row g-3">
                 <div class="col">
+
                     <div class="form-group">
+                        <input type="hidden" class="TinhId" />
+
                         @Html.LabelFor(model => model.Tinh)
                         @Html.DropDownListFor(model => model.Tinh, new SelectList(new[] {
                             new SelectListItem {Value = null, Text = "-- Chọn --" },
@@ -86,7 +89,7 @@
                             new SelectListItem {Value = "60", Text = "Yên Bái" },
                             new SelectListItem {Value = "61", Text = "Hậu Giang" },
                             new SelectListItem {Value = "62", Text = "Long An" }
-                        }, "Value", "Text"), new { @class = "form-control select2Provin" })
+                        }, "Value", "Text"), new { @class = "form-control select2Provin", @multiple = "multiple" })
                         @Html.ValidationMessageFor(model => model.Tinh, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -195,7 +198,7 @@
                     new SelectListItem {Value = "60", Text = "Yên Bái" },
                     new SelectListItem {Value = "61", Text = "Hậu Giang" },
                     new SelectListItem {Value = "62", Text = "Long An" }
-                }, "Value", "Text"), new { @class = "form-control" })
+                }, "Value", "Text"), new { @class = "form-control select2ProvinStart" })
                 @Html.ValidationMessageFor(model => model.NoiKhoiHanh, "", new { @class = "text-danger" })
             </div>
 
@@ -276,28 +279,16 @@
 
 		$(function(){
             $("#Tinh").change(function () {
-                var tinhID = this.value;
-                $.get('@Url.Action("GetLocation", "Tour")', { ID: tinhID }, function (data) {
-                    if (data.diadanh) {
-                        fillDiaDanh(data.diadanh);
-                    }
+                var tinhID = $(this).val();
+                $(".TinhId").val(tinhID);
+                var textBoxVal = $(".TinhId").val();
+                $.post('@Url.Action("GetLocation", "Tour")', { ProvinceIDs: textBoxVal }, function (data) {
+                    $("#ChiTietDiaDiemThamQuan").empty();
+                    $.each(data, function (index, row) {
+                        $("#ChiTietDiaDiemThamQuan").append("<option value='" + row.ID + "'>" + row.TenDiaDanh + "</option>")
+                    });
                 });
-            });
-            function fillDiaDanh(diadanh) {
-                $("#ChiTietDiaDiemThamQuan").empty();
-                var options = '';
-
-                if (diadanh.length > 0) {
-                    for (var i = 0; i < diadanh.length; i++) {
-                        options += '<option value="' + diadanh[i].Id + '">' + diadanh[i].Name + '</option>';
-                    }
-                    $("#ChiTietDiaDiemThamQuan").append(options);
-                }
-                else {
-                    $("#ChiTietDiaDiemThamQuan").append('<option>' + 'Chưa có địa điểm tham quan' + '</option>');
-                }
-
-            }
+            });           
         });
 
         ClassicEditor
@@ -333,15 +324,14 @@
                 }
             });
 
-            $(".select2Tranpost").select2({
-                placeholder: "Chọn phương tiện",
+            $(".select2ProvinStart").select2({
+                placeholder: "Chọn nơi khơi hành",
                 allowClear: true,
                 width: 'resolve',
                 theme: "classic",
-                minimumResultsForSearch: Infinity,
                 "language": {
                     "noResults": function () {
-                        return "Không tìm thấy phương tiện!!!";
+                        return "Không tìm thấy nơi khơi hành!!!";
                     }
                 }
             });

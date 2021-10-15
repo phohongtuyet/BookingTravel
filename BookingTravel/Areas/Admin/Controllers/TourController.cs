@@ -22,12 +22,24 @@ namespace BookingTravel.Areas.Admin.Controllers
             return View(tour.ToList());
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
-        public ActionResult GetLocation(int Id)
+        public ActionResult GetLocation(string ProvinceIDs)
         {
-            var diadanh = db.DiaDiemThamQuan.Where(d => d.Tinh == Id).Select(d => new { Id = d.ID, Name = d.TenDiaDanh }).ToList();
-            return Json(new { diadanh = diadanh }, JsonRequestBehavior.AllowGet);
+            List<int> ProvinceIdList = new List<int>();
+            ProvinceIdList = ProvinceIDs.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+            List<DiaDiemThamQuan> diadanh = new List<DiaDiemThamQuan>();
+            foreach (int countryID in ProvinceIdList)
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                var listDataByCountryID = db.DiaDiemThamQuan.Where(x => x.Tinh == countryID).ToList();
+                foreach (var item in listDataByCountryID)
+                {
+                    diadanh.Add(item);
+                }
+            }
+
+            return Json(diadanh, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Approved(int id)
@@ -43,9 +55,9 @@ namespace BookingTravel.Areas.Admin.Controllers
         // GET: Tour/Details/5  
         public ActionResult Details(int? id)
         {
-            var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Include(dv=> dv.ChiTietDichVu).Where(t => t.ID == id);
+            var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Include(dv => dv.ChiTietDichVu).Where(t => t.ID == id);
             return View(tour.ToList());
-           
+
         }
 
         // GET: Tour/Create
@@ -64,7 +76,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Create([Bind(Include = "ID,TenTour,LoaiTour,NoiKhoiHanh,NgayBD,NgayKT,DonGia,SoLuong,TrangThai,DuLieuHinhAnh,selectedLocation,selectedTranpost,selectedServe")] Tour tour)
+        public ActionResult Create([Bind(Include = "ID,TenTour,LoaiTour,NoiKhoiHanh,NgayBD,NgayKT,DonGia,SoLuong,TrangThai,DuLieuHinhAnh,selectedLocation,selectedTranpost,selectedServe,MoTa")] Tour tour)
 
         {
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan);
@@ -187,7 +199,10 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
+            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietDichVu.Where(p => p.Tour_ID == id));
+            ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan.Where(d => d.Tour_ID == id));
+            ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien.Where(t => t.Tour_ID == id));
+
             return View(tour);
         }
 
@@ -204,6 +219,8 @@ namespace BookingTravel.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietPhuongTien);
+            ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietPhuongTien);
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
             return View(tour);
         }
