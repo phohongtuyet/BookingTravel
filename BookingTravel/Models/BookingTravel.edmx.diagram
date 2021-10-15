@@ -31,11 +31,9 @@
         <AssociationConnector Association="BookingTravelModel.FK__DatTour_C__Tour___59FA5E80" />
         <AssociationConnector Association="BookingTravelModel.FK__DiaDiemTh__Khach__3F466844" />
         <AssociationConnector Association="BookingTravelModel.FK__HinhAnh__Tour_ID__4AB81AF0" />
-        <EntityTypeShape EntityType="BookingTravelModel.ChiTietDichVu" Width="1.5" PointX="4" PointY="8.625" />
-        <EntityTypeShape EntityType="BookingTravelModel.DichVu" Width="1.5" PointX="1.75" PointY="30.75" />
-        <AssociationConnector Association="BookingTravelModel.FK__ChiTietDi__DichV__5FB337D6" />
-        <AssociationConnector Association="BookingTravelModel.FK__ChiTietDi__Tour___5EBF139D" />
         <EntityTypeShape EntityType="BookingTravelModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BookingTravelModel.ChiTietDichVu" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="BookingTravelModel.FK__ChiTietDi__Tour___5EBF139D" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

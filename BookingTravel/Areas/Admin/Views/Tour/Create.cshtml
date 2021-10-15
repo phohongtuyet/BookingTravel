@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <input type="hidden" class="TinhId" />
 
-                        @Html.LabelFor(model => model.Tinh)
+                        @Html.Label("Khu vực tham quan")
                         @Html.DropDownListFor(model => model.Tinh, new SelectList(new[] {
                             new SelectListItem {Value = null, Text = "-- Chọn --" },
                             new SelectListItem {Value = "0", Text = "An Giang" },
@@ -124,9 +124,16 @@
                 </div>
                 <div class="col">
                     <div class="form-group">
-                        @Html.Label("Dịch vụ")
-                        @Html.ListBox("selectedServe", new MultiSelectList(ViewBag.DichVu_ID, "Value", "text"), new { @class = "form-control select2Serve" })
-                        @Html.ValidationMessageFor(model => model.ChiTietDichVu, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.selectedServe)
+                        @Html.DropDownListFor(model => model.selectedServe, new SelectList(new[] {
+                            new SelectListItem { Value = null, Text = "-- Chọn --"},
+                            new SelectListItem { Value = "0", Text = "Xe đưa đón"},
+                            new SelectListItem { Value = "1", Text = "Bửa ăn"},
+                            new SelectListItem { Value = "2", Text = "Vé tham quan"},
+                            new SelectListItem { Value = "3", Text = "Bảo hiểm"},
+                            new SelectListItem { Value = "4", Text = "Hướng dẫn viên"}
+                        }, "Value", "Text"), new { @class = "form-control select2Serve", @multiple = "multiple" })
+                        @Html.ValidationMessageFor(model => model.selectedServe, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

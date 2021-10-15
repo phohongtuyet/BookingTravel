@@ -66,17 +66,12 @@
       <End Role="Tour" EntitySet="Tour" />
       <End Role="HinhAnh" EntitySet="HinhAnh" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="BookingTravelModel.sysdiagrams" />
     <EntitySet Name="ChiTietDichVu" EntityType="BookingTravelModel.ChiTietDichVu" />
-    <EntitySet Name="DichVu" EntityType="BookingTravelModel.DichVu" />
-    <AssociationSet Name="FK__ChiTietDi__DichV__5FB337D6" Association="BookingTravelModel.FK__ChiTietDi__DichV__5FB337D6">
-      <End Role="DichVu" EntitySet="DichVu" />
-      <End Role="ChiTietDichVu" EntitySet="ChiTietDichVu" />
-    </AssociationSet>
     <AssociationSet Name="FK__ChiTietDi__Tour___5EBF139D" Association="BookingTravelModel.FK__ChiTietDi__Tour___5EBF139D">
       <End Role="Tour" EntitySet="Tour" />
       <End Role="ChiTietDichVu" EntitySet="ChiTietDichVu" />
     </AssociationSet>
-    <EntitySet Name="sysdiagrams" EntityType="BookingTravelModel.sysdiagrams" />
   </EntityContainer>
   <EntityType Name="PhuongTien">
     <Key>
@@ -397,38 +392,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="ChiTietDichVu">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Tour_ID" Type="Int32" />
-    <Property Name="DichVu_ID" Type="Int32" />
-    <NavigationProperty Name="DichVu" Relationship="BookingTravelModel.FK__ChiTietDi__DichV__5FB337D6" FromRole="ChiTietDichVu" ToRole="DichVu" />
+    <Property Name="DichVu" Type="Int32" />
     <NavigationProperty Name="Tour" Relationship="BookingTravelModel.FK__ChiTietDi__Tour___5EBF139D" FromRole="ChiTietDichVu" ToRole="Tour" />
   </EntityType>
-  <EntityType Name="DichVu">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TenDichVu" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="ChiTietDichVu" Relationship="BookingTravelModel.FK__ChiTietDi__DichV__5FB337D6" FromRole="DichVu" ToRole="ChiTietDichVu" />
-  </EntityType>
-  <Association Name="FK__ChiTietDi__DichV__5FB337D6">
-    <End Type="BookingTravelModel.DichVu" Role="DichVu" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="BookingTravelModel.ChiTietDichVu" Role="ChiTietDichVu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DichVu">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ChiTietDichVu">
-        <PropertyRef Name="DichVu_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__ChiTietDi__Tour___5EBF139D">
     <End Type="BookingTravelModel.Tour" Role="Tour" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -443,14 +425,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
 </Schema>

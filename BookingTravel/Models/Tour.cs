@@ -73,6 +73,7 @@ namespace BookingTravel.Models
 
         public List<int> selectedTranpost { get; set; }
 
+        [Display(Name = "Dịch vụ")]
         public List<int> selectedServe { get; set; }
 
         [Display(Name = "Tỉnh")]

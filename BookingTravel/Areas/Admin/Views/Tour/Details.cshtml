@@ -58,9 +58,31 @@
             <div class="card-body text-center">
                 <h5 class="font-italic font-weight-bold text-center">Dịch vụ kèm theo tham qua của Tour</h5>
                 <p class="card-text ml-3">
-                    @foreach (var dv in item.ChiTietDichVu.Select(d => d.DichVu.TenDichVu))
+                    @foreach (var pt in @item.ChiTietDichVu)
                     {
-                        <i class="fas fa-angle-double-right"></i> @dv <br>
+
+                        if (pt.DichVu == 0)
+                        {
+                            <i class="fas fa-car"> Xe đưa đón</i>
+
+                        }
+                        else if (pt.DichVu == 1)
+                        {
+                            <i class="fas fa-utensils"> Bửa ăn</i>
+                        }
+                        else if (pt.DichVu == 2)
+                        {
+                            <i class="fas fa-ticket"> Vé tham quan</i>
+                        }
+                        else if (pt.DichVu == 3)
+                        {
+                            <i class="fas fa-check"> Bảo hiểm</i>
+                        }
+                        else
+                        {
+                            <i class="fas fa-flag">  Hướng dẫn viên</i>
+                        }
+
                     }
                 </p>
             </div>

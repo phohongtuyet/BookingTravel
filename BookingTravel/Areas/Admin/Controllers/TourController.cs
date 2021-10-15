@@ -63,7 +63,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         // GET: Tour/Create
         public ActionResult Create()
         {
-            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu");
+            //ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu");
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh");
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien");
             ModelState.AddModelError("UploadError", "");
@@ -81,7 +81,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         {
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan);
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
-            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietDichVu);
+            //ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietDichVu);
 
             if (ModelState.IsValid)
             {
@@ -172,7 +172,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                     {
                         var service = new ChiTietDichVu
                         {
-                            DichVu_ID = n,
+                            DichVu = n,
                             Tour_ID = tour.ID
                         };
                         db.ChiTietDichVu.Add(service);
@@ -199,7 +199,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietDichVu.Where(p => p.Tour_ID == id));
+           // ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietDichVu.Where(p => p.Tour_ID == id));
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietDiaDiemThamQuan.Where(d => d.Tour_ID == id));
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien.Where(t => t.Tour_ID == id));
 
@@ -219,7 +219,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietPhuongTien);
+           // ViewBag.DichVu_ID = new SelectList(db.DichVu, "ID", "TenDichVu", tour.ChiTietPhuongTien);
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", tour.ChiTietPhuongTien);
             ViewBag.PhuongTien_ID = new SelectList(db.PhuongTien, "ID", "TenPhuongTien", tour.ChiTietPhuongTien);
             return View(tour);

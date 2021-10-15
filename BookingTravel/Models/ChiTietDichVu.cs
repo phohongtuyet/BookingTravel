@@ -16,9 +16,8 @@ namespace BookingTravel.Models
     {
         public int ID { get; set; }
         public Nullable<int> Tour_ID { get; set; }
-        public Nullable<int> DichVu_ID { get; set; }
+        public Nullable<int> DichVu { get; set; }
     
-        public virtual DichVu DichVu { get; set; }
         public virtual Tour Tour { get; set; }
     }
 }
