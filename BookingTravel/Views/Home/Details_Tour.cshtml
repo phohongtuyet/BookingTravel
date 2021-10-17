@@ -1,0 +1,376 @@
+﻿@model BookingTravel.Models.Tour
+
+@{
+    ViewBag.Title = "TreeTravel";
+}
+
+<div class="card mt-2">
+    <h5 class="card-header">@ViewBag.Title</h5>
+  
+        <h2 class="text-center">
+            @Model.TenTour
+        </h2>
+
+
+        <div id="carouselExampleControls" class="carousel slide mt-2 " data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @{
+                    var first = true;
+                }
+                @foreach (var image in Model.HinhAnh.Select(h => h.HinhAnh1))
+                {
+                    <div class="mt-3 carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
+                        <img class="mx-auto d-block d-block w-75 h-50" src="~/@image" alt="">
+                    </div>
+                    first = false;
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div>
+            <div class="d-flex justify-content-center flex-row bg-light">
+                <div class="p-3 col-xs-1 ">
+                    <p class="bottom-left">
+                        <i class="fas fa-map-marked-alt"></i>
+
+                        @foreach (var pt in Model.ChiTietDiaDiemThamQuan.Select(a => a.DiaDiemThamQuan.Tinh).Distinct())
+                        {
+
+                            if (pt == 0)
+                            {
+                                <span>An Giang</span>
+                            }
+                            else if (pt == 1)
+                            {
+                                <span>Bà rịa – Vũng tàu</span>
+                            }
+                            else if (pt == 2)
+                            {
+                                <span>Bắc Giang</span>
+                            }
+                            else if (pt == 3)
+                            {
+                                <span>Bắc Kạn</span>
+                            }
+                            else if (pt == 4)
+                            {
+                                <span>Bạc Liêu</span>
+                            }
+                            else if (pt == 5)
+                            {
+                                <span>Bắc Ninh</span>
+                            }
+                            else if (pt == 6)
+                            {
+                                <span>Bến Tre</span>
+                            }
+                            else if (pt == 7)
+                            {
+                                <span>Bình Định</span>
+                            }
+                            else if (pt == 8)
+                            {
+                                <span>Bình Dương</span>
+                            }
+                            else if (pt == 9)
+                            {
+                                <span>Bình Phước</span>
+                            }
+                            else if (pt == 10)
+                            {
+                                <span>Bình Thuận</span>
+                            }
+                            else if (pt == 11)
+                            {
+                                <span>Cà Mau</span>
+                            }
+                            else if (pt == 12)
+                            {
+                                <span>Cần Thơ</span>
+                            }
+                            else if (pt == 13)
+                            {
+                                <span>Cao Bằng </span>
+                            }
+                            else if (pt == 14)
+                            {
+                                <span>Đà Nẵng</span>
+                            }
+                            else if (pt == 15)
+                            {
+                                <span>Đắk Lắk</span>
+                            }
+                            else if (pt == 16)
+                            {
+                                <span>Đắk Nông</span>
+                            }
+                            else if (pt == 17)
+                            {
+                                <span>Điện Biên</span>
+                            }
+                            else if (pt == 18)
+                            {
+                                <span>Đồng Nai</span>
+                            }
+                            else if (pt == 19)
+                            {
+                                <span>Đồng Tháp</span>
+                            }
+                            else if (pt == 20)
+                            {
+                                <span>Gia Lai</span>
+                            }
+                            else if (pt == 21)
+                            {
+                                <span>Hà Giang</span>
+                            }
+                            else if (pt == 22)
+                            {
+                                <span>Hà Nam</span>
+                            }
+                            else if (pt == 23)
+                            {
+                                <span>Hà Nội </span>
+                            }
+                            else if (pt == 24)
+                            {
+                                <span>Hà Tĩnh</span>
+                            }
+                            else if (pt == 25)
+                            {
+                                <span>Hải Dương</span>
+                            }
+                            else if (pt == 26)
+                            {
+                                <span>Hải Phòng</span>
+                            }
+                            else if (pt == 27)
+                            {
+                                <span>Hòa Bình</span>
+                            }
+                            else if (pt == 28)
+                            {
+                                <span>Hưng Yên</span>
+                            }
+                            else if (pt == 29)
+                            {
+                                <span>Khánh Hòa</span>
+                            }
+                            else if (pt == 30)
+                            {
+                                <span>Kiên Giang</span>
+                            }
+                            else if (pt == 31)
+                            {
+                                <span>Kon Tum</span>
+                            }
+                            else if (pt == 32)
+                            {
+                                <span>Lai Châu</span>
+                            }
+                            else if (pt == 33)
+                            {
+                                <span>Lâm Đồng</span>
+                            }
+                            else if (pt == 34)
+                            {
+                                <span>Lạng Sơn</span>
+                            }
+                            else if (pt == 35)
+                            {
+                                <span>Lào Cai</span>
+                            }
+                            else if (pt == 36)
+                            {
+                                <span>Nam Định</span>
+                            }
+                            else if (pt == 37)
+                            {
+                                <span>Nghệ An</span>
+                            }
+                            else if (pt == 38)
+                            {
+                                <span>Ninh Bình</span>
+                            }
+                            else if (pt == 39)
+                            {
+                                <span>Ninh Thuận</span>
+                            }
+                            else if (pt == 40)
+                            {
+                                <span>Phú Thọ</span>
+                            }
+                            else if (pt == 41)
+                            {
+                                <span>Phú Yên</span>
+                            }
+                            else if (pt == 42)
+                            {
+                                <span>Quảng Bình</span>
+                            }
+                            else if (pt == 43)
+                            {
+                                <span>Quảng Nam</span>
+                            }
+                            else if (pt == 44)
+                            {
+                                <span>Quảng Ngãi</span>
+                            }
+                            else if (pt == 45)
+                            {
+                                <span>Quảng Ninh</span>
+                            }
+                            else if (pt == 46)
+                            {
+                                <span>Quảng Trị</span>
+                            }
+                            else if (pt == 47)
+                            {
+                                <span>Sóc Trăng</span>
+                            }
+                            else if (pt == 48)
+                            {
+                                <span>Sơn La</span>
+                            }
+                            else if (pt == 49)
+                            {
+                                <span>Tây Ninh</span>
+                            }
+                            else if (pt == 50)
+                            {
+                                <span>Thái Bình</span>
+                            }
+                            else if (pt == 51)
+                            {
+                                <span>Thái Nguyên</span>
+                            }
+                            else if (pt == 52)
+                            {
+                                <span>Thanh Hóa</span>
+                            }
+                            else if (pt == 53)
+                            {
+                                <span>Thừa Thiên Huế</span>
+                            }
+                            else if (pt == 54)
+                            {
+                                <span>Tiền Giang</span>
+                            }
+                            else if (pt == 55)
+                            {
+                                <span>Thành phố Hồ Chí Minh</span>
+                            }
+                            else if (pt == 56)
+                            {
+                                <span>Trà Vinh</span>
+                            }
+                            else if (pt == 57)
+                            {
+                                <span>Tuyên Quang</span>
+                            }
+                            else if (pt == 58)
+                            {
+                                <span>Trà Vinh</span>
+                            }
+                            else if (pt == 59)
+                            {
+                                <span>Vĩnh Long</span>
+                            }
+                            else if (pt == 60)
+                            {
+                                <span>Vĩnh Phúc</span>
+                            }
+                            else if (pt == 61)
+                            {
+                                <span>Yên Bái</span>
+                            }
+                            else if (pt == 62)
+                            {
+                                <span>Hậu Giang</span>
+                            }
+                            else
+                            {
+                                <span>Long An</span>
+                            }
+                        }
+                    </p>
+                </div>
+                <div class="p-3">
+                    Tour Ngày: @String.Format("{0:MM/dd/yyyy}", @Model.NgayBD) -
+                    @String.Format("{0:MM/dd/yyyy}", @Model.NgayKT)
+
+                </div>
+                <div class="p-3">
+                    <span>Phương tiện:</span>
+                    @foreach (var pt in @Model.ChiTietPhuongTien.Select(a => a.PhuongTien.LoaiPhuongTien))
+                    {
+                        if (pt == 0)
+                        {
+                            <i class="fas fa-plane-departure"></i>
+
+                        }
+                        else if (pt == 1)
+                        {
+                            <i class="fas fa-ship"></i>
+                        }
+                        else if (pt == 2)
+                        {
+                            <i class="fas fa-train"></i>
+                        }
+                        else if (pt == 3)
+                        {
+                            <i class="fas fa-shuttle-van"></i>
+                        }
+
+                    }
+                </div>
+
+            </div>
+            <div class="card-text ml-3 p-3">
+                @foreach (var pt in Model.ChiTietDichVu)
+                {
+
+                    if (pt.DichVu == 0)
+                    {
+                        <i class="fas fa-car"> Xe đưa đón</i>
+
+                    }
+                    else if (pt.DichVu == 1)
+                    {
+                        <i class="fas fa-utensils"> Bửa ăn</i>
+                    }
+                    else if (pt.DichVu == 2)
+                    {
+                        <i class="fas fa-ticket"> Vé tham quan</i>
+                    }
+                    else if (pt.DichVu == 3)
+                    {
+                        <i class="fas fa-check"> Bảo hiểm</i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-flag">  Hướng dẫn viên</i>
+                    }
+
+                }
+            </div>
+            <div class="card-body">
+                <p>@Html.Raw(Model.MoTa)</p>
+            </div>
+            <div class="card-footer d-grid gap-2 d-md-flex justify-content-center ">
+                <a href="@Url.Action("ThemVaoGio", "GioHang", new { maSP = Model.ID })" class="btn btn-outline-success"><i class="fas fa-cart-plus"></i> Đặt Ngay</a>
+            </div>
+        </div>
+
+
+
+
+
