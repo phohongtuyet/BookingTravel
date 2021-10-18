@@ -177,5 +177,60 @@ namespace BookingTravel.Controllers
             return View(khachHangChangePassword);
         }
 
+        // GET: Home/ThanhToan
+        public ActionResult ThanhToan()
+        {
+            if (Session["MaKhachHang"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        // POST: Home/ThanhToan
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ThanhToan(DatTour datHang)
+        {
+            if (ModelState.IsValid)
+            {
+                // Lưu vào bảng DatHang
+                DatTour dh = new DatTour();
+                dh.HoVaTen = datHang.HoVaTen;
+                dh.DienThoaiDatTour = datHang.DienThoaiDatTour;
+                dh.NgayDatHang = DateTime.Now;
+                dh.KhachHang_ID = Convert.ToInt32(Session["MaKhachHang"]);
+                dh.TinhTrang = 0;
+                db.DatTour.Add(dh);
+                db.SaveChanges();
+
+                // Lưu vào bảng DatHang_ChiTiet
+                List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
+                foreach (var item in cart)
+                {
+                    DatTour_ChiTiet ct = new DatTour_ChiTiet();
+                    ct.DatTour_ID = dh.ID;
+                    ct.Tour_ID = item.tour.ID;
+                    ct.SoLuong = Convert.ToInt16(item.soLuongTrongGio);
+                    ct.DonGia = item.tour.DonGia;
+                    db.DatTour_ChiTiet.Add(ct);
+                    var dongho = db.Tour.Find(item.tour.ID);
+                    dongho.SoLuong -= item.soLuongTrongGio;
+                    db.SaveChanges();
+                }
+
+                // Xóa giỏ hàng
+                cart.Clear();
+
+                // Quay về trang chủ
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(datHang);
+        }
+
     }
 }

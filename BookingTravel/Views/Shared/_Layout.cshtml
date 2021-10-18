@@ -29,8 +29,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("BestSale","Home")">Tour bán chạy </a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Review","Home")">Review</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index","GioHang")"><i class="fas fa-shopping-cart"></i> Giỏ hàng </a>
                         </li>
                         @if (Session["MaKhachHang"] == null)
                         {

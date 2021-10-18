@@ -18,7 +18,7 @@
                     @Html.DisplayNameFor(model => model.DienThoaiDatTour)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.HoVaTen)
+                   Người đặt
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.NgayDatHang)
@@ -27,17 +27,18 @@
                     @Html.DisplayNameFor(model => model.TinhTrang)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
+                  Khách hàng
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+                   Nhân viên
                 </th>
+                <th width="5%">Chi tiết</th>
                 <th width="5%">Sửa</th>
                 <th width="5%">Xóa</th>
             </tr>
             @{ int stt = 1; }
             @foreach (var item in Model)
-                    {
+            {
                 <tr>
                     <td>@stt</td>
                     <td>
@@ -58,10 +59,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
                     </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+
+                    <td class="text-center">
+                        <a href="@Url.Action("Details", new { id = item.ID })"><i class="fas fa-eye"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
                     </td>
                 </tr>
                 stt++;
