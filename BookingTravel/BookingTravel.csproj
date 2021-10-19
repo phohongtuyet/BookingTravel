@@ -2150,6 +2150,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\noimage.png" />
     <Content Include="Images\passport.png" />
+    <Content Include="Images\travel.jpg" />
     <Content Include="Models\BookingTravel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BookingTravel.Context.cs</LastGenOutput>

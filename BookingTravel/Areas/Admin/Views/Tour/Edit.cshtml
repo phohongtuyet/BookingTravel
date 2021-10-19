@@ -16,6 +16,12 @@
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ID)
+            <div class="form-group">
+                @Html.Label("Phương tiện")
+
+                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" })
+                @Html.ValidationMessageFor(model => model.ChiTietPhuongTien, "", new { @class = "text-danger" })
+            </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.TenTour, htmlAttributes: new { @class = "control-label " })

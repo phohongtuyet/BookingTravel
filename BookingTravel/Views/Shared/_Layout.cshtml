@@ -33,12 +33,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Review","Home")">Review</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index","GioHang")"><i class="fas fa-shopping-cart"></i> Giỏ hàng </a>
-                        </li>
+
                         @if (Session["MaKhachHang"] == null)
                         {
-                            <li class="nav-item dropdown ml-3">
+                            <li class="nav-item dropdown ml-3"style="margin-left: 600px;">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-user-circle" aria-hidden="true"> Tài khoản</i>
                                 </a>
@@ -51,7 +49,7 @@
                         }
                         else
                         {
-                            <li class="nav-item dropdown ml-3">
+                            <li class="nav-item dropdown ml-3" style="margin-left: 600px;">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     @Session["HoTenKhachHang"].ToString()
                                 </a>
@@ -63,12 +61,17 @@
                             </li>
 
                         }
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index","GioHang")"><i class="fas fa-shopping-cart"></i> Giỏ hàng </a>
+                        </li>
                     </ul>
-
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    
+                    @*
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                    *@
                 </div>
             </div>
         </nav>
@@ -76,7 +79,7 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer class="text-center text-white mt-4" style="background-color: #f1f1f1;">
+        <footer class="text-center text-white mt-4 bg-info" >
             <!-- Grid container -->
             <div class="container pt-2">
                 <!-- Section: Social media -->

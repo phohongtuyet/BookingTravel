@@ -50,8 +50,36 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.NgayDatHang)
                     </td>
+                    
                     <td>
-                        @Html.DisplayFor(modelItem => item.TinhTrang)
+                        @if (item.TinhTrang == 0)
+                        {
+                            <span>Đơn đặt Tour mới</span>
+                        }
+                        else if (item.TinhTrang == 1)
+                        {
+                            <span>Đang xác nhận</span>
+                        }
+                        else if (item.TinhTrang == 2)
+                        {
+                            <span>Đã hủy</span>
+                        }
+                        else if (item.TinhTrang == 3)
+                        {
+                            <span>Đang thanh toán</span>
+                        }
+                        else if (item.TinhTrang == 4)
+                        {
+                            <span>Đã thanh toán</span>
+                        }
+                        else if (item.TinhTrang == 5)
+                        {
+                            <span>Thất bại</span>
+                        }
+                        else if (item.TinhTrang == 6)
+                        {
+                            <span>Thành công </span>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.KhachHang.HoVaten)
