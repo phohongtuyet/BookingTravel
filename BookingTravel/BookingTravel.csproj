@@ -2469,6 +2469,7 @@
     <Content Include="Views\Home\MyOrders.cshtml" />
     <Content Include="Views\Home\Details_Tour.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

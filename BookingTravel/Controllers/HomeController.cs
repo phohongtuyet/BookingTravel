@@ -23,6 +23,23 @@ namespace BookingTravel.Controllers
             var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Where(r => r.ID == id).SingleOrDefault();
             return View(tour);
         }
+
+        [HttpPost]
+        public ActionResult Search(FormCollection collection)
+        {
+            string diemden = collection["DiemDen"].ToString();
+            //short tinh = collection["Tinh"];
+            DateTime ngay = Convert.ToDateTime( collection["Ngay"].ToString());
+            int noikhoihanh = Convert.ToInt32( collection["NoiKhoiHanh"]);
+
+            var tour = db.Tour.Include(d => d.ChiTietDiaDiemThamQuan)
+                                        .Where( r => r.NoiKhoiHanh ==  noikhoihanh && r.NgayBD >= ngay.Date && r.TenTour.Contains(diemden) && r.MoTa.Contains(diemden)
+                                            || r.TenTour.Contains(diemden) && r.NgayBD >= ngay.Date && r.MoTa.Contains(diemden)
+                                            || r.TenTour.Contains(diemden) && r.NoiKhoiHanh == noikhoihanh && r.MoTa.Contains(diemden)
+                                            || r.MoTa.Contains(diemden)).ToList();             
+            return View(tour);
+        }
+
         public ActionResult success()
         {
             return View();

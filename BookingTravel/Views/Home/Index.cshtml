@@ -4,26 +4,89 @@
     ViewBag.Title = "Tour";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <div class="mt-1">
-    
     <div class="card text-white">
         <img src="~/Images/travel.jpg" style="width:100%; " class="card-img-top" alt="...">
         <div class="card-img-overlay d-flex align-items-end p-2">
             <div class="card-header">
-                <form>
-                    <input class="form-control me-2 mt-2" type="search" placeholder="Bạn muốn đi đâu" aria-label="Search">
+                <form action="@Url.Action("Search","Home")" method="post" class="needs-validation" novalidate >
+                    <input class="form-control me-2 mt-2" type="search" placeholder="Bạn muốn đi đâu" aria-label="Search" name="DiemDen" required>
+                    <div class="invalid-tooltip" >Điểm đến không được bỏ trống <!--thông báo lỗi theo novalidate--></div>
                     <div class="row mt-2">
                         <div class="col">
-                            <input type="date" class="form-control" placeholder="First name" aria-label="First name">
+                            <input type="date" class="form-control" name="Ngay" id="Ngay">
                         </div>
                         <div class="col ">
-                            <select id="inputState" class="form-select">
-                                <option selected>Nơi khởi hành</option>
-                                <option>...</option>
+                            <select id="NoiKhoiHanh" class="form-select NoiKhoiHanh" name="NoiKhoiHanh">
+                                <option>Nơi khởi hành</option>
+                                <option value="0" selected>An Giang</option>
+                                <option value="1">Bà rịa – Vũng tàu</option>
+                                <option value="2">Bắc Giang</option>
+                                <option value="3">Bắc Kạn</option>
+                                <option value="4">Bạc Liêu</option>
+                                <option value="5">Bắc Ninh</option>
+                                <option value="6">Bến Tre</option>
+                                <option value="7">Bình Định</option>
+                                <option value="8">Bình Dương</option>
+                                <option value="9">Bình Phước</option>
+                                <option value="10">Bình Thuận</option>
+                                <option value="11">Cà Mau</option>
+                                <option value="12">Cần Thơ</option>
+                                <option value="13">Cao Bằng</option>
+                                <option value="14">Đà Nẵng</option>
+                                <option value="15">Đắk Lắk</option>
+                                <option value="16">Đắk Nông</option>
+                                <option value="17">Điện Biên</option>
+                                <option value="18">Đồng Nai</option>
+                                <option value="19">Đồng Tháp</option>
+                                <option value="20">Gia Lai</option>
+                                <option value="21">Hà Giang</option>
+                                <option value="22">Hà Nam</option>
+                                <option value="23">Hà Nội</option>
+                                <option value="24">Hà Tĩnh</option>
+                                <option value="25">Hải Dương</option>
+                                <option value="26">Hải Phòng</option>
+                                <option value="27">Hòa Bình</option>
+                                <option value="28">Hưng Yên</option>
+                                <option value="29">Khánh Hòa</option>
+                                <option value="30">Kiên Giang</option>
+                                <option value="31">Kon Tum</option>
+                                <option value="32">Lai Châu</option>
+                                <option value="33">Lâm Đồng</option>
+                                <option value="34">Lạng Sơn</option>
+                                <option value="35">Lào Cai</option>
+                                <option value="36">Nam Định</option>
+                                <option value="37">Nghệ An</option>
+                                <option value="38">Ninh Bình</option>
+                                <option value="39">Ninh Thuận</option>
+                                <option value="40">Phú Thọ</option>
+                                <option value="41">Phú Yên</option>
+                                <option value="42">Quảng Bình</option>
+                                <option value="43">Quảng Nam</option>
+                                <option value="44">Quảng Ngãi</option>
+                                <option value="45">Quảng Ninh</option>
+                                <option value="46">Quảng Trị</option>
+                                <option value="47">Sóc Trăng</option>
+                                <option value="48">Sơn La</option>
+                                <option value="49">Tây Ninh</option>
+                                <option value="50">Thái Bình</option>
+                                <option value="51">Thái Nguyên</option>
+                                <option value="52">Thanh Hóa</option>
+                                <option value="53">Thừa Thiên Huế</option>
+                                <option value="54">Tiền Giang</option>
+                                <option value="55">Thành phố Hồ Chí Minh</option>
+                                <option value="56">Trà Vinh</option>
+                                <option value="57">Tuyên Quang</option>
+                                <option value="58">An Giang</option>
+                                <option value="59">Vĩnh Long</option>
+                                <option value="60">Vĩnh Phúc</option>
+                                <option value="61">Yên Bái</option>
+                                <option value="62">Hậu Giang</option>
+                                <option value="63">Long An</option>
                             </select>
                         </div>
                     </div>
-                   
                     <button class="btn btn-info mt-2" type="submit">Tìm kiếm</button>
                 </form>
             </div>
@@ -358,3 +421,47 @@
     </div>
 </div>
 
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+
+        document.getElementById("Ngay").valueAsDate = new Date();
+        $(document).ready(function () {
+            $('.NoiKhoiHanh').select2({
+                placeholder: "Chọn nơi khởi hành",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy nơi khởi hành!!!";
+                    }
+                }
+
+            });
+        });
+
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+    </script>
+}
