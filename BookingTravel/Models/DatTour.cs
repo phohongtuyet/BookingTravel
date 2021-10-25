@@ -36,8 +36,12 @@ namespace BookingTravel.Models
         public string DienThoaiDatTour { get; set; }
 
         [Display(Name = "Họ và tên đặt Tour")]
-        [Required(ErrorMessage = "Họ và tên không được bỏ trống!")]
+        // [Required(ErrorMessage = "Họ và tên không được bỏ trống!")]
         public string HoVaTen { get; set; }
+
+        [Display(Name = "Địa chỉ")]
+        //  [Required(ErrorMessage = "Địa chỉ không được bỏ trống!")]
+        public string DiaChi { get; set; }
 
         [Display(Name = "Ngày đặt")]
         public Nullable<System.DateTime> NgayDatHang { get; set; }

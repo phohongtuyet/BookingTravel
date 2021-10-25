@@ -37,18 +37,18 @@ namespace BookingTravel.Models
         public string DiaChi { get; set; }
 
         [Display(Name = "Tên đăng nhập")]
-        [Required(ErrorMessage = "Tên đăng nhập không được bỏ trống!")]
+        //  [Required(ErrorMessage = "Tên đăng nhập không được bỏ trống!")]
         public string TenDangNhap { get; set; }
 
         [Display(Name = "Mật khẩu")]
-        [Required(ErrorMessage = "Mật khẩu không được bỏ trống!")]
+        //   [Required(ErrorMessage = "Mật khẩu không được bỏ trống!")]
         [MaxLength(100, ErrorMessage = "Mật khẩu tối đa 100 kí tự")]
         [MinLength(3, ErrorMessage = "Mật khẩu tối thiểu 3 kí tự")]
         [DataType(DataType.Password)]
         public string MatKhau { get; set; }
 
         [Display(Name = "Xác nhận mật khẩu")]
-        [Required(ErrorMessage = "Xác nhận mật khẩu không được bỏ trống!")]
+        //  [Required(ErrorMessage = "Xác nhận mật khẩu không được bỏ trống!")]
         [Compare("MatKhau", ErrorMessage = "Xác nhận mật khẩu không chính xác!")]
         [DataType(DataType.Password)]
         public string XacNhanMatKhau { get; set; }

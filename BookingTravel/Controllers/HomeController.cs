@@ -45,6 +45,77 @@ namespace BookingTravel.Controllers
             return View();
         }
 
+        public ActionResult BestSale()
+        {
+            var tour = db.Tour.Include(t => t.ChiTietPhuongTien)
+                                .Include(h => h.HinhAnh)
+                                .Include(ct => ct.ChiTietDiaDiemThamQuan)
+                                .Where(ct => ct.SoLuong > 0).ToList();
+
+
+            return View(tour);
+
+
+
+            /*  var bestSale = (from dh in db.Tour
+                                join ct in db.DatTour_ChiTiet on dh.ID equals ct.Tour_ID
+                                join ctdd in db.ChiTietDiaDiemThamQuan on dh.ID equals ctdd.ID
+                                join dd in db.DiaDiemThamQuan on dh.ID equals dd.ID
+                                join ctpt in db.ChiTietPhuongTien on dh.ID equals ctpt.ID
+                                join pt in db.PhuongTien on dh.ID equals pt.ID
+                                join ha in db.HinhAnh on dh.ID equals ha.ID
+                                join dhang in db.DatTour on ct.DatTour_ID equals dhang.ID
+                                where (dh.SoLuong > 0)
+                                select new BestSaleModels()
+                                {
+
+                                    TenTour = dh.TenTour,
+                                    HinhAnh1 = ha.HinhAnh1,
+                                    Tinh = dd.Tinh,
+                                    LoaiPhuongTien = pt.LoaiPhuongTien,
+                                    TenDiaDanh = dd.TenDiaDanh,                             
+                                    DonGia = dh.DonGia,
+                                    ID = dh.ID,
+
+                                    SoLuong = ct.SoLuong
+
+                                }).OrderByDescending(ct => ct.SoLuong).Distinct();
+                  return View(bestSale);*/
+
+        }
+
+        public ActionResult MyOrders()
+        {
+            /* int makh = Convert.ToInt32(Session["MaKhachHang"]);
+             var tour = db.Tour.Include(h => h.HinhAnh)
+                                .Include(ct => ct.DatTour_ChiTiet)
+                                .Where(ct => ct.SoLuong > 0).ToList();
+
+
+             return View(tour);*/
+
+            int makh = Convert.ToInt32(Session["MaKhachHang"]);
+            var Myorders = (from dh in db.Tour
+                            join ct in db.DatTour_ChiTiet on dh.ID equals ct.Tour_ID
+                            join ha in db.HinhAnh on dh.ID equals ha.Tour_ID
+                            join dhang in db.DatTour on ct.DatTour_ID equals dhang.ID
+                            join kh in db.KhachHang on dhang.KhachHang_ID equals kh.ID
+                            where (kh.ID == makh)
+
+                            select new Myorders()
+                            {
+                                TenTour = dh.TenTour,
+                                //  HinhAnh1 = ha.HinhAnh1,
+                                DonGia = ct.DonGia,
+                                ID = kh.ID,
+                                SoLuong = ct.SoLuong,
+                                NgayDatHang = dhang.NgayDatHang
+
+                            }).OrderByDescending(dhang => dhang.NgayDatHang).ToList();
+
+            return View(Myorders);
+        }
+
         public ActionResult Review()
         {
             var baiViet = db.BaiViet.Where(r => r.KiemDuyet == 1).ToList();

@@ -136,6 +136,7 @@
     <Compile Include="Areas\Admin\Controllers\DatTourController.cs" />
     <Compile Include="Areas\Admin\Controllers\DatTour_ChiTietController.cs" />
     <Compile Include="Areas\Admin\Controllers\DiaDiemThamQuanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GioHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\HinhAnhController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Models\NhanVien.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BestSaleModels.cs" />
     <Compile Include="Models\NhanVienModels.cs" />
     <Compile Include="Models\PhuongTien.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
@@ -2374,6 +2376,9 @@
     <Content Include="Areas\Admin\ThemesAdmin\plugins\toastr\toastr.js.map" />
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Unauthorized.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\ThanhToan.cshtml" />
+    <Content Include="Areas\Admin\Views\GioHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Tour.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -2470,6 +2475,7 @@
     <Content Include="Views\Home\Details_Tour.cshtml" />
     <Content Include="Views\Home\ThanhToan.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\BestSale.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
