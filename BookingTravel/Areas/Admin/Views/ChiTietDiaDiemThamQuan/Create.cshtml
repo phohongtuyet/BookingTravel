@@ -1,33 +1,99 @@
 ﻿@model BookingTravel.Models.ChiTietDiaDiemThamQuan
 
 @{
-    ViewBag.Title = "Chi tiết địa điểm";
+    ViewBag.Title = "Thêm địa điểm cho Tour";
 }
 
-
 <div class="card mt-3">
-    <h5 class="card-header">@ViewBag.Title</h5>
     <div class="card-body">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Tour_ID)
-                @Html.DropDownList("Tour_ID", null, "-- Chọn --", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Tour_ID, "", new { @class = "text-danger" })
+            <div class="row g-3">
+                <div class="col">
+                    <div class="form-group">
+                        <input type="hidden" class="TinhId" />
+                        @Html.Label("Khu vực tham quan")
+                        @Html.DropDownListFor(model => model.Tinh, new SelectList(new[] {
+                            new SelectListItem {Value = null, Text = "-- Chọn --" },
+                            new SelectListItem {Value = "0", Text = "An Giang" },
+                            new SelectListItem {Value = "1", Text = "Bà rịa – Vũng tàu" },
+                            new SelectListItem {Value = "2", Text = "Bắc Giang" },
+                            new SelectListItem {Value = "3", Text = "Bắc Kạn" },
+                            new SelectListItem {Value = "4", Text = "Bạc Liêu" },
+                            new SelectListItem {Value = "5", Text = "Bắc Ninh" },
+                            new SelectListItem {Value = "6", Text = "Bến Tre" },
+                            new SelectListItem {Value = "7", Text = "Bình Định" },
+                            new SelectListItem {Value = "8", Text = "Bình Dương" },
+                            new SelectListItem {Value = "9", Text = "Bình Phước" },
+                            new SelectListItem {Value = "10", Text = "Bình Thuận" },
+                            new SelectListItem {Value = "11", Text = "Cà Mau" },
+                            new SelectListItem {Value = "12", Text = "Cần Thơ" },
+                            new SelectListItem {Value = "13", Text = "Cao Bằng " },
+                            new SelectListItem {Value = "14", Text = "Đà Nẵng" },
+                            new SelectListItem {Value = "15", Text = "Đắk Lắk" },
+                            new SelectListItem {Value = "16", Text = "Đắk Nông" },
+                            new SelectListItem {Value = "17", Text = "Điện Biên" },
+                            new SelectListItem {Value = "18", Text = "Đồng Nai" },
+                            new SelectListItem {Value = "19", Text = "Đồng Tháp" },
+                            new SelectListItem {Value = "20", Text = "Gia Lai" },
+                            new SelectListItem {Value = "21", Text = "Hà Giang" },
+                            new SelectListItem {Value = "22", Text = "Hà Nam" },
+                            new SelectListItem {Value = "23", Text = "Hà Nội " },
+                            new SelectListItem {Value = "24", Text = "Hà Tĩnh" },
+                            new SelectListItem {Value = "25", Text = "Hải Dương" },
+                            new SelectListItem {Value = "26", Text = "Hải Phòng " },
+                            new SelectListItem {Value = "27", Text = "Hòa Bình" },
+                            new SelectListItem {Value = "28", Text = "Hưng Yên" },
+                            new SelectListItem {Value = "29", Text = "Khánh Hòa" },
+                            new SelectListItem {Value = "30", Text = "Kiên Giang" },
+                            new SelectListItem {Value = "31", Text = "Kon Tum" },
+                            new SelectListItem {Value = "32", Text = "Lai Châu" },
+                            new SelectListItem {Value = "33", Text = "Lâm Đồng" },
+                            new SelectListItem {Value = "34", Text = "Lạng Sơn" },
+                            new SelectListItem {Value = "35", Text = "Lào Cai" },
+                            new SelectListItem {Value = "36", Text = "Nam Định" },
+                            new SelectListItem {Value = "37", Text = "Nghệ An" },
+                            new SelectListItem {Value = "38", Text = "Ninh Bình" },
+                            new SelectListItem {Value = "39", Text = "Ninh Thuận" },
+                            new SelectListItem {Value = "40", Text = "Phú Thọ" },
+                            new SelectListItem {Value = "41", Text = "Phú Yên" },
+                            new SelectListItem {Value = "42", Text = "Quảng Bình" },
+                            new SelectListItem {Value = "43", Text = "Quảng Nam" },
+                            new SelectListItem {Value = "44", Text = "Quảng Ngãi" },
+                            new SelectListItem {Value = "45", Text = "Quảng Ninh" },
+                            new SelectListItem {Value = "46", Text = "Quảng Trị" },
+                            new SelectListItem {Value = "47", Text = "Sóc Trăng" },
+                            new SelectListItem {Value = "48", Text = "Sơn La" },
+                            new SelectListItem {Value = "49", Text = "Tây Ninh" },
+                            new SelectListItem {Value = "50", Text = "Thái Bình" },
+                            new SelectListItem {Value = "51", Text = "Thái Nguyên" },
+                            new SelectListItem {Value = "52", Text = "Thanh Hóa" },
+                            new SelectListItem {Value = "53", Text = "Thừa Thiên Huế" },
+                            new SelectListItem {Value = "54", Text = "Tiền Giang" },
+                            new SelectListItem {Value = "55", Text = "Thành phố Hồ Chí Minh" },
+                            new SelectListItem {Value = "56", Text = "Trà Vinh" },
+                            new SelectListItem {Value = "57", Text = "Tuyên Quang" },
+                            new SelectListItem {Value = "58", Text = "Vĩnh Long" },
+                            new SelectListItem {Value = "59", Text = "Vĩnh Phúc" },
+                            new SelectListItem {Value = "60", Text = "Yên Bái" },
+                            new SelectListItem {Value = "61", Text = "Hậu Giang" },
+                            new SelectListItem {Value = "62", Text = "Long An" }
+                        }, "Value", "Text"), new { @class = "form-control select2Provin", @multiple = "multiple" })
+                        @Html.ValidationMessageFor(model => model.Tinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        @Html.Label("Địa danh")
+                        @Html.DropDownListFor(model => model.selectedLocation, Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control select2", @multiple = "multiple", @id = "ChiTietDiaDiemThamQuan" })
+                        @Html.ValidationMessageFor(model => model.selectedLocation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DiaDiemThamQuan_ID)
-                @Html.ListBox("selectedLocation", new MultiSelectList(ViewBag.DiaDiemThamQuan_ID, "Value", "text"), new { @class = "form-control chosen " })
-                @Html.ValidationMessageFor(model => model.selectedLocation, "", new { @class = "text-danger" })
-            </div>
-
-
 
             <div class="form-group mt-2">
-                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Details", "Tour")
             </div>
         }
     </div>
@@ -35,14 +101,98 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.css" rel="stylesheet" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        $(".chosen").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Không tìm thấy địa điểm tham quan!!!",
-            placeholder_text_multiple:"Địa danh tham quan của Tour",
-            width: "100%"
+
+		$(function(){
+            $("#Tinh").change(function () {
+                var tinhID = $(this).val();
+                $(".TinhId").val(tinhID);
+                var textBoxVal = $(".TinhId").val();
+                $.post('@Url.Action("GetLocation", "Tour")', { ProvinceIDs: textBoxVal }, function (data) {
+                    $("#ChiTietDiaDiemThamQuan").empty();
+                    $.each(data, function (index, row) {
+                        $("#ChiTietDiaDiemThamQuan").append("<option value='" + row.ID + "'>" + row.TenDiaDanh + "</option>")
+                    });
+                });
+            });
         });
+
+        ClassicEditor
+            .create(document.querySelector('#MoTa'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        $(document).ready(function () {
+            $(".select2").select2({
+                placeholder: "Chọn địa danh",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy địa danh!!!";
+                    }
+                }
+            });
+
+            $(".select2Tranpost").select2({
+                placeholder: "Chọn phương tiện",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy phương tiện!!!";
+                    }
+                }
+            });
+
+            $(".select2ProvinStart").select2({
+                placeholder: "Chọn nơi khơi hành",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy nơi khơi hành!!!";
+                    }
+                }
+            });
+
+            $(".select2Serve").select2({
+                placeholder: "Chọn dịch vụ",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy dịch vụ!!!";
+                    }
+                }
+            });
+
+            $(".select2Provin").select2({
+                placeholder: "Chọn khu vực tham quan",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm!!!";
+                    }
+                }
+            });
+        });
+
+
+
     </script>
 }

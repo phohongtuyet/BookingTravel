@@ -1,0 +1,52 @@
+﻿@model BookingTravel.Models.ChiTietPhuongTien
+
+@{
+    ViewBag.Title = "Thêm phương tiện cho tour";
+}
+
+
+<div class="card mt-3">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.Label("Phương tiện")
+                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" })
+                @Html.ValidationMessageFor(model => model.selectedTranpost, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Details", "Tour")
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+  
+        $(document).ready(function () {         
+            $(".select2Tranpost").select2({
+                placeholder: "Chọn phương tiện",
+                allowClear: true,
+                width: 'resolve',
+                theme: "classic",
+                minimumResultsForSearch: Infinity,
+                "language": {
+                    "noResults": function () {
+                        return "Không tìm thấy phương tiện!!!";
+                    }
+                }
+            });
+
+          
+        });
+    </script>
+}
+

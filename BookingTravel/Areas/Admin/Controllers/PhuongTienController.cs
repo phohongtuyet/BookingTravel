@@ -10,7 +10,7 @@ using BookingTravel.Models;
 
 namespace BookingTravel.Areas.Admin.Controllers
 {
-    public class PhuongTienController : Controller
+    public class PhuongTienController : AuthController
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 

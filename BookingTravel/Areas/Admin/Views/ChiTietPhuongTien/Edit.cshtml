@@ -1,0 +1,31 @@
+﻿@model BookingTravel.Models.ChiTietPhuongTien
+
+@{
+    ViewBag.Title ="Cập nhật phương tiện";
+}
+
+<div class="card mt-3">
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.Tour_ID)
+
+            <div class="form-group">
+                @Html.Label("Phương tiện")
+                @Html.DropDownList("PhuongTien_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PhuongTien_ID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-0">
+                <button type="submit" class="btn btn-info"> Cập Nhật</button> hoặc
+                <a href="@Url.Action("Details","Tour", new {id = Model.Tour_ID })"> Quay về chi tiết Tour</a>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

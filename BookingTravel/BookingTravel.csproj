@@ -139,6 +139,8 @@
     <Compile Include="Areas\Admin\Controllers\GioHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\HinhAnhController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChiTietDichVuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChiTietPhuongTienController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
@@ -2476,6 +2478,16 @@
     <Content Include="Views\Home\ThanhToan.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\BestSale.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietPhuongTien\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietPhuongTien\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietPhuongTien\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietPhuongTien\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietPhuongTien\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDichVu\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDichVu\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDichVu\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDichVu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDichVu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

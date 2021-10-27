@@ -1,7 +1,7 @@
-﻿@model BookingTravel.Models.ChiTietDiaDiemThamQuan
+﻿@model BookingTravel.Models.ChiTietDichVu
 
 @{
-    ViewBag.Title = "Xóa chi tiết địa điểm";
+    ViewBag.Title = "Xóa dịch vụ";
 }
 
 <div class="card mt-3">
@@ -23,15 +23,35 @@
             <div class="alert alert-danger d-flex align-items-center" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill" /></svg>
                 <div>
-                    Bạn có muốn xóa chi tiết địa điểm Tour <strong>@Model.DiaDiemThamQuan.TenDiaDanh</strong> của Tour <strong>@Model.Tour.TenTour</strong> không? <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    Bạn có muốn xóa dịch vụ
+                    @if (Model.DichVu == 0)
+                    {
+                        <strong>Xe đưa đón</strong>
+                    }
+                    else if (Model.DichVu == 1)
+                    {
+                        <strong>Bửa ăn</strong>
+                    }
+                    else if (Model.DichVu == 2)
+                    {
+                        <strong>Vé tham quan</strong>
+                    }
+                    else if (Model.DichVu == 3)
+                    {
+                        <strong>Bảo hiểm</strong>
+                    }
+                    else 
+                    {
+                        <strong>Hướng dẫn viên </strong>
+                    }
+                    của Tour <strong>@Model.Tour.TenTour</strong> không? <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
                 </div>
             </div>
-             
-            <div class="form-actions no-color">
-                <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> hoặc                 
-                <a href="@Url.Action("Details","Tour", new {id = Model.Tour_ID })"> Quay về chi tiết Tour</a>
 
+            <div class="form-actions no-color">
+                <input type="submit" value="Xác nhận xóa" class="btn btn-danger" /> hoặc
+                <a href="@Url.Action("Details","Tour", new {id = Model.Tour_ID })"> Quay về chi tiết Tour</a>
             </div>
         }
     </div>

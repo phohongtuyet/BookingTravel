@@ -21,6 +21,25 @@ namespace BookingTravel.Areas.Admin.Controllers
             return View(chiTietDiaDiemThamQuan.ToList());
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult GetLocation(string ProvinceIDs)
+        {
+            List<int> ProvinceIdList = new List<int>();
+            ProvinceIdList = ProvinceIDs.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+            List<DiaDiemThamQuan> diadanh = new List<DiaDiemThamQuan>();
+            foreach (int countryID in ProvinceIdList)
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                var listDataByCountryID = db.DiaDiemThamQuan.Where(x => x.Tinh == countryID).ToList();
+                foreach (var item in listDataByCountryID)
+                {
+                    diadanh.Add(item);
+                }
+            }
+
+            return Json(diadanh, JsonRequestBehavior.AllowGet);
+        }
         // GET: ChiTietDiaDiemThamQuan/Details/5
         public ActionResult Details(int? id)
         {
@@ -51,23 +70,24 @@ namespace BookingTravel.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ChiTietDiaDiemThamQuan ct, int id)
         {
-
-            foreach (var n in ct.selectedLocation)
-            {
-                if (n != null && n > 0)
+           
+                foreach (var n in ct.selectedLocation)
                 {
-                    var location = new ChiTietDiaDiemThamQuan
+                    if (n != null && n > 0)
                     {
-                        DiaDiemThamQuan_ID = n,
-                        Tour_ID = id
+                        var location = new ChiTietDiaDiemThamQuan
+                        {
+                            DiaDiemThamQuan_ID = n,
+                            Tour_ID = id
 
-                    };
+                        };
 
-                    db.ChiTietDiaDiemThamQuan.Add(location);
-                    db.SaveChanges();
+                        db.ChiTietDiaDiemThamQuan.Add(location);
+                        db.SaveChanges();
+                    }
                 }
-            }
-            return RedirectToAction("Index", "Tour");
+            
+            return RedirectToAction("Details", "Tour", new { id = id });
 
         }
 
@@ -93,13 +113,13 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Tour_ID,DiaDiemThamQuan_ID")] ChiTietDiaDiemThamQuan chiTietDiaDiemThamQuan)
+        public ActionResult Edit([Bind(Include = "ID,Tour_ID,DiaDiemThamQuan_ID")] ChiTietDiaDiemThamQuan chiTietDiaDiemThamQuan, int idtour)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(chiTietDiaDiemThamQuan).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Tour", new { id = idtour });
             }
             ViewBag.DiaDiemThamQuan_ID = new SelectList(db.DiaDiemThamQuan, "ID", "TenDiaDanh", chiTietDiaDiemThamQuan.DiaDiemThamQuan_ID);
             ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", chiTietDiaDiemThamQuan.Tour_ID);
@@ -124,12 +144,12 @@ namespace BookingTravel.Areas.Admin.Controllers
         // POST: ChiTietDiaDiemThamQuan/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, int idtour)
         {
             ChiTietDiaDiemThamQuan chiTietDiaDiemThamQuan = db.ChiTietDiaDiemThamQuan.Find(id);
             db.ChiTietDiaDiemThamQuan.Remove(chiTietDiaDiemThamQuan);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Tour", new { id = idtour });
         }
 
         protected override void Dispose(bool disposing)

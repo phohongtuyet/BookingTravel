@@ -1,0 +1,34 @@
+﻿@model BookingTravel.Models.ChiTietDichVu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChiTietDichVu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DichVu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DichVu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tour.TenTour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tour.TenTour)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

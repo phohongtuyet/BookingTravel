@@ -5,10 +5,14 @@
 }
 
 <div class="card">
+    @if (TempData["AlertMessage"] != null)
+    {
+        <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+            @TempData["AlertMessage"]
+        </div>
+    }
     @foreach (var item in Model)
     {
-
-
         <h5 class="card-header text-center font-weight-bold text-info" style="font-size:2.5rem">@item.TenTour</h5>
 
         <div id="carouselExampleControls" class="carousel slide mt-2" data-bs-ride="carousel">
@@ -34,63 +38,173 @@
             </button>
         </div>
 
-       
-
         <div class="card-body">
-            <div class="card-body text-center">
-                <h5 class=" font-italic font-weight-bold text-center">Địa điểm tham qua của Tour </h5>
-                <p class="card-text ml-3">
-                    @foreach (var diadanh in item.ChiTietDiaDiemThamQuan.Select(d => d.DiaDiemThamQuan.TenDiaDanh))
-                    {
-                        <i class="fas fa-map-marker-alt"></i> @diadanh <br>
-                    }
-                </p>
+            <div class="card">
+                <h5 class=" font-italic font-weight-bold text-center mt-1">Địa điểm tham quan của Tour </h5>
+                <div class="card-body">
+                    <p><a class="btn btn-info" href="@Url.Action("Create","ChiTietDiaDiemThamQuan", new { id= item.ID})" role="button">Thêm mới</a></p>
+                    <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th>
+                                    Tên địa danh
+                                </th>
+                                <th width="5%">Sửa</th>
+                                <th width="5%">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int stt = 1; }
+                            @foreach (var dd in item.ChiTietDiaDiemThamQuan)
+                            {
+                                <tr>
+                                    <td>@stt</td>
+                                    <td>
+                                        @dd.DiaDiemThamQuan.TenDiaDanh
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Edit","ChiTietDiaDiemThamQuan", new { id = dd.ID, idtour = item.ID })"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Delete","ChiTietDiaDiemThamQuan", new { id = dd.ID, idtour = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                stt++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="card-body text-center">
-                <h5 class="font-italic font-weight-bold text-center">Phương tiện tham qua của Tour </h5>
-                <p class="card-text ml-3">
-                    @foreach (var pt in item.ChiTietPhuongTien.Select(d => d.PhuongTien.TenPhuongTien))
-                    {
-                        <i class="fas fa-angle-double-right"></i> @pt <br>
-                    }
-                </p>
+
+            <div class="card">
+                <h5 class=" font-italic font-weight-bold text-center mt-1">Phương tiện của Tour </h5>
+                <div class="card-body">
+                    <p><a class="btn btn-info" href="@Url.Action("Create","ChiTietPhuongTien", new { id= item.ID})" role="button">Thêm mới</a></p>
+                    <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th>
+                                    Tên phương tiện
+                                </th>
+                                <th width="5%">Sửa</th>
+                                <th width="5%">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int sttt = 1; }
+                            @foreach (var dd in item.ChiTietPhuongTien)
+                            {
+                                <tr>
+                                    <td>@sttt</td>
+                                    <td>
+                                        @dd.PhuongTien.TenPhuongTien
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Edit","ChiTietPhuongTien", new { id =dd.ID , idtour = item.ID })"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Delete", "ChiTietPhuongTien", new { id = dd.ID, idtour = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                sttt++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="card-body text-center">
-                <h5 class="font-italic font-weight-bold text-center">Dịch vụ kèm theo tham qua của Tour</h5>
-                <p class="card-text ml-3">
-                    @foreach (var pt in @item.ChiTietDichVu)
-                    {
-
-                        if (pt.DichVu == 0)
-                        {
-                            <i class="fas fa-car"> Xe đưa đón</i>
-
-                        }
-                        else if (pt.DichVu == 1)
-                        {
-                            <i class="fas fa-utensils"> Bửa ăn</i>
-                        }
-                        else if (pt.DichVu == 2)
-                        {
-                            <i class="fas fa-ticket"> Vé tham quan</i>
-                        }
-                        else if (pt.DichVu == 3)
-                        {
-                            <i class="fas fa-check"> Bảo hiểm</i>
-                        }
-                        else
-                        {
-                            <i class="fas fa-flag">  Hướng dẫn viên</i>
-                        }
-
-                    }
-                </p>
+            <div class="card">
+                <h5 class=" font-italic font-weight-bold text-center mt-1">Dịch vụ kèm theo Tour </h5>
+                <div class="card-body">
+                    <p><a class="btn btn-info" href="@Url.Action("Create","ChiTietDichVu",new { id= item.ID})" role="button">Thêm mới</a></p>
+                    <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+                        <thead>
+                            <tr>
+                                <th width="5%">#</th>
+                                <th>
+                                    Dịch vụ
+                                </th>
+                                <th width="5%">Sửa</th>
+                                <th width="5%">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int sttu = 1; }
+                            @foreach (var dv in item.ChiTietDichVu)
+                            {
+                                <tr>
+                                    <td>@sttu</td>
+                                    <td>
+                                        @if (dv.DichVu == 0)
+                                        {
+                                            <span>Xe đưa đón</span>
+                                        }
+                                        else if (dv.DichVu == 1)
+                                        {
+                                            <span>Bửa ăn</span>
+                                        }
+                                        else if (dv.DichVu == 2)
+                                        {
+                                            <span>Vé Tham quan</span>
+                                        }
+                                        else if (dv.DichVu == 3)
+                                        {
+                                            <span>Bảo hiểm  </span>
+                                        }
+                                        else
+                                        {
+                                            <span>Hướng dẫn viên </span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Edit","ChiTietDichVu", new { id = dv.ID, idtour = item.ID })"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Delete","ChiTietDichVu", new { id = dv.ID, idtour = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                                    </td>
+                                </tr>
+                                sttu++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-                <a href="@Url.Action("Index")" class="btn btn-info d-flex justify-content-center">Quay về danh sách </a>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <table class="table table-bordered table-hover table-sm mb-0">
+                        <tr>
+                            <th width="5%">#</th>
+                            <th>
+                                Khách hàng
+                            </th>
+                            <th>
+                                Số chỗ
+                            </th>
+                        </tr>
+                        @{ int sthutu = 1; }
+                        @foreach (var kh in item.DatTour_ChiTiet.Where(dt => dt.DatTour.TinhTrang == 6))
+                        {
+                            <tr>
+                                <td>@sthutu</td>
+                                <td>
+                                    @kh.DatTour.HoVaTen
+                                </td>
+                                <td>
+                                    @kh.SoLuong
+                                </td>
+                            </tr>
+                            sthutu++;
+                        }
 
+                    </table>
+                </div>
             </div>
-            }
+            <a href="@Url.Action("Index")" class="btn btn-info d-flex justify-content-center">Quay về danh sách </a>
+
         </div>
+    }
+</div>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
@@ -107,7 +221,12 @@
     }
 
 </style>
+
 <script>
+    $(function () {
+        $('#AlertBox').removeClass('hide');
+        $('#AlertBox').delay(2000).slideUp(500);
+    });
 
     var myCarousel = document.querySelector('#carouselExampleIndicators')
     var carousel = new bootstrap.Carousel(myCarousel, {

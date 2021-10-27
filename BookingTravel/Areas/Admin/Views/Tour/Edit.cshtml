@@ -4,25 +4,14 @@
     ViewBag.Title = "Cập nhật Tour";
 }
 
-
-
 <div class="card mt-3">
     <div class="card-body">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ID)
-            <div class="form-group">
-                @Html.Label("Phương tiện")
-
-                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" })
-                @Html.ValidationMessageFor(model => model.ChiTietPhuongTien, "", new { @class = "text-danger" })
-            </div>
-
+           
             <div class="form-group">
                 @Html.LabelFor(model => model.TenTour, htmlAttributes: new { @class = "control-label " })
                 @Html.EditorFor(model => model.TenTour, new { htmlAttributes = new { @class = "form-control" } })
@@ -135,7 +124,6 @@
                 @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DonGia, "", new { @class = "text-danger" })
             </div>
-        </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label " })
@@ -158,10 +146,7 @@
             <div class="form-group mt-2">
                 <input type="submit" value="Cập nhật" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
             </div>
-
         }
-
-
     </div>
 </div>
 
