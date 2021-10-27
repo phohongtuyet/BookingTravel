@@ -22,18 +22,10 @@ namespace BookingTravel.Areas.Admin.Controllers
         }
 
         // GET: DatTour/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id)//id truyen vao
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            DatTour datTour = db.DatTour.Find(id);
-            if (datTour == null)
-            {
-                return HttpNotFound();
-            }
-            return View(datTour);
+            var datTour = db.DatTour.Include(d => d.DatTour_ChiTiet).Where(dt=>dt.ID == id); // loc tour theo id truyen vao
+            return View(datTour.ToList());
         }
 
         // GET: DatTour/Create

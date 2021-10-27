@@ -1,66 +1,76 @@
-﻿@model BookingTravel.Models.DatTour
+﻿@model IEnumerable<BookingTravel.Models.DatTour>
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title =  "Chi tiết đặt tour";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
 
-<h2>Details</h2>
+<div class="card mt-3">
+    <div class="card-body">
+        <table id="Panigation" class="table table-bordered table-hover table-sm mb-0">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        Tên Tour
+                    </th>                
+                    <th>
+                        Số lượng
+                    </th>
+                    <th>
+                         Đơn giá
+                    </th>
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    foreach (var ct in item.DatTour_ChiTiet)// tim trong item cái đặt chi tiết
+                    {
 
-<div>
-    <h4>DatTour</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DienThoaiDatTour)
-        </dt>
+                    <tr>
+                        <td>@stt</td>
+                     
+                        <td>
+                            @ct.Tour.TenTour
+                        </td>
+                        <td>
+                            @ct.SoLuong
+                        </td>
+                        <td>
+                            @ct.DonGia
 
-        <dd>
-            @Html.DisplayFor(model => model.DienThoaiDatTour)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HoVaTen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HoVaTen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDatHang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayDatHang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TinhTrang)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.KhachHang.HoVaten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.KhachHang.HoVaten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NhanVien.HoVaTen)
-        </dd>
-
-    </dl>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                        </td>
+                    </tr>
+                        stt++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#Panigation').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+                }
+            });
+        });
+    </script>
+}
