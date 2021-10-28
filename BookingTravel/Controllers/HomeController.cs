@@ -44,7 +44,10 @@ namespace BookingTravel.Controllers
         {
             return View();
         }
-
+        public ActionResult DatTourThanhCong()
+        {
+            return View();
+        }
         public ActionResult BestSale()
         {
             var tour = db.Tour.Include(t => t.ChiTietPhuongTien)
@@ -314,7 +317,7 @@ namespace BookingTravel.Controllers
                 cart.Clear();
 
                 // Quay về trang chủ
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("DatTourThanhCong", "Home");
             }
 
             return View(datHang);

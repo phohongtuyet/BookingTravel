@@ -151,6 +151,8 @@ namespace BookingTravel.Areas.Admin.Controllers
 
                 db.Entry(bv).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Cập nhật thành công", "success");
+
                 return RedirectToAction("Index");
             }
             ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", baiViet.NhanVien_ID);
@@ -180,6 +182,8 @@ namespace BookingTravel.Areas.Admin.Controllers
             BaiViet baiViet = db.BaiViet.Find(id);
             db.BaiViet.Remove(baiViet);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
+
             return RedirectToAction("Index");
         }
 

@@ -52,6 +52,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 db.KhachSan.Add(khachSan);
                 db.SaveChanges();
+                SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");
             }
 
@@ -84,6 +85,8 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 db.Entry(khachSan).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Cập nhật thành công", "success");
+
                 return RedirectToAction("Index");
             }
             return View(khachSan);
@@ -112,6 +115,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             KhachSan khachSan = db.KhachSan.Find(id);
             db.KhachSan.Remove(khachSan);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

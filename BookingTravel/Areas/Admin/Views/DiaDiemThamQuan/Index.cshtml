@@ -8,6 +8,12 @@
 
 <div class="card mt-3">
     <div class="card-body">
+        @if (TempData["AlertMessage"] != null)
+        {
+            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                @TempData["AlertMessage"]
+            </div>
+        }
         <p>
             <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
         </p>

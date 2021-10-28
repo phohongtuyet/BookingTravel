@@ -52,6 +52,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 db.PhuongTien.Add(phuongTien);
                 db.SaveChanges();
+                SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");
             }
 
@@ -84,6 +85,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 db.Entry(phuongTien).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Cập nhật thành công", "success");
                 return RedirectToAction("Index");
             }
             return View(phuongTien);
@@ -112,6 +114,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             PhuongTien phuongTien = db.PhuongTien.Find(id);
             db.PhuongTien.Remove(phuongTien);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

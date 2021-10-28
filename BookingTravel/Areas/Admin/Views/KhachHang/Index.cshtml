@@ -4,64 +4,89 @@
     ViewBag.Title = "Khách Hàng";
 }
 
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div class="card mt-3">
     <div class="card-body">
         <p>
             <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
         </p>
-        <table class="table table-bordered table-hover table-sm mb-0">
-            <tr>
-                <th width="5%">#</th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HoVaten)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DienThoai)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DiaChi)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TenDangNhap)
-                </th>
-                
-
-                <th width="5%">Sửa</th>
-                <th width="5%">Xóa</th>
-            </tr>
-            @{ int stt = 1; }
-            @foreach (var item in Model)
-            {
+        <table id="Panigation" class="table table-bordered table-hover display">
+            <thead>
                 <tr>
-                    <td>@stt</td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.HoVaten)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DienThoai)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiaChi)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TenDangNhap)
-                    </td>
-            
-                    <td class="text-center">
-                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-                    </td>
-                    <td class="text-center">
-                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-                    </td>
-                </tr>
-                stt++;
-            }
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HoVaten)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DienThoai)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DiaChi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TenDangNhap)
+                    </th>
 
+
+                    <th width="5%">Sửa</th>
+                    <th width="5%">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HoVaten)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DienThoai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenDangNhap)
+                        </td>
+
+                        <td class="text-center">
+                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                        </td>
+                    </tr>
+                    stt++;
+                }
+            </tbody>
         </table>
     </div>
 </div>
+@section Scripts{
+    <script>
 
+        $(function () {
+            $('#AlertBox').removeClass('hide');
+            $('#AlertBox').delay(2000).slideUp(500);
+        });
+
+        $(document).ready(function () {
+            $('#Panigation').DataTable({
+                "language": {
+                    "lengthMenu": "Số dòng _MENU_  trên trang ",
+                    "zeroRecords": "Không tìm thấy!!!",
+                    "info": "Trang  _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có sẵn dữ liệu",
+                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
+
+}
 
 

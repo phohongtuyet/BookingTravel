@@ -54,6 +54,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 db.DiaDiemThamQuan.Add(diaDiemThamQuan);
                 db.SaveChanges();
+                SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");
             }
 
@@ -88,6 +89,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 db.Entry(diaDiemThamQuan).State = EntityState.Modified;
                 db.SaveChanges();
+                SetAlert("Cập nhật thành công", "success");
                 return RedirectToAction("Index");
             }
             ViewBag.KhachSan_ID = new SelectList(db.KhachSan, "ID", "TenKhachSan", diaDiemThamQuan.KhachSan_ID);
@@ -117,6 +119,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             DiaDiemThamQuan diaDiemThamQuan = db.DiaDiemThamQuan.Find(id);
             db.DiaDiemThamQuan.Remove(diaDiemThamQuan);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
             return RedirectToAction("Index");
         }
 
