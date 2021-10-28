@@ -14,12 +14,15 @@
                     <th width="5%">#</th>
                     <th>
                         Tên Tour
-                    </th>                
+                    </th>
                     <th>
                         Số lượng
                     </th>
                     <th>
-                         Đơn giá
+                        Đơn giá
+                    </th>
+                    <th>
+                       Thành Tiền
                     </th>
                     <th width="5%">Sửa</th>
                     <th width="5%">Xóa</th>
@@ -32,26 +35,29 @@
                     foreach (var ct in item.DatTour_ChiTiet)// tim trong item cái đặt chi tiết
                     {
 
-                    <tr>
-                        <td>@stt</td>
-                     
-                        <td>
-                            @ct.Tour.TenTour
-                        </td>
-                        <td>
-                            @ct.SoLuong
-                        </td>
-                        <td>
-                            @ct.DonGia
+                        <tr>
+                            <td>@stt</td>
 
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-                        </td>
-                    </tr>
+                            <td>
+                                @ct.Tour.TenTour
+                            </td>
+                            <td>
+                                @ct.SoLuong
+                            </td>
+                            <td>
+                                @ct.DonGia
+
+                            </td>
+                            <td>
+                                @String.Format("{0:N0}", ct.SoLuong * ct.DonGia) VNĐ
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                            </td>
+                        </tr>
                         stt++;
                     }
                 }

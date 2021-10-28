@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BookingTravel.Models;
+using Newtonsoft.Json;
 
 namespace BookingTravel.Areas.Admin.Controllers
 {
@@ -20,7 +21,20 @@ namespace BookingTravel.Areas.Admin.Controllers
             var datTour = db.DatTour.Include(d => d.KhachHang).Include(d => d.NhanVien);
             return View(datTour.ToList());
         }
+        public ActionResult DoanhThu()
+        {
+            return View();
+        }
 
+        public ContentResult JSON()
+        {
+            
+
+            
+            JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
+            return Content(JsonConvert.SerializeObject(db.DatTour_ChiTiet.Include(d => d.DatTour).Select(s => new { s.SoLuong, s.DonGia, s.DatTour.NgayDatHang }).ToList(), _jsonSetting), "application/json");
+
+        }
         // GET: DatTour/Details/5
         public ActionResult Details(int? id)//id truyen vao
         {
