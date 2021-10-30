@@ -216,21 +216,21 @@
 
     #carouselExampleControls {
         width: 50%;
-        height: 50%;     
+        height: 50%;
         margin: auto;
     }
-
 </style>
+@section Scripts{
+    <script>
+        $(function () {
+            $('#AlertBox').removeClass('hide');
+            $('#AlertBox').delay(2000).slideUp(500);
+        });
 
-<script>
-    $(function () {
-        $('#AlertBox').removeClass('hide');
-        $('#AlertBox').delay(2000).slideUp(500);
-    });
-
-    var myCarousel = document.querySelector('#carouselExampleIndicators')
-    var carousel = new bootstrap.Carousel(myCarousel, {
-        interval: 500,
-        wrap: false
-    })
-</script>
+        var myCarousel = document.querySelector('#carouselExampleIndicators')
+        var carousel = new bootstrap.Carousel(myCarousel, {
+            interval: 500,
+            wrap: false
+        })
+    </script>
+    }

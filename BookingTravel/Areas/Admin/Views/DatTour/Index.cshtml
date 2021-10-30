@@ -56,34 +56,124 @@
                         </td>
 
                         <td>
-                            @if (item.TinhTrang == 0)
-                            {
-                                <span>Đơn đặt Tour mới</span>
-                            }
-                            else if (item.TinhTrang == 1)
-                            {
-                                <span>Đang xác nhận</span>
-                            }
-                            else if (item.TinhTrang == 2)
-                            {
-                                <span>Đã hủy</span>
-                            }
-                            else if (item.TinhTrang == 3)
-                            {
-                                <span>Đang thanh toán</span>
-                            }
-                            else if (item.TinhTrang == 4)
-                            {
-                                <span>Đã thanh toán</span>
-                            }
-                            else if (item.TinhTrang == 5)
-                            {
-                                <span>Thất bại</span>
-                            }
-                            else if (item.TinhTrang == 6)
-                            {
-                                <span>Thành công </span>
-                            }
+                            <select id="trangthai" onchange = "document.location.href = '/DatTour/TrangThai/' + @item.ID +'?tinhtrang='+ this.options[this.selectedIndex].value;">
+
+                                @if (item.TinhTrang == 0)
+                                {
+
+                                    <option value="0" selected>Đơn đặt Tour mới</option>
+
+                                    <option value="1">Đang xác nhận </option>
+
+                                    <option value="2">Đã hủy</option>
+
+                                    <option value="3">Đang thanh toán</option>
+
+                                    <option value="4">Đã thanh toán</option>
+
+                                    <option value="5">Thất bại</option>
+
+                                    <option value="6">Thành công </option>
+                                }
+                                else if (item.TinhTrang == 1)
+                                {
+                                    <option value="0">Đơn đặt Tour mới</option>
+
+                                    <option value="1" selected>Đang xác nhận</option>
+
+                                    <option value="2">Đã hủy</option>
+
+                                    <option value="3">Đang thanh toán</option>
+
+                                    <option value="4">Đã thanh toán</option>
+
+                                    <option value="5">Thất bại</option>
+
+                                    <option value="6">Thành công </option>
+                                }
+                                else if (item.TinhTrang == 2)
+                                {
+                                    <option value="0">Đơn đặt Tour mới</option>
+
+                                    <option value="1">Đang xác nhận</option>
+
+                                    <option value="2" selected>Đã hủy</option>
+
+                                    <option value="3">Đang thanh toán</option>
+
+                                    <option value="4">Đã thanh toán</option>
+
+                                    <option value="5">Thất bại</option>
+
+                                    <option value="6">Thành công </option>
+                                }
+                                else if (item.TinhTrang == 3)
+                                {
+                                    <option value="0">Đơn đặt Tour mới</option>
+
+                                    <option value="1">Đang xác nhận</option>
+
+                                    <option value="2">Đã hủy</option>
+
+                                    <option value="3" selected>Đang thanh toán</option>
+
+                                    <option value="4">Đã thanh toán</option>
+
+                                    <option value="5">Thất bại</option>
+
+                                    <option value="6">Thành công </option>
+                                }
+                                else if (item.TinhTrang == 4)
+                                {
+                                    <option value="0">Đơn đặt Tour mới</option>
+
+                                    <option value="1">Đang xác nhận</option>
+
+                                    <option value="2">Đã hủy</option>
+
+                                    <option value="3">Đang thanh toán</option>
+
+                                    <option value="4" selected>Đã thanh toán</option>
+
+                                    <option value="5">Thất bại</option>
+
+                                    <option value="6">Thành công </option>
+                                }
+                                else if (item.TinhTrang == 5)
+                                {
+                                    <option value="0">Đơn đặt Tour mới</option>
+
+                                    <option value="1">Đang xác nhận</option>
+
+                                    <option value="2">Đã hủy</option>
+
+                                    <option value="3">Đang thanh toán</option>
+
+                                    <option value="4">Đã thanh toán</option>
+
+                                    <option value="5" selected>Thất bại</option>
+
+                                    <option value="6">Thành công </option>
+                                }
+                                else if (item.TinhTrang == 6)
+                                {
+                                    <option value="0">Đơn đặt Tour mới</option>
+
+                                    <option value="1">Đang xác nhận</option>
+
+                                    <option value="2">Đã hủy</option>
+
+                                    <option value="3">Đang thanh toán</option>
+
+                                    <option value="4">Đã thanh toán</option>
+
+                                    <option value="5">Thất bại</option>
+
+                                    <option value="6" selected>Thành công </option>
+                                }
+
+
+                            </select>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.KhachHang.HoVaten)
@@ -91,7 +181,6 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
                         </td>
-
                         <td class="text-center">
                             <a href="@Url.Action("Details", new { id = item.ID })"><i class="fas fa-eye"></i></a>
                         </td>
@@ -109,14 +198,20 @@
     </div>
 </div>
 @section Scripts{
-    <script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
 
+    <script type="text/javascript">
         $(function () {
             $('#AlertBox').removeClass('hide');
             $('#AlertBox').delay(2000).slideUp(500);
         });
+        
+        
 
-        $(document).ready(function () {
+        $(document).ready(function () {        
+           
+
             $('#Panigation').DataTable({
                 "language": {
                     "lengthMenu": "Số dòng _MENU_  trên trang ",
@@ -128,7 +223,6 @@
             });
         });
     </script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
 
 }
 

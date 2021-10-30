@@ -64,6 +64,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                 }
 
             }
+            SetAlert("Cập nhật thành công dịch vụ của Tour", "success");
             return RedirectToAction("Details", "Tour", new { id = id });
         }
 
@@ -88,14 +89,14 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Tour_ID,DichVu")] ChiTietDichVu chiTietDichVu)
+        public ActionResult Edit([Bind(Include = "ID,Tour_ID,DichVu")] ChiTietDichVu chiTietDichVu,int idtour)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(chiTietDichVu).State = EntityState.Modified;
                 db.SaveChanges();
                 SetAlert("Cập nhật thành công dịch vụ của Tour", "success");
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Tour", new { id = idtour });
             }
             ViewBag.Tour_ID = new SelectList(db.Tour, "ID", "TenTour", chiTietDichVu.Tour_ID);
             return View(chiTietDichVu);
