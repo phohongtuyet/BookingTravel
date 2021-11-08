@@ -64,7 +64,8 @@ namespace BookingTravel.Areas.Admin.Controllers
 					Session["MaNhanVien"] = taiKhoan.ID;
 					Session["HoTenNhanVien"] = taiKhoan.HoVaTen;
 					Session["Quyen"] = taiKhoan.Quyen;
-
+					Session["DiaChi"] = taiKhoan.DiaChi;
+					Session["DienThoai"] = taiKhoan.DienThoai;
 					// Quay về trang chủ
 					return RedirectToAction("Index", "Home");
 				}

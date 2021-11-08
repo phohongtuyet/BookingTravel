@@ -137,6 +137,22 @@ namespace BookingTravel.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Admin/HoaDon/Details/5
+        public ActionResult HoaDon(int id)
+        {
+            var datTour_ChiTiet = db.DatTour.Where(p => p.ID == id).SingleOrDefault();
+
+            return View(datTour_ChiTiet);
+        }
+
+        public ActionResult InHoaDon(int id)
+        {
+            var datTour_ChiTiet = db.DatTour.Where(p => p.ID == id).SingleOrDefault();
+            datTour_ChiTiet.NhanVien_ID = Convert.ToInt32(Session["ID"]);
+
+            return View(datTour_ChiTiet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

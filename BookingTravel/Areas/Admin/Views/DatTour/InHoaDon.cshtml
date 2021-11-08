@@ -1,0 +1,182 @@
+﻿@model BookingTravel.Models.DatTour
+
+@{
+    ViewBag.Title = "Hóa Đơn ";
+
+
+}
+<div class="breadcrumb_section bg_gray page-title-mini">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+
+            <ol class="breadcrumb align-content-md-end">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index")">Danh Sách</a></li>
+                <li class="breadcrumb-item active">@ViewBag.Title</li>
+            </ol>
+
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+
+                <!-- Main content -->
+                <div class="invoice p-3 mb-3 mt-2">
+                    <!-- title row -->
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>
+                                <i class="fas fa-globe"></i> Khách Sạn Virtoria
+                                <small class="float-right">Ngày Lập Hóa Đơn: @DateTime.Now</small>
+                            </h4>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- info row -->
+                    <div class="row invoice-info">
+                        <div class="col-sm-4 invoice-col">
+                            <strong>
+                                Thông Tin Nhân Viên
+                            </strong>
+                            <address>
+                                Họ Tên Nhân Viên :@Session["HoVaTen"].ToString()
+                                <br>
+                                Địa Chỉ: @Session["DiaChi"].ToString()<br>
+                                
+                                Số Điện Thoại: @Session["DienThoai"].ToString()<br>
+                              
+                            </address>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 invoice-col">
+                            <strong>
+                                Thông Tin Khách Hàng
+                            </strong>
+                            <address>
+                                Họ Tên Khách Hàng : @Model.KhachHang.HoVaten
+                                <br>
+                                Địa Chỉ : @Model.KhachHang.DiaChi<br>
+                               
+                                Số Điện Thoại: @Model.KhachHang.DienThoai<br>
+                                
+                            </address>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-4 invoice-col">
+                            <b>Phiếu Đặt Phòng : @Model.ID</b><br>
+                            <b>Ngày Đặt Phòng: </b> @Model.NgayDatHang<br>
+
+
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="5%">#</th>
+                                        <td>Tên Tour</td>
+                                        <td>Số Lượng Người</td>
+                                        <td>Diện Tích</td>
+                                        <td>Đơn Giá</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int stt = 1; }
+                                    @foreach (var item in Model.DatTour_ChiTiet)
+                                    {
+                                    <tr>
+                                        <td>@stt</td>
+                                        <td>@item.Tour.TenTour</td>
+                                        <td>@item.Tour.SoLuong</td>
+                                        <td>@item.Tour.DatTour_ChiTiet</td>
+
+                                        <td>
+                                            @{
+                                                int dongia = Convert.ToInt32(item.Phong.Gia);
+                                            }
+                                            @String.Format("{0:N0}", dongia) VND
+                                        </td>
+                                    </tr>
+
+                                        stt++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-6">
+                            <p class="lead">Phương Thức Thanh Toán:</p>
+                            @if (Model.TinhTrang == 0)
+                            {
+                                <span>Thanh toán tiền mặt khi nhận hàng</span>
+                            }
+                            else if (Model.TinhTrang == 1)
+                            {
+                                <span>Thẻ ATM đăng ký Internet Banking (Miễn phí thanh toán)</span>
+                            }
+                            else if (Model.TinhTrang == 2)
+                            {
+                                <span>Thanh Toán bằng thẻ quốc tế Visa, Master</span>
+                            }
+
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+
+                                        
+                                        </tr>
+                                        <tr>
+                                            <th>Thành Tiền:</th>
+                                            <td>
+                                                @{
+
+
+                                                    decimal ThanhTien = Model.DatTour_ChiTiet.Sum(n => n.SoLuong * n.Tour.DonGia).Value;
+                                                }
+                                                @String.Format("{0:N0}", ThanhTien) VND
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- this row will not appear when printing -->
+                    <div class="row no-print">
+                        <div class="col-12">
+                            <a type="button" class="btn btn-outline-info float-right" href="@Url.Action("InHoaDon","PhieuDatPhong", new { id = Model.ID})"><i class="fas fa-print mr-2"></i>Print</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- /.invoice -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+@section Scripts{
+
+
+}
