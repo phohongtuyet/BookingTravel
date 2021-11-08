@@ -84,7 +84,7 @@
                                             <tr>
                                                 <td>@stt</td>
                                                 <td>@item.Tour.TenTour</td>
-                                                <td>@item.Tour.SoLuong</td>
+                                                <td>@item.SoLuong</td>
                                                 
 
                                                 <td>
@@ -139,7 +139,7 @@
                                                     @{
 
 
-                                                        decimal ThanhTien = Model.DatTour_ChiTiet.Sum(n => n.SoLuong * n.Tour.DonGia).Value;
+                                                        decimal ThanhTien = Model.DatTour_ChiTiet.Sum(n => n.DonGia * n.SoLuong).Value;
                                                     }
                                                     @String.Format("{0:N0}", ThanhTien) VND
                                                 </td>
