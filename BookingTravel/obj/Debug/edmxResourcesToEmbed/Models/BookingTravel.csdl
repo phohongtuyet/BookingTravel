@@ -72,6 +72,15 @@
       <End Role="Tour" EntitySet="Tour" />
       <End Role="ChiTietDichVu" EntitySet="ChiTietDichVu" />
     </AssociationSet>
+    <EntitySet Name="BangPhanCong" EntityType="BookingTravelModel.BangPhanCong" />
+    <AssociationSet Name="FK__BangPhanC__NhanV__6754599E" Association="BookingTravelModel.FK__BangPhanC__NhanV__6754599E">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="BangPhanCong" EntitySet="BangPhanCong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BangPhanC__Tour___68487DD7" Association="BookingTravelModel.FK__BangPhanC__Tour___68487DD7">
+      <End Role="Tour" EntitySet="Tour" />
+      <End Role="BangPhanCong" EntitySet="BangPhanCong" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhuongTien">
     <Key>
@@ -215,6 +224,7 @@
     <Property Name="Khoa" Type="Byte" />
     <NavigationProperty Name="BaiViet" Relationship="BookingTravelModel.FK__BaiViet__NhanVie__4222D4EF" FromRole="NhanVien" ToRole="BaiViet" />
     <NavigationProperty Name="DatTour" Relationship="BookingTravelModel.FK__DatTour__NhanVie__4D94879B" FromRole="NhanVien" ToRole="DatTour" />
+    <NavigationProperty Name="BangPhanCong" Relationship="BookingTravelModel.FK__BangPhanC__NhanV__6754599E" FromRole="NhanVien" ToRole="BangPhanCong" />
   </EntityType>
   <EntityType Name="Tour">
     <Key>
@@ -235,6 +245,7 @@
     <NavigationProperty Name="DatTour_ChiTiet" Relationship="BookingTravelModel.FK__DatTour_C__Tour___59FA5E80" FromRole="Tour" ToRole="DatTour_ChiTiet" />
     <NavigationProperty Name="HinhAnh" Relationship="BookingTravelModel.FK__HinhAnh__Tour_ID__4AB81AF0" FromRole="Tour" ToRole="HinhAnh" />
     <NavigationProperty Name="ChiTietDichVu" Relationship="BookingTravelModel.FK__ChiTietDi__Tour___5EBF139D" FromRole="Tour" ToRole="ChiTietDichVu" />
+    <NavigationProperty Name="BangPhanCong" Relationship="BookingTravelModel.FK__BangPhanC__Tour___68487DD7" FromRole="Tour" ToRole="BangPhanCong" />
   </EntityType>
   <Association Name="FK__BaiViet__NhanVie__4222D4EF">
     <End Type="BookingTravelModel.NhanVien" Role="NhanVien" Multiplicity="0..1" />
@@ -421,6 +432,46 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="ChiTietDichVu">
+        <PropertyRef Name="Tour_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BangPhanCong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NhanVien_ID" Type="Int32" />
+    <Property Name="Tour_ID" Type="Int32" />
+    <Property Name="NgayBD" Type="DateTime" Precision="0" />
+    <Property Name="NgayKT" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="NhanVien" Relationship="BookingTravelModel.FK__BangPhanC__NhanV__6754599E" FromRole="BangPhanCong" ToRole="NhanVien" />
+    <NavigationProperty Name="Tour" Relationship="BookingTravelModel.FK__BangPhanC__Tour___68487DD7" FromRole="BangPhanCong" ToRole="Tour" />
+  </EntityType>
+  <Association Name="FK__BangPhanC__NhanV__6754599E">
+    <End Type="BookingTravelModel.NhanVien" Role="NhanVien" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BookingTravelModel.BangPhanCong" Role="BangPhanCong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BangPhanCong">
+        <PropertyRef Name="NhanVien_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BangPhanC__Tour___68487DD7">
+    <End Type="BookingTravelModel.Tour" Role="Tour" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BookingTravelModel.BangPhanCong" Role="BangPhanCong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tour">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BangPhanCong">
         <PropertyRef Name="Tour_ID" />
       </Dependent>
     </ReferentialConstraint>

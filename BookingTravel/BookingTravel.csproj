@@ -141,6 +141,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChiTietDichVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChiTietPhuongTienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BangPhanCongController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
@@ -154,6 +155,9 @@
     <Compile Include="Libs\Images.cs" />
     <Compile Include="Libs\SHA1.cs" />
     <Compile Include="Models\BaiViet.cs">
+      <DependentUpon>BookingTravel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BangPhanCong.cs">
       <DependentUpon>BookingTravel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BinhLuan.cs">
@@ -2383,7 +2387,6 @@
     <Content Include="Areas\Admin\Views\Home\Tour.cshtml" />
     <Content Include="Areas\Admin\Views\DatTour\DoanhThu.cshtml" />
     <Content Include="Areas\Admin\Views\DatTour\InHoaDon.cshtml" />
-    <Content Include="Areas\Admin\Views\DatTour\HoaDon.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -2492,6 +2495,11 @@
     <Content Include="Areas\Admin\Views\ChiTietDichVu\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ChiTietDichVu\Index.cshtml" />
     <Content Include="Views\Home\DatTourThanhCong.cshtml" />
+    <Content Include="Areas\Admin\Views\BangPhanCong\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BangPhanCong\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BangPhanCong\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BangPhanCong\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BangPhanCong\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

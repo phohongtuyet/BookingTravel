@@ -40,5 +40,6 @@ namespace BookingTravel.Models
         public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<ChiTietDichVu> ChiTietDichVu { get; set; }
+        public virtual DbSet<BangPhanCong> BangPhanCong { get; set; }
     }
 }

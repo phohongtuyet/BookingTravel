@@ -1,0 +1,40 @@
+﻿@model BookingTravel.Models.BangPhanCong
+
+@{
+    ViewBag.Title = "Thêm phân công";
+}
+
+
+<div class="card mt-3">
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "BangPhanCong", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.Label("Người hướng dẫn")
+                @Html.DropDownListFor(model => model.NhanVien_ID, new SelectList(@ViewBag.NhanVien_ID, "Value", "Text"), "Chọn nhân viên", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NhanVien_ID, "", new { @class = "text-danger" })
+                @if (!String.IsNullOrEmpty(ViewData.ModelState["UploadError"].Errors[0].ErrorMessage))
+                {
+                    <span class="d-block text-danger">@ViewData.ModelState["UploadError"].Errors[0].ErrorMessage</span>
+                }
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Tour")
+                @Html.DropDownListFor(model => model.Tour_ID, new SelectList(@ViewBag.Tour_ID, "Value", "Text"), "Chọn Tour", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Tour_ID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mt-2">
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+            </div>
+        }
+
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

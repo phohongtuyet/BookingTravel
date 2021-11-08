@@ -20,6 +20,7 @@ namespace BookingTravel.Models
         {
             this.BaiViet = new HashSet<BaiViet>();
             this.DatTour = new HashSet<DatTour>();
+            this.BangPhanCong = new HashSet<BangPhanCong>();
         }
 
         [Display(Name = "Mã NV")]
@@ -67,5 +68,7 @@ namespace BookingTravel.Models
         public virtual ICollection<BaiViet> BaiViet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DatTour> DatTour { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BangPhanCong> BangPhanCong { get; set; }
     }
 }

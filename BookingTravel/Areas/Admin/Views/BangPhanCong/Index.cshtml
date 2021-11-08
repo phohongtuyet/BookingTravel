@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BookingTravel.Models.BangPhanCong>
+
+@{
+    ViewBag.Title = "Phân công hướng dẫn viên";
+}
+
+
+<div class="card mt-3">
+    <div class="card-body">
+        <p>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm phân công</a>
+        </p>
+        <table class="table table-bordered table-hover table-sm mb-0">
+            <tr>
+                <th width="5%">#</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tour.TenTour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayBD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NgayKT)
+                </th>
+                <th width="5%">Sửa</th>
+                <th width="5%">Xóa</th>
+            </tr>
+            @{ int stt = 1; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tour.TenTour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayBD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayKT)
+                    </td>
+
+
+                    <td class="text-center">
+                        <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+    </div>
+</div>

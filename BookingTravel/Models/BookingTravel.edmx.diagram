@@ -34,6 +34,9 @@
         <EntityTypeShape EntityType="BookingTravelModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="BookingTravelModel.ChiTietDichVu" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="BookingTravelModel.FK__ChiTietDi__Tour___5EBF139D" />
+        <EntityTypeShape EntityType="BookingTravelModel.BangPhanCong" Width="1.5" PointX="4.75" PointY="17.125" />
+        <AssociationConnector Association="BookingTravelModel.FK__BangPhanC__NhanV__6754599E" />
+        <AssociationConnector Association="BookingTravelModel.FK__BangPhanC__Tour___68487DD7" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

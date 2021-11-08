@@ -22,6 +22,16 @@ namespace BookingTravel.Areas.Admin.Controllers
             return View(datTour.ToList());
         }
 
+        //in hóa đơn
+        public ActionResult InHoaDon(int id)
+        {
+            var datTour_ChiTiet = db.DatTour.Where(p => p.ID == id).SingleOrDefault();
+            datTour_ChiTiet.NhanVien_ID = Convert.ToInt32(Session["ID"]);
+
+            return View(datTour_ChiTiet);
+        }
+
+        // trạng thái tour hoạt động/chưa hoạt động
         public ActionResult TrangThai(int id, short tinhtrang)
         {
             DatTour dt = db.DatTour.Find(id);
@@ -32,6 +42,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             return RedirectToAction("Index","DatTour", new { area = "Admin" });
         }
 
+        //Biểu đồ doanh thu thư viên canvas
         public ActionResult DoanhThu()
         {
             return View();
@@ -42,6 +53,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
             return Content(JsonConvert.SerializeObject(db.DatTour_ChiTiet.Include(d => d.DatTour).Where(dt=>dt.DatTour.TinhTrang == 6).Select(s => new { s.SoLuong, s.DonGia, s.DatTour.NgayDatHang }).ToList(), _jsonSetting), "application/json");
         }
+
         // GET: DatTour/Details/5
         public ActionResult Details(int? id)//id truyen vao
         {
@@ -135,23 +147,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             db.DatTour.Remove(datTour);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        // GET: Admin/HoaDon/Details/5
-        public ActionResult HoaDon(int id)
-        {
-            var datTour_ChiTiet = db.DatTour.Where(p => p.ID == id).SingleOrDefault();
-
-            return View(datTour_ChiTiet);
-        }
-
-        public ActionResult InHoaDon(int id)
-        {
-            var datTour_ChiTiet = db.DatTour.Where(p => p.ID == id).SingleOrDefault();
-            datTour_ChiTiet.NhanVien_ID = Convert.ToInt32(Session["ID"]);
-
-            return View(datTour_ChiTiet);
-        }
+        }    
 
         protected override void Dispose(bool disposing)
         {

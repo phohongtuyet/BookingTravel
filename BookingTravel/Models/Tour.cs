@@ -24,6 +24,7 @@ namespace BookingTravel.Models
             this.DatTour_ChiTiet = new HashSet<DatTour_ChiTiet>();
             this.HinhAnh = new HashSet<HinhAnh>();
             this.ChiTietDichVu = new HashSet<ChiTietDichVu>();
+            this.BangPhanCong = new HashSet<BangPhanCong>();
         }
 
         [Display(Name = "Mã Tour ")]
@@ -44,11 +45,13 @@ namespace BookingTravel.Models
         [Display(Name = "Ngày bắt đầu")]
         [Required(ErrorMessage = "Chưa chọn ngày bắt đầu!")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> NgayBD { get; set; }
 
         [Display(Name = "Ngày kết thúc")]
         [Required(ErrorMessage = "Chưa chọn ngày kết thúc!")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> NgayKT { get; set; }
 
         [Display(Name = "Đơn giá")]
@@ -90,5 +93,7 @@ namespace BookingTravel.Models
         public virtual ICollection<HinhAnh> HinhAnh { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDichVu> ChiTietDichVu { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BangPhanCong> BangPhanCong { get; set; }
     }
 }
