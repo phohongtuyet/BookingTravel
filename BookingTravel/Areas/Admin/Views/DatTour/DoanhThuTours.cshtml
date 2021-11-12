@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BookingTravel.Models.DatTour>
+@{
+    ViewBag.Title = "Doanh thu của theo từng tour";
+
+}
+<div class="card-body">
+    <form action="@Url.Action("DoanhThuTours","DatTour")" method="post" class="needs-validation" novalidate>
+        <div class="row g-3">
+            <div class="col">
+                <div class="form-group">
+                    <div class="input-group mb-3 has-validation">
+                        <label class="input-group-text" for="inputGroupSelect01">ngày bắt đầu</label>
+                        <input type="date" class="form-control" name="NgayBD" id="NgayBD" style="width:155px" required>
+                        <div class="invalid-feedback"> Vui lòng chọn ngày bắt đầu.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <div class="input-group mb-3 has-validation">
+                        <label class="input-group-text" for="inputGroupSelect01">ngày kết thúc</label>
+                        <input type="date" class="form-control" name="NgayKT" id="NgayKT" style="width:155px" required>
+                        <div class="invalid-feedback">Vui lòng chọn ngày kết thúc.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <button class="btn btn-info" type="submit">Thống kê </button>
+            </div>
+        </div>
+    </form>
+    @if (Model.Count() > 0)
+    {
+        <table id="Panigation" class="table table-bordered table-hover display">
+            <thead>
+                <tr>
+                    <th width="3%">#</th>
+                    <th class="text-center">Tour</th>
+                    <th class="text-center">Bán được</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+
+                    foreach (var sl in item.DatTour_ChiTiet)
+                    {
+                        <tr>
+                            <td class="text-center">@stt</td>
+                            <td>
+                                @sl.Tour.TenTour
+                            </td>
+                            <td class="text-right">@String.Format("{0:N0}", sl.SoLuong * sl.DonGia) VNĐ</td>
+
+                        </tr>
+                    }
+                    stt++;
+
+                }
+
+            </tbody>
+        </table>
+
+    }
+    else
+    {
+        <div class="text-center " style="width:100%; margin-top:10px">
+            <div class="alert alert-info" role="alert">
+                Không có Tour được đặt trong thời gian tìm kiếm!<a href="@Url.Action("index","Home")" class="alert-link"></a>.
+            </div>
+        </div>
+
+    }
+</div>
+

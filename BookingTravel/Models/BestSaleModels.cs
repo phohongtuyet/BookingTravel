@@ -71,4 +71,20 @@ namespace BookingTravel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnh { get; set; }
     }
+
+    public class DoanhThuTour
+    {
+
+        public Nullable<int> Tour_ID { get; set; }
+        public int ID { get; set; }
+        public string TenTour { get; set; }
+        public Nullable<short> SoLuong { get; set; }
+        public Nullable<int> DonGia { get; set; }
+        public decimal thanhtien { get; set; }
+
+
+
+    }
+
+
 }

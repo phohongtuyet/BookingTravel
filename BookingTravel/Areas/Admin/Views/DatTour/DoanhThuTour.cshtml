@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BookingTravel.Models.DatTour>
+@{
+    ViewBag.Title = "Doanh thu của theo từng tour";
+
+}
+<div class="card-body">
+    <form action="@Url.Action("DoanhThuTours","DatTour")" method="post" class="needs-validation" novalidate>
+        <div class="row g-3">
+            <div class="col">
+                <div class="form-group">
+                    <div class="input-group mb-3 has-validation">
+                        <label class="input-group-text" for="inputGroupSelect01">ngày bắt đầu</label>
+                        <input type="date" class="form-control" name="NgayBD" id="NgayBD" style="width:155px" required>
+                        <div class="invalid-feedback"> Vui lòng chọn ngày bắt đầu.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="form-group">
+                    <div class="input-group mb-3 has-validation">
+                        <label class="input-group-text" for="inputGroupSelect01">ngày kết thúc</label>
+                        <input type="date" class="form-control" name="NgayKT" id="NgayKT" style="width:155px" required>
+                        <div class="invalid-feedback">Vui lòng chọn ngày kết thúc.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <button class="btn btn-info" type="submit">Thống kế</button>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+
+    <script>
+
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        const format1 = "YYYY-MM-DD HH:mm:ss"
+        var date2 = new Date();
+        dateTime1 = moment(date1).format(format1);
+        document.getElementById("demo1").innerHTML = dateTime1;
+
+
+    </script>
+}

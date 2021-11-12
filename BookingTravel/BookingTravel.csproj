@@ -2387,6 +2387,8 @@
     <Content Include="Areas\Admin\Views\Home\Tour.cshtml" />
     <Content Include="Areas\Admin\Views\DatTour\DoanhThu.cshtml" />
     <Content Include="Areas\Admin\Views\DatTour\InHoaDon.cshtml" />
+    <Content Include="Areas\Admin\Views\DatTour\DoanhThuTours.cshtml" />
+    <Content Include="Areas\Admin\Views\DatTour\DoanhThuTour.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

@@ -19,6 +19,8 @@ namespace BookingTravel.Areas.Admin.Controllers
 			return View();
 		}
 
+		
+
 		public ActionResult Tour()
 		{
 			var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Where(r => r.SoLuong > 0).ToList();

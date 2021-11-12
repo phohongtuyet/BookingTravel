@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,6 +47,47 @@ namespace BookingTravel.Areas.Admin.Controllers
         public ActionResult DoanhThu()
         {
             return View();
+        }
+        public ActionResult DoanhThuTour()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DoanhThuTours(FormCollection collection)
+        {
+            DateTime NgayBD = Convert.ToDateTime(collection["NgayBD"].ToString());
+            DateTime NgayKT = Convert.ToDateTime(collection["NgayKT"].ToString());
+            var tour = db.DatTour.Include(t => t.DatTour_ChiTiet).Where(r => r.NgayDatHang >= NgayBD && r.NgayDatHang <= NgayKT).ToList();
+            return View(tour);
+
+            /* select *
+                from dattour
+                where dattour.ngaydathang >= '2021-11-09 12:12:00' and dattour.ngaydathang <= '2021-11-11 12:12:00'
+                and dattour.tinhtrang = 6
+        
+
+            DateTime dt = Convert.ToDateTime(NgayBD);
+            DateTime kt = Convert.ToDateTime(NgayKT);
+
+            var tour = (from dh in db.DatTour
+                               join ct in db.DatTour_ChiTiet on dh.ID equals ct.DatTour_ID
+                               join t in db.Tour on dh.ID equals t.ID
+                               where ( 
+                                       dh.TinhTrang == 6
+                                       && dh.NgayDatHang >= dt
+                                       && dh.NgayDatHang <= kt)
+                               select new DoanhThuTour()
+                               {
+                                   TenTour=t.TenTour,
+                                   SoLuong=ct.SoLuong,
+                                   DonGia=ct.DonGia,
+                                   Tour_ID = ct.Tour_ID
+                               }).ToList();
+
+            return View(tour);    */
+
+
         }
 
         public ContentResult JSON()
