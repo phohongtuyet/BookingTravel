@@ -78,7 +78,7 @@ namespace BookingTravel.Models
         public Nullable<int> Tour_ID { get; set; }
         public int ID { get; set; }
         public string TenTour { get; set; }
-        public Nullable<short> SoLuong { get; set; }
+        public Nullable<int> SoLuong { get; set; }
         public Nullable<int> DonGia { get; set; }
         public decimal thanhtien { get; set; }
 

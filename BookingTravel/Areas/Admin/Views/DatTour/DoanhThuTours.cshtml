@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookingTravel.Models.DatTour>
+﻿@model IEnumerable<BookingTravel.Models.DoanhThuTour>
 @{
     ViewBag.Title = "Doanh thu của theo từng tour";
 
@@ -47,18 +47,16 @@
                 @{ int stt = 1; }
                 @foreach (var item in Model)
                 {
+                  
+                    <tr>
+                        <td class="text-center">@stt</td>
+                        <td>
+                            @item.TenTour
+                        </td>
+                        <td class="text-right">@String.Format("{0:N0}", item.SoLuong * item.DonGia) VNĐ</td>
 
-                    foreach (var sl in item.DatTour_ChiTiet)
-                    {
-                        <tr>
-                            <td class="text-center">@stt</td>
-                            <td>
-                                @sl.Tour.TenTour
-                            </td>
-                            <td class="text-right">@String.Format("{0:N0}", sl.SoLuong * sl.DonGia) VNĐ</td>
-
-                        </tr>
-                    }
+                    </tr>
+                    
                     stt++;
 
                 }
@@ -77,4 +75,36 @@
 
     }
 </div>
+@section Scripts {
+    <script src="https://momentjs.com/downloads/moment.js"></script>
 
+    <script>
+
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+
+        const format1 = "YYYY-MM-DD HH:mm:ss"
+        var date2 = new Date();
+        dateTime1 = moment(date1).format(format1);
+        document.getElementById("demo1").innerHTML = dateTime1;
+
+
+    </script>
+}

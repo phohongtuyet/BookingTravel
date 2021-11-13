@@ -43,51 +43,39 @@ namespace BookingTravel.Areas.Admin.Controllers
             return RedirectToAction("Index","DatTour", new { area = "Admin" });
         }
 
-        //Biểu đồ doanh thu thư viên canvas
-        public ActionResult DoanhThu()
-        {
-            return View();
-        }
-        public ActionResult DoanhThuTour()
+         public ActionResult DoanhThuTour()
         {
             return View();
         }
 
+        // thống kê doanh thu theo tour
         [HttpPost]
         public ActionResult DoanhThuTours(FormCollection collection)
         {
             DateTime NgayBD = Convert.ToDateTime(collection["NgayBD"].ToString());
             DateTime NgayKT = Convert.ToDateTime(collection["NgayKT"].ToString());
-            var tour = db.DatTour.Include(t => t.DatTour_ChiTiet).Where(r => r.NgayDatHang >= NgayBD && r.NgayDatHang <= NgayKT).ToList();
-            return View(tour);
 
-            /* select *
-                from dattour
-                where dattour.ngaydathang >= '2021-11-09 12:12:00' and dattour.ngaydathang <= '2021-11-11 12:12:00'
-                and dattour.tinhtrang = 6
-        
+            var a = (from order in db.DatTour
+                     join od in db.DatTour_ChiTiet on order.ID equals od.DatTour_ID
+                     join t in db.Tour on od.Tour_ID equals t.ID
+                     where (order.TinhTrang == 6
+                            && order.NgayDatHang >= NgayBD
+                            && order.NgayDatHang <= NgayKT)
+                     group od by t.TenTour into sa
+                     select new DoanhThuTour()
+                     {
+                         TenTour = sa.Key,
+                         SoLuong = sa.Sum(g => g.SoLuong),
+                         DonGia = sa.Select(t=>t.DonGia).FirstOrDefault() 
+                     }).ToList();
 
-            DateTime dt = Convert.ToDateTime(NgayBD);
-            DateTime kt = Convert.ToDateTime(NgayKT);
+            return View(a);
+        }
 
-            var tour = (from dh in db.DatTour
-                               join ct in db.DatTour_ChiTiet on dh.ID equals ct.DatTour_ID
-                               join t in db.Tour on dh.ID equals t.ID
-                               where ( 
-                                       dh.TinhTrang == 6
-                                       && dh.NgayDatHang >= dt
-                                       && dh.NgayDatHang <= kt)
-                               select new DoanhThuTour()
-                               {
-                                   TenTour=t.TenTour,
-                                   SoLuong=ct.SoLuong,
-                                   DonGia=ct.DonGia,
-                                   Tour_ID = ct.Tour_ID
-                               }).ToList();
-
-            return View(tour);    */
-
-
+        //Biểu đồ doanh thu thư viên canvas
+        public ActionResult DoanhThu()
+        {
+            return View();
         }
 
         public ContentResult JSON()
