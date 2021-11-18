@@ -71,16 +71,17 @@ namespace BookingTravel.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-               
+
                 var check = db.NhanVien.FirstOrDefault(r => r.TenDangNhap == nhanVien.TenDangNhap);
                 if (check == null)
                 {
                     nhanVien.MatKhau = SHA1.ComputeHash(nhanVien.MatKhau);
                     nhanVien.XacNhanMatKhau = SHA1.ComputeHash(nhanVien.XacNhanMatKhau);
-                   
+                    nhanVien.Khoa = 1;
+
                     db.NhanVien.Add(nhanVien);
                     db.SaveChanges();
-                   /// SetAlert("Thêm mới thành công", "success");
+                    SetAlert("Thêm mới thành công", "success");
                     return RedirectToAction("Index");
                 }
                 else
@@ -143,6 +144,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                     n.Quyen = nhanVien.Quyen;
                     n.Khoa = nhanVien.Khoa;
                 }
+                SetAlert("Cập nhật thành công", "success");
                 db.Entry(n).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -173,6 +175,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             NhanVien nhanVien = db.NhanVien.Find(id);
             db.NhanVien.Remove(nhanVien);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

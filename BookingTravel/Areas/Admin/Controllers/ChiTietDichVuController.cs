@@ -48,21 +48,17 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ChiTietDichVu ct, int id)
+        public ActionResult Create(ChiTietDichVu ct, int id)//truyền id
         {
-            foreach (var n in ct.selectedServe)
-            {
-                if (n > 0)
-                {
+            foreach (var n in ct.selectedServe) // tìm dịch vụ trong mảng
+            {              
                     var service = new ChiTietDichVu
                     {
-                        DichVu = n,
-                        Tour_ID = id
+                        DichVu = n, // lưu dịch vụ
+                        Tour_ID = id // lưu id của tour truyền vào
                     };
                     db.ChiTietDichVu.Add(service);
-                    db.SaveChanges();
-                }
-
+                    db.SaveChanges();              
             }
             SetAlert("Cập nhật thành công dịch vụ của Tour", "success");
             return RedirectToAction("Details", "Tour", new { id = id });

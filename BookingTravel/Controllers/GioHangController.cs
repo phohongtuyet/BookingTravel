@@ -20,22 +20,22 @@ namespace BookingTravel.Controllers
         // GET: GioHang/ThemVaoGio/{maSP}
         public ActionResult ThemVaoGio(int maSP)
         {
-            if (Session["cart"] == null)
+            if (Session["cart"] == null) // nếu giỏ hàng rõng thì tạo mới giỏ hàng
             {
                 var sp = db.Tour.Find(maSP);
                 List<SanPhamTrongGio> cart = new List<SanPhamTrongGio>();
-                cart.Add(new SanPhamTrongGio { tour = sp, soLuongTrongGio = 1 });
+                cart.Add(new SanPhamTrongGio { tour = sp, soLuongTrongGio = 1 }); 
                 Session["cart"] = cart;
             }
-            else
+            else //đã có giỏ hàng
             {
                 List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
-                int index = isExist(maSP);
+                int index = isExist(maSP); // ktra sp có trong giỏ hàng
                 if (index != -1)
                 {
-                    cart[index].soLuongTrongGio++;
+                    cart[index].soLuongTrongGio++;// có thì tăng số lượng
                 }
-                else
+                else// thêm sản phẩm  vào giỏ
                 {
                     var sp = db.Tour.Find(maSP);
                     cart.Add(new SanPhamTrongGio { tour = sp, soLuongTrongGio = 1 });
@@ -53,14 +53,14 @@ namespace BookingTravel.Controllers
             List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
             foreach (var item in cart)
             {
-                if (item.tour.ID == maSP && item.soLuongTrongGio <= 10)
-                    if (item.soLuongTrongGio < sp.SoLuong)
+                if (item.tour.ID == maSP)
+                    if (item.soLuongTrongGio < sp.SoLuong) // số lượng đặt nhỏ hơn số lượng hiện có
                     {
-                        item.soLuongTrongGio++;
+                        item.soLuongTrongGio++;// tăng số lượng
                     }
-                    else
+                    else// số lượng đặt lớn hơn số lượng hiện có thì thông báo
                     {
-                        TempData["Message"] = "Sản phẩm không đủ số lượng hiện có " + sp.SoLuong;
+                        TempData["Message"] = "Tour không đủ!!! số lượng hiện có " + sp.SoLuong;
                     }
 
             }
@@ -75,7 +75,7 @@ namespace BookingTravel.Controllers
             List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
             foreach (var item in cart)
             {
-                if (item.tour.ID == maSP && item.soLuongTrongGio >= 1)
+                if (item.tour.ID == maSP && item.soLuongTrongGio >= 1) // so luong >= 1 thì giảm
                     item.soLuongTrongGio--;
             }
             Session["cart"] = cart;

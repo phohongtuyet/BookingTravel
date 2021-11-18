@@ -55,47 +55,11 @@ namespace BookingTravel.Controllers
                                 .Include(ct => ct.ChiTietDiaDiemThamQuan)
                                 .Where(ct => ct.SoLuong > 0).ToList();
 
-
             return View(tour);
-
-
-
-            /*  var bestSale = (from dh in db.Tour
-                                join ct in db.DatTour_ChiTiet on dh.ID equals ct.Tour_ID
-                                join ctdd in db.ChiTietDiaDiemThamQuan on dh.ID equals ctdd.ID
-                                join dd in db.DiaDiemThamQuan on dh.ID equals dd.ID
-                                join ctpt in db.ChiTietPhuongTien on dh.ID equals ctpt.ID
-                                join pt in db.PhuongTien on dh.ID equals pt.ID
-                                join ha in db.HinhAnh on dh.ID equals ha.ID
-                                join dhang in db.DatTour on ct.DatTour_ID equals dhang.ID
-                                where (dh.SoLuong > 0)
-                                select new BestSaleModels()
-                                {
-
-                                    TenTour = dh.TenTour,
-                                    HinhAnh1 = ha.HinhAnh1,
-                                    Tinh = dd.Tinh,
-                                    LoaiPhuongTien = pt.LoaiPhuongTien,
-                                    TenDiaDanh = dd.TenDiaDanh,                             
-                                    DonGia = dh.DonGia,
-                                    ID = dh.ID,
-
-                                    SoLuong = ct.SoLuong
-
-                                }).OrderByDescending(ct => ct.SoLuong).Distinct();
-                  return View(bestSale);*/
-
         }
 
         public ActionResult MyOrders()
-        {
-            /* int makh = Convert.ToInt32(Session["MaKhachHang"]);
-             var tour = db.Tour.Include(h => h.HinhAnh)
-                                .Include(ct => ct.DatTour_ChiTiet)
-                                .Where(ct => ct.SoLuong > 0).ToList();
-
-
-             return View(tour);*/
+        {           
 
             int makh = Convert.ToInt32(Session["MaKhachHang"]);
             var Myorders = (from dh in db.Tour
@@ -228,7 +192,6 @@ namespace BookingTravel.Controllers
 
         public ActionResult ChangePassword()
         {
-            //ModelState.AddModelError("ErrorChangePassword", "");
             return View();
 
         }
@@ -288,36 +251,45 @@ namespace BookingTravel.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Lưu vào bảng DatHang
-                DatTour dh = new DatTour();
-                dh.HoVaTen = datHang.HoVaTen;
-                dh.DienThoaiDatTour = datHang.DienThoaiDatTour;
-                dh.NgayDatHang = DateTime.Now;
-                dh.KhachHang_ID = Convert.ToInt32(Session["MaKhachHang"]);
-                dh.TinhTrang = 0;
-                db.DatTour.Add(dh);
-                db.SaveChanges();
-
-                // Lưu vào bảng DatHang_ChiTiet
-                List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
-                foreach (var item in cart)
+                if(datHang.HoVaTen != null)
                 {
-                    DatTour_ChiTiet ct = new DatTour_ChiTiet();
-                    ct.DatTour_ID = dh.ID;
-                    ct.Tour_ID = item.tour.ID;
-                    ct.SoLuong = Convert.ToInt16(item.soLuongTrongGio);
-                    ct.DonGia = item.tour.DonGia;
-                    db.DatTour_ChiTiet.Add(ct);
-                    var dongho = db.Tour.Find(item.tour.ID);
-                    dongho.SoLuong -= item.soLuongTrongGio;
+                    // Lưu vào bảng DatHang
+                    DatTour dh = new DatTour();
+                    dh.HoVaTen = datHang.HoVaTen;
+                    dh.DienThoaiDatTour = datHang.DienThoaiDatTour;
+                    dh.NgayDatHang = DateTime.Now;
+                    dh.KhachHang_ID = Convert.ToInt32(Session["MaKhachHang"]);
+                    dh.TinhTrang = 0;
+                    db.DatTour.Add(dh);
                     db.SaveChanges();
+
+                    // Lưu vào bảng DatHang_ChiTiet
+                    List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
+                    foreach (var item in cart)
+                    {
+                        DatTour_ChiTiet ct = new DatTour_ChiTiet();
+                        ct.DatTour_ID = dh.ID;
+                        ct.Tour_ID = item.tour.ID;
+                        ct.SoLuong = Convert.ToInt16(item.soLuongTrongGio);
+                        ct.DonGia = item.tour.DonGia;
+                        db.DatTour_ChiTiet.Add(ct);
+                        var dongho = db.Tour.Find(item.tour.ID);
+                        dongho.SoLuong -= item.soLuongTrongGio;
+                        db.SaveChanges();
+                    }                   
+                    // Xóa giỏ hàng
+                    cart.Clear();
+
+                    // Quay về trang chủ
+                    return RedirectToAction("DatTourThanhCong", "Home");
+                }
+                else
+                {
+                    ViewBag.error = "Họ và tên người đặt không được bỏ trống !!!";
+                    return View();
+
                 }
 
-                // Xóa giỏ hàng
-                cart.Clear();
-
-                // Quay về trang chủ
-                return RedirectToAction("DatTourThanhCong", "Home");
             }
 
             return View(datHang);

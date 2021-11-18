@@ -15,6 +15,12 @@ namespace BookingTravel.Areas.Admin.Controllers
     {
         private BookingTravelEntities db = new BookingTravelEntities();
 
+        public ActionResult Tour()
+        {
+            var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Where(r => r.SoLuong > 0).ToList();
+            return View(tour);
+        }
+
         // GET: Tour
         public ActionResult Index()
         {
@@ -91,7 +97,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                 db.SaveChanges();
 
                 // Upload ảnh 
-                if (!Object.Equals(tour.DuLieuHinhAnh, null))
+                if (tour.DuLieuHinhAnh != null)
                 {
 
                     string folder = "Storage/";
@@ -130,56 +136,63 @@ namespace BookingTravel.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("UploadError", "Hình ảnh bìa không được bỏ trống!");
+                   ModelState.AddModelError("UploadError", "Hình ảnh bìa không được bỏ trống!");
                     return View(tour);
                 }
-
-                // them chi tiet phuong tien
-                foreach (var n in tour.selectedTranpost)
-                {
-                    if (n > 0)
+                
+                
+                    // them chi tiet phuong tien
+                    foreach (var n in tour.selectedTranpost)// lọc phương tiện từ mảng phương tiện
                     {
-                        var transpots = new ChiTietPhuongTien
+                        if (n > 0)
                         {
-                            PhuongTien_ID = n,
-                            Tour_ID = tour.ID
-                        };
-                        db.ChiTietPhuongTien.Add(transpots);
-                        db.SaveChanges();
+                            var transpots = new ChiTietPhuongTien// tạo đối tượng phương tiện
+                            {
+                                PhuongTien_ID = n,// lấy  phương tiện lưu vào
+                                Tour_ID = tour.ID// lấy id tour truyền vào
+                            };
+                            db.ChiTietPhuongTien.Add(transpots);
+                            db.SaveChanges();
+                        }
+
                     }
+               
 
-                }
-                // them chi tiet dia diem tham quan
-                foreach (var tn in tour.selectedLocation)
-                {
-                    if (tn > 0)
+
+
+                
+                    // them chi tiet dia diem tham quan
+                    foreach (var tn in tour.selectedLocation)// lọc địa điểm tham quan từ mảng địa điểm tham quan
                     {
-                        var location = new ChiTietDiaDiemThamQuan
+                        if (tn > 0)
                         {
-                            DiaDiemThamQuan_ID = tn,
-                            Tour_ID = tour.ID
-                        };
-                        db.ChiTietDiaDiemThamQuan.Add(location);
-                        db.SaveChanges();
+                            var location = new ChiTietDiaDiemThamQuan// tạo đối tượng địa điểm tham quan
+                            {
+                                DiaDiemThamQuan_ID = tn,// lấy  địa điểm tham quan  lưu vào
+                                Tour_ID = tour.ID// lấy id tour truyền vào
+                            };
+                            db.ChiTietDiaDiemThamQuan.Add(location);
+                            db.SaveChanges();
+                        }
+
                     }
+               
 
-                }
 
-                // them chi tiet dich vu
-                foreach (var n in tour.selectedServe)
-                {
-                    if (n > 0)
-                    {
-                        var service = new ChiTietDichVu
+               
+                    // them chi tiet dich vu
+                    foreach (var n in tour.selectedServe)// lọc dịch vụ từ mảng dịch vụ
+                    {         
+                        var service = new ChiTietDichVu // tạo đối tượng bảng dịch vụ
                         {
-                            DichVu = n,
-                            Tour_ID = tour.ID
+                            DichVu = n,// lấy dịch vụ lưu vào
+                            Tour_ID = tour.ID// lấy id tour truyền vào
                         };
                         db.ChiTietDichVu.Add(service);
-                        db.SaveChanges();
+                        db.SaveChanges();       
                     }
+               
 
-                }
 
                 SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");

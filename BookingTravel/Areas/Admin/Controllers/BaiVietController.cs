@@ -92,6 +92,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 
                 db.BaiViet.Add(baiViet);
                 db.SaveChanges();
+                SetAlert("Thêm mới thành công", "success");
                 return RedirectToAction("Index");
             }
 
@@ -128,17 +129,14 @@ namespace BookingTravel.Areas.Admin.Controllers
             {
                 BaiViet bv = db.BaiViet.Find(baiViet.ID);
 
-                bv.NhanVien_ID = baiViet.NhanVien_ID;
+                bv.NhanVien_ID = Convert.ToInt32(Session["MaNhanVien"]);
                 bv.TieuDe = baiViet.TieuDe;
                 bv.TomTat = baiViet.TomTat;
                 bv.NoiDung = baiViet.NoiDung;
                 bv.NgayDang = DateTime.Now;
-                bv.LuotXem = baiViet.LuotXem;
+                bv.LuotXem = bv.LuotXem;
 
-
-                bv.NhanVien_ID = bv.NhanVien_ID;
-
-                if (Session["Quyen"].ToString().ToLower() == "admin")
+                if (Convert.ToBoolean(Session["Quyen"]) == true)
                     bv.KiemDuyet = 1;
                 else
                     bv.KiemDuyet = 0;
@@ -152,7 +150,6 @@ namespace BookingTravel.Areas.Admin.Controllers
                 db.Entry(bv).State = EntityState.Modified;
                 db.SaveChanges();
                 SetAlert("Cập nhật thành công", "success");
-
                 return RedirectToAction("Index");
             }
             ViewBag.NhanVien_ID = new SelectList(db.NhanVien, "ID", "HoVaTen", baiViet.NhanVien_ID);
@@ -183,7 +180,6 @@ namespace BookingTravel.Areas.Admin.Controllers
             db.BaiViet.Remove(baiViet);
             db.SaveChanges();
             SetAlert("Xóa thành công", "success");
-
             return RedirectToAction("Index");
         }
 

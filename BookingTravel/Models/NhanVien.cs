@@ -61,7 +61,6 @@ namespace BookingTravel.Models
         public Nullable<bool> Quyen { get; set; }
 
         [Display(Name = "Trạng thái khóa")]
-        [Required(ErrorMessage = "Chưa chọn trạng thái khóa!")]
         public Nullable<byte> Khoa { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,7 +13,8 @@
             <div class="form-group">
                 @Html.Label("Phương tiện")
                 @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" })
-                @Html.ValidationMessageFor(model => model.ChiTietPhuongTien, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.selectedTranpost, "", new { @class = "text-danger" })
+                
             </div>
 
             <div class="row g-3">
@@ -96,7 +97,8 @@
                     <div class="form-group">
                         @Html.Label("Địa danh")
                         @Html.DropDownListFor(model => model.selectedLocation, Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control select2", @multiple = "multiple", @id = "ChiTietDiaDiemThamQuan" })
-                        @Html.ValidationMessageFor(model => model.ChiTietDiaDiemThamQuan, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.selectedLocation, "", new { @class = "text-danger" })
+                        
                     </div>
                 </div>
             </div>

@@ -91,7 +91,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                         db.BangPhanCong.Add(bangPhanCong);
                     }
                 }
-
+                SetAlert("Thêm mới thành công", "success");
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -149,7 +149,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                         db.Entry(bangPhanCong).State = EntityState.Modified;
                     }
                 }
-
+                SetAlert("Cập nhật thành công", "success");
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -180,6 +180,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             BangPhanCong bangPhanCong = db.BangPhanCong.Find(id);
             db.BangPhanCong.Remove(bangPhanCong);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
             return RedirectToAction("Index");
         }
 
