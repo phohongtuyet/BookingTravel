@@ -7,10 +7,15 @@
 }
 
 <div class="card mt-3">
-    <div class="card-body">
+    <h5 class="card-header">@ViewBag.Title</h5>
+    <div class="card-body mt-2 mb-2">
         @if (cart == null || cart.Count <= 0)
         {
-            <span class="alert alert-danger">Giỏ hàng chưa có sản phẩm!</span>
+            <div class="text-center " style="width:100%; margin-top:10px">
+                <div class="alert alert-info" role="alert">
+                    <span class="">Giỏ hàng chưa có Tour!</span>  <a href="@Url.Action("Index", "Home")" class="btn btn-outline-info"> quay lại trang chủ để chọn Tour</a>
+                </div>
+            </div>
         }
         else
         {
@@ -25,10 +30,10 @@
             <table class="table table-bordered table-hover table-sm">
                 <tr>
                     <th width="5%">#</th>
-                    <th>Tour </th>
-                    <th width="10%">Số lượng</th>
-                    <th>Đơn giá</th>
-                    <th>Thành tiền</th>
+                    <th width="35%">Tour </th>
+                    <th width="15%">Số lượng</th>
+                    <th width="20%">Đơn giá</th>
+                    <th width="20%">Thành tiền</th>
                     <th width="5%"></th>
                 </tr>
                 @{ int stt = 1; }
@@ -64,12 +69,12 @@
                         }
                         @total
                     </td>
-
+                    <td></td>
                 </tr>
             </table>
 
-            <p class="mt-2">
-                <a href="@Url.Action("Tour", "Home")" class="btn btn-info">Tiếp tục chọn </a>
+            <p>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-info">Tiếp tục mua hàng</a>
                 <a href="@Url.Action("ThanhToan", "Home")" class="btn btn-outline-info">Thanh toán</a>
             </p>
         }

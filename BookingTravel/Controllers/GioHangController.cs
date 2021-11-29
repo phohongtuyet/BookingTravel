@@ -75,7 +75,7 @@ namespace BookingTravel.Controllers
             List<SanPhamTrongGio> cart = (List<SanPhamTrongGio>)Session["cart"];
             foreach (var item in cart)
             {
-                if (item.tour.ID == maSP && item.soLuongTrongGio >= 1) // so luong >= 1 thì giảm
+                if (item.tour.ID == maSP && item.soLuongTrongGio > 1) // so luong >= 1 thì giảm
                     item.soLuongTrongGio--;
             }
             Session["cart"] = cart;

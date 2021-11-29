@@ -62,7 +62,7 @@ namespace BookingTravel.Models
 
         [Display(Name = "Số lượng")]
         [Required(ErrorMessage = "Số lượng không được bỏ trống!")]
-        [Range(1, int.MaxValue, ErrorMessage = "Vui lòng nhập số lớn hơn ")]
+        [Range(1, int.MaxValue, ErrorMessage = "Vui lòng nhập số lớn hơn 1")]
         public Nullable<int> SoLuong { get; set; }
 
         [Display(Name = "Hoạt động")]
