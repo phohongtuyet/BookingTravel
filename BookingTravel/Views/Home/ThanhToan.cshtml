@@ -48,13 +48,13 @@
             </tr>
             @foreach (var item in (List<BookingTravel.Models.SanPhamTrongGio>)Session["cart"])
             {
-        <tr>
-            <td>#</td>
-            <td>@item.tour.TenTour</td>
-            <td>@item.soLuongTrongGio</td>
-            <td class="text-right">@String.Format("{0:N0}", item.tour.DonGia) VNĐ</td>
-            <td class="text-right">@String.Format("{0:N0}", (item.soLuongTrongGio * item.tour.DonGia))  VNĐ</td>
-        </tr>
+                <tr>
+                    <td>#</td>
+                    <td>@item.tour.TenTour</td>
+                    <td>@item.soLuongTrongGio</td>
+                    <td class="text-right">@String.Format("{0:N0}", item.tour.DonGia) VNĐ</td>
+                    <td class="text-right">@String.Format("{0:N0}", (item.soLuongTrongGio * item.tour.DonGia))  VNĐ</td>
+                </tr>
             }
             <tr>
                 <td colspan="4">Tổng thành tiền</td>

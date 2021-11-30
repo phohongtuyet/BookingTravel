@@ -33,7 +33,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             n.XacNhanMatKhau = n.MatKhau;
             n.Quyen = n.Quyen;
             n.Khoa = System.Convert.ToByte(1 - n.Khoa);// 1 -> 0 và 0 -> 1
-          
+
             db.Entry(n).State = EntityState.Modified;
             db.SaveChanges();
 

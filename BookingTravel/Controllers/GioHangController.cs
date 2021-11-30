@@ -24,7 +24,7 @@ namespace BookingTravel.Controllers
             {
                 var sp = db.Tour.Find(maSP);
                 List<SanPhamTrongGio> cart = new List<SanPhamTrongGio>();
-                cart.Add(new SanPhamTrongGio { tour = sp, soLuongTrongGio = 1 }); 
+                cart.Add(new SanPhamTrongGio { tour = sp, soLuongTrongGio = 1 });
                 Session["cart"] = cart;
             }
             else //đã có giỏ hàng

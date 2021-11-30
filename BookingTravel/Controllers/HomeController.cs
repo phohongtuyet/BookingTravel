@@ -29,14 +29,14 @@ namespace BookingTravel.Controllers
         {
             string diemden = collection["DiemDen"].ToString();
             //short tinh = collection["Tinh"];
-            DateTime ngay = Convert.ToDateTime( collection["Ngay"].ToString());
-            int noikhoihanh = Convert.ToInt32( collection["NoiKhoiHanh"]);
+            DateTime ngay = Convert.ToDateTime(collection["Ngay"].ToString());
+            int noikhoihanh = Convert.ToInt32(collection["NoiKhoiHanh"]);
 
             var tour = db.Tour.Include(d => d.ChiTietDiaDiemThamQuan)
-                                        .Where( r => r.NoiKhoiHanh ==  noikhoihanh && r.NgayBD >= ngay.Date && r.TenTour.Contains(diemden) && r.MoTa.Contains(diemden)
-                                            || r.TenTour.Contains(diemden) && r.NgayBD >= ngay.Date && r.MoTa.Contains(diemden)
-                                            || r.TenTour.Contains(diemden) && r.NoiKhoiHanh == noikhoihanh && r.MoTa.Contains(diemden)
-                                            || r.MoTa.Contains(diemden)).ToList();             
+                                        .Where(r => r.NoiKhoiHanh == noikhoihanh && r.NgayBD >= ngay.Date && r.TenTour.Contains(diemden) && r.MoTa.Contains(diemden)
+                                           || r.TenTour.Contains(diemden) && r.NgayBD >= ngay.Date && r.MoTa.Contains(diemden)
+                                           || r.TenTour.Contains(diemden) && r.NoiKhoiHanh == noikhoihanh && r.MoTa.Contains(diemden)
+                                           || r.MoTa.Contains(diemden)).ToList();
             return View(tour);
         }
 
@@ -59,7 +59,7 @@ namespace BookingTravel.Controllers
         }
 
         public ActionResult MyOrders()
-        {           
+        {
 
             int makh = Convert.ToInt32(Session["MaKhachHang"]);
             var Myorders = (from dh in db.Tour
@@ -251,7 +251,7 @@ namespace BookingTravel.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(datHang.HoVaTen != null)
+                if (datHang.HoVaTen != null)
                 {
                     // Lưu vào bảng DatHang
                     DatTour dh = new DatTour();
@@ -276,7 +276,7 @@ namespace BookingTravel.Controllers
                         var dongho = db.Tour.Find(item.tour.ID);
                         dongho.SoLuong -= item.soLuongTrongGio;
                         db.SaveChanges();
-                    }                   
+                    }
                     // Xóa giỏ hàng
                     cart.Clear();
 

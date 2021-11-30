@@ -18,7 +18,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 		{
 			return View();
 		}
-		
+
 		/*
 		public ActionResult Tour()
 		{
@@ -61,7 +61,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 					ModelState.AddModelError("LoginError", "Tên đăng nhập hoặc mật khẩu không chính xác!");
 					return View(nhanVien);
 				}
-				else if(taiKhoan.Khoa == 0)
+				else if (taiKhoan.Khoa == 0)
 				{
 					ModelState.AddModelError("LoginError", "Tài khoản đã bị tạm khóa. Vui lòng liên hệ quản trị viên!");
 					return View(nhanVien);
@@ -97,8 +97,8 @@ namespace BookingTravel.Areas.Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if(datHang.HoVaTen != null || datHang.DiaChi != null)
-                {
+				if (datHang.HoVaTen != null || datHang.DiaChi != null)
+				{
 					// Lưu vào bảng khachHang
 					KhachHang kh = new KhachHang();
 					kh.HoVaten = datHang.HoVaTen;
@@ -141,13 +141,13 @@ namespace BookingTravel.Areas.Admin.Controllers
 					// Quay về trang chủ
 					return RedirectToAction("Tour", "Tour");
 				}
-                else
-                {
+				else
+				{
 					ViewBag.error = "Trường này không được bỏ trống !!!";
 					return View();
 				}
 
-				
+
 			}
 
 			return View(datHang);

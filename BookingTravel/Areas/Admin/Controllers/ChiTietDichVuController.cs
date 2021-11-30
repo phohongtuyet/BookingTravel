@@ -51,14 +51,14 @@ namespace BookingTravel.Areas.Admin.Controllers
         public ActionResult Create(ChiTietDichVu ct, int id)//truyền id
         {
             foreach (var n in ct.selectedServe) // tìm dịch vụ trong mảng
-            {              
-                    var service = new ChiTietDichVu
-                    {
-                        DichVu = n, // lưu dịch vụ
-                        Tour_ID = id // lưu id của tour truyền vào
-                    };
-                    db.ChiTietDichVu.Add(service);
-                    db.SaveChanges();              
+            {
+                var service = new ChiTietDichVu
+                {
+                    DichVu = n, // lưu dịch vụ
+                    Tour_ID = id // lưu id của tour truyền vào
+                };
+                db.ChiTietDichVu.Add(service);
+                db.SaveChanges();
             }
             SetAlert("Cập nhật thành công dịch vụ của Tour", "success");
             return RedirectToAction("Details", "Tour", new { id = id });
@@ -85,7 +85,7 @@ namespace BookingTravel.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Tour_ID,DichVu")] ChiTietDichVu chiTietDichVu,int idtour)
+        public ActionResult Edit([Bind(Include = "ID,Tour_ID,DichVu")] ChiTietDichVu chiTietDichVu, int idtour)
         {
             if (ModelState.IsValid)
             {

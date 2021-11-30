@@ -56,8 +56,6 @@ namespace BookingTravel.Models
 
         [Display(Name = "Đơn giá")]
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
-        [Required(ErrorMessage = "Đơn giá không được bỏ trống!")]
-        [Range(1, int.MaxValue, ErrorMessage = "Vui lòng nhập số lớn hơn 1")]
         public Nullable<int> DonGia { get; set; }
 
         [Display(Name = "Số lượng")]
@@ -73,20 +71,17 @@ namespace BookingTravel.Models
         public string MoTa { get; set; }
 
         [Display(Name = "Hình ảnh ")]
-        [Required(ErrorMessage = "Hình ảnh không được bỏ trống!")]
         public IEnumerable<HttpPostedFileBase> DuLieuHinhAnh { get; set; }
 
-        [Required(ErrorMessage = "Địa danh không được bỏ trống!")]
         public List<int> selectedLocation { get; set; }
 
-        [Required(ErrorMessage = "Phương tiện không được bỏ trống!")]
         public List<int> selectedTranpost { get; set; }
 
         [Display(Name = "Dịch vụ")]
-        [Required(ErrorMessage = "Dịch vụ không được bỏ trống!")]
         public List<int> selectedServe { get; set; }
 
         [Display(Name = "Tỉnh")]
+        //[Required(ErrorMessage = "Chưa chọn tỉnh!")]
         public List<int> Tinh { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -102,5 +97,4 @@ namespace BookingTravel.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BangPhanCong> BangPhanCong { get; set; }
     }
-
 }

@@ -36,14 +36,14 @@ namespace BookingTravel.Areas.Admin.Controllers
         public ActionResult TrangThai(int id, short tinhtrang)
         {
             DatTour dt = db.DatTour.Find(id);
-            dt.TinhTrang = tinhtrang; 
+            dt.TinhTrang = tinhtrang;
             db.Entry(dt).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index","DatTour", new { area = "Admin" });
+            return RedirectToAction("Index", "DatTour", new { area = "Admin" });
         }
 
-         public ActionResult DoanhThuTour()
+        public ActionResult DoanhThuTour()
         {
             return View();
         }
@@ -66,7 +66,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                      {
                          TenTour = sa.Key,
                          SoLuong = sa.Sum(g => g.SoLuong),
-                         DonGia = sa.Select(t=>t.DonGia).FirstOrDefault() 
+                         DonGia = sa.Select(t => t.DonGia).FirstOrDefault()
                      }).ToList();
 
             return View(a);
@@ -79,15 +79,15 @@ namespace BookingTravel.Areas.Admin.Controllers
         }
 
         public ContentResult JSON()
-        {       
+        {
             JsonSerializerSettings _jsonSetting = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore };
-            return Content(JsonConvert.SerializeObject(db.DatTour_ChiTiet.Include(d => d.DatTour).Where(dt=>dt.DatTour.TinhTrang == 6).Select(s => new { s.SoLuong, s.DonGia, s.DatTour.NgayDatHang }).ToList(), _jsonSetting), "application/json");
+            return Content(JsonConvert.SerializeObject(db.DatTour_ChiTiet.Include(d => d.DatTour).Where(dt => dt.DatTour.TinhTrang == 6).Select(s => new { s.SoLuong, s.DonGia, s.DatTour.NgayDatHang }).ToList(), _jsonSetting), "application/json");
         }
 
         // GET: DatTour/Details/5
         public ActionResult Details(int? id)//id truyen vao
         {
-            var datTour = db.DatTour.Include(d => d.DatTour_ChiTiet).Where(dt=>dt.ID == id); // loc tour theo id truyen vao
+            var datTour = db.DatTour.Include(d => d.DatTour_ChiTiet).Where(dt => dt.ID == id); // loc tour theo id truyen vao
             return View(datTour.ToList());
         }
 
@@ -177,7 +177,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             db.DatTour.Remove(datTour);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }    
+        }
 
         protected override void Dispose(bool disposing)
         {

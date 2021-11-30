@@ -1,103 +1,52 @@
-﻿@model IEnumerable<BookingTravel.Models.PhuongTien>
+﻿@model BookingTravel.Models.PhuongTien
 
 @{
-    ViewBag.Title = "Phương tiện";
+    ViewBag.Title = "Cập nhật phương tiện";
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
 
 
 <div class="card mt-3">
     <div class="card-body">
-        @if (TempData["AlertMessage"] != null)
+        @using (Html.BeginForm())
         {
-            <div id="AlertBox" class="alert @TempData["AlertType"] hide">
-                @TempData["AlertMessage"]
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TenPhuongTien, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.TenPhuongTien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenPhuongTien, "", new { @class = "text-danger" })
+
             </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LoaiPhuongTien)
+                @Html.DropDownListFor(model => model.LoaiPhuongTien, new SelectList(new[] {
+                     new SelectListItem {Value = null, Text = "-- Chọn --" },
+                    new SelectListItem {Value = "0", Text = "Máy bay" },
+                    new SelectListItem {Value = "1", Text = "Tàu thủy" },
+                    new SelectListItem {Value = "2", Text = "Tàu hỏa" },
+                    new SelectListItem {Value = "3", Text = "Xe khách" }
+                }, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LoaiPhuongTien, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SoCho, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                @Html.EditorFor(model => model.SoCho, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SoCho, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Cập nhật" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
+            </div>
+
         }
-        <p>
-            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
-        </p>
-        <table id="Panigation" class="table table-bordered table-hover display">
-            <thead>
-                <tr>
-                    <th width="5%">#</th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TenPhuongTien)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.LoaiPhuongTien)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SoCho)
-                    </th>
-                    <th width="5%">Sửa</th>
-                    <th width="5%">Xóa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ int stt = 1; }
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@stt</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenPhuongTien)
-                        </td>
-                        <td>
-                            @if (item.LoaiPhuongTien == 0)
-                            {
-                                <span>máy bay</span>
-                            }
-                            else if (item.LoaiPhuongTien == 1)
-                            {
-                                <span>tàu thủy</span>
-                            }
-                            else if (item.LoaiPhuongTien == 2)
-                            {
-                                <span>Tàu hỏa</span>
-                            }
-                            else
-                            {
-                                <span>xe khách</span>
-                            }
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SoCho)
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-                        </td>
-                    </tr>
-                    stt++;
-                }
-            </tbody>
-        </table>
+
     </div>
 </div>
-@section Scripts{
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
-
-    <script>
-
-        $(function () {
-            $('#AlertBox').removeClass('hide');
-            $('#AlertBox').delay(2000).slideUp(500);
-        });
-
-        $(document).ready(function () {
-            $('#Panigation').DataTable({
-                "language": {
-                    "lengthMenu": "Số dòng _MENU_  trên trang ",
-                    "zeroRecords": "Không tìm thấy!!!",
-                    "info": "Trang  _PAGE_ của _PAGES_",
-                    "infoEmpty": "Không có sẵn dữ liệu",
-                    "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
-                }
-            });
-        });
-    </script>
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
