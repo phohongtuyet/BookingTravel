@@ -65,12 +65,13 @@ namespace BookingTravel.Models
         public string HinhAnh1 { get; set; }
         public HttpPostedFileBase DuLieuHinhAnhDH { get; set; }
         public Nullable<int> DonGia { get; set; }
-        public Nullable<short> SoLuong { get; set; }
+        public Nullable<int> SoLuong { get; set; }
         public Nullable<System.DateTime> NgayDatHang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnh { get; set; }
     }
+
 
     public class DoanhThuTour
     {

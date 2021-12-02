@@ -61,7 +61,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                      where (order.TinhTrang == 6
                             && order.NgayDatHang >= NgayBD
                             && order.NgayDatHang <= NgayKT)
-                     group od by t.TenTour into sa
+                     group od by t.TenTour into sa // gom nhóm theo tour
                      select new DoanhThuTour()
                      {
                          TenTour = sa.Key,

@@ -85,7 +85,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                 else
                     baiViet.KiemDuyet = 0;
 
-                if (baiViet.TrangThaiBinhLuan.HasValue)
+                if (Convert.ToBoolean(Session["Quyen"]) == true)
                     baiViet.TrangThaiBinhLuan = 1;
                 else
                     baiViet.TrangThaiBinhLuan = 0;

@@ -7,7 +7,6 @@
 }
 
 <div class="card mt-3">
-    <h5 class="card-header">@ViewBag.Title</h5>
     <div class="card-body mt-2 mb-2">
         @if (cart == null || cart.Count <= 0)
         {
@@ -73,9 +72,9 @@
                 </tr>
             </table>
 
-            <p>
-                <a href="@Url.Action("Index", "Home")" class="btn btn-info">Tiếp tục mua hàng</a>
-                <a href="@Url.Action("ThanhToan", "Home")" class="btn btn-outline-info">Thanh toán</a>
+            <p class="mt-2">
+                <a href="@Url.Action("Tour", "Tour")" class="btn btn-info">Tiếp tục chọn Tour</a>
+                <a href="@Url.Action("ThanhToan", "Home")" class="btn btn-outline-info">tiếp tục hoàn tất đặt Tour</a>
             </p>
         }
     </div>

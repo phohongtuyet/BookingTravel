@@ -97,7 +97,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				if (datHang.HoVaTen != null || datHang.DiaChi != null)
+				if (datHang.HoVaTen != null && datHang.DiaChi != null)
 				{
 					// Lưu vào bảng khachHang
 					KhachHang kh = new KhachHang();

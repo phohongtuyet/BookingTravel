@@ -171,7 +171,7 @@
                             <li class="nav-item">
                                 <a href="@Url.Action("Tour","Tour")" class="nav-link active" style="background-color: #85dce7; color: black">
                                     <i class="fas fa-cart-plus"></i>
-                                    <p>Tour </p>
+                                    <p>Đặt Tour cho khách hàng </p>
                                 </a>
 
                             </li>
@@ -243,14 +243,19 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="@Url.Action("Index", "BangPhanCong")" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Phân công hướng dẫn</p>
-                                        </a>
-                                    </li>
-                                </ul>
+                                @if (Convert.ToInt32(Session["Quyen"]) == 1)
+                                {
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "BangPhanCong")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Phân công hướng dẫn</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                }
+                               
+
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">

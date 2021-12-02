@@ -19,7 +19,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             }
             else
             {
-                if (Session["Quyen"].ToString().ToLower() == "false")
+                if (Session["Quyen"].ToString().ToLower() == "FALSE")
                 {
                     if (controllerName != "KhachHang" && controllerName != "Tour" && controllerName != "DatHang" && controllerName != "DatHang_ChiTiet")
                     {

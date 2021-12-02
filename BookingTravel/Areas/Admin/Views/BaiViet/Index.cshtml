@@ -16,88 +16,145 @@
             </div>
         }
         <p>
-            <a class="btn btn-info" href="@Url.Action("Create")" role="button">Thêm mới</a>
+            <a class="btn btn-info" href="@Url.Action("Create")" role="button"> Thêm mới</a>
         </p>
-        <table id="Panigation" class="table table-bordered table-hover display">
-            <thead>
-                <tr>
-                    <th width="3%">#</th>
-                    <th class="text-center">
-                        @Html.DisplayNameFor(model => model.TieuDe)
-                    </th>
-
-                    <th class="text-center"  width="12%">
-                        @Html.DisplayNameFor(model => model.NgayDang)
-                    </th>
-                    <th width="5%">
-                        @Html.DisplayNameFor(model => model.LuotXem)
-                    </th>
-                    <th class="text-center" width="5%">
-                        @Html.DisplayNameFor(model => model.KiemDuyet)
-                    </th>
-                    <th class="text-center" width="5%">
-                        @Html.DisplayNameFor(model => model.TrangThaiBinhLuan)
-                    </th>
-                    <th class="text-center" width="15%">
-                        @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
-                    </th>
-                    <th width="5%">Sửa</th>
-                    <th width="5%">Xóa</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ int stt = 1; }
-                @foreach (var item in Model)
-                {
+        @if (Session["Quyen"].ToString().ToLower() == "false")
+        {
+            <table id="Panigation" class="table table-bordered table-hover display">
+                <thead>
                     <tr>
-                        <td class="text-center">@stt</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TieuDe)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NgayDang)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LuotXem)
-                        </td>
-                        <td class="text-center">
-                            @if (item.KiemDuyet == 1)
-                            {
+                        <th width="3%">#</th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.TieuDe)
+                        </th>
 
-
-                                <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-check-circle text-info"></i></a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-ban text-danger"></i></a>
-                            }
-                        </td>
-                        <td class="text-center">
-                            @if (item.TrangThaiBinhLuan == 1)
-                            {
-                                <a href="@Url.Action("CommentStatus", new { id = item.ID })"><i class="fas fa-check-circle text-info"></i></a>
-                            }
-                            else
-                            {
-                                <a href="@Url.Action("CommentStatus", new { id = item.ID })"><i class="fas fa-ban text-danger"></i></a>
-                            }
-                        </td>
-
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
-                        </td>
-                        <td class="text-center">
-                            <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
-                        </td>
+                        <th class="text-center" width="12%">
+                            @Html.DisplayNameFor(model => model.NgayDang)
+                        </th>
+                        <th width="5%">
+                            @Html.DisplayNameFor(model => model.LuotXem)
+                        </th>                     
+                        <th class="text-center" width="15%">
+                            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+                        </th>
+                        <th width="5%">Sửa</th>
+                        <th width="5%">Xóa</th>
                     </tr>
-                    stt++;
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @{ int stt = 1; }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@stt</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TieuDe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LuotXem)
+                            </td>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                            </td>
+                        </tr>
+                        stt++;
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <table id="Panigation" class="table table-bordered table-hover display">
+                <thead>
+                    <tr>
+                        <th width="3%">#</th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.TieuDe)
+                        </th>
+
+                        <th class="text-center" width="12%">
+                            @Html.DisplayNameFor(model => model.NgayDang)
+                        </th>
+                        <th width="5%">
+                            @Html.DisplayNameFor(model => model.LuotXem)
+                        </th>
+                        <th class="text-center" width="5%">
+                            @Html.DisplayNameFor(model => model.KiemDuyet)
+                        </th>
+                        <th class="text-center" width="5%">
+                            @Html.DisplayNameFor(model => model.TrangThaiBinhLuan)
+                        </th>
+                        <th class="text-center" width="15%">
+                            @Html.DisplayNameFor(model => model.NhanVien.HoVaTen)
+                        </th>
+                        <th width="5%">Sửa</th>
+                        <th width="5%">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int stt = 1; }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@stt</td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TieuDe)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayDang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LuotXem)
+                            </td>
+                            <td class="text-center">
+                                @if (item.KiemDuyet == 1)
+                                {
+
+
+                                    <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-check-circle text-info"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("Approved", new { id = item.ID })"><i class="fas fa-ban text-danger"></i></a>
+                                }
+                            </td>
+                            <td class="text-center">
+                                @if (item.TrangThaiBinhLuan == 1)
+                                {
+                                    <a href="@Url.Action("CommentStatus", new { id = item.ID })"><i class="fas fa-check-circle text-info"></i></a>
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("CommentStatus", new { id = item.ID })"><i class="fas fa-ban text-danger"></i></a>
+                                }
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhanVien.HoVaTen)
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.ID })"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Delete", new { id = item.ID })"><i class="fas fa-trash-alt text-danger"></i></a>
+                            </td>
+                        </tr>
+                        stt++;
+                    }
+                </tbody>
+            </table>
+        }
     </div>
 </div>
 @section Scripts{

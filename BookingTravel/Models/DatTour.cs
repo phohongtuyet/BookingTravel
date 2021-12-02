@@ -33,6 +33,9 @@ namespace BookingTravel.Models
 
         [Display(Name = "Điện thoại")]
         [Required(ErrorMessage = "Điện thoại không được bỏ trống!")]
+        [RegularExpression(@"^((09|03|07|08|05)\d{8})$", ErrorMessage = "Số điện thoại không đúng")]
+        [MaxLength(10, ErrorMessage = "Số điện thoại đa 10 kí tự")]
+
         public string DienThoaiDatTour { get; set; }
 
         [Display(Name = "Họ và tên đặt Tour")]

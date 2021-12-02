@@ -24,7 +24,6 @@
                 @{ int stt = 1; }
                 @foreach (var item in Model)
                 {
-
                     <tr>
                         <td>@stt</td>
                         <td>@item.TenTour</td>
@@ -35,26 +34,7 @@
                     </tr>
                     stt++;
 
-                }
-
-                @*
-                    @{ int stt = 1; }
-                    @foreach (var item in Model)
-                    {
-                        foreach (var sl in item.DatTour_ChiTiet.Where(sl=>sl.DatTour.KhachHang_ID == Convert.ToInt32(Session["MaKhachHang"])))
-                        {
-                            <tr>
-                                <td>@stt</td>
-                                <td><img src="~/@item.HinhAnh.Select(h => h.HinhAnh1).FirstOrDefault()" width="150" /></td>
-                                <td>@item.TenTour</td>
-                                <td>@item.DatTour_ChiTiet.Sum(s => s.SoLuong)</td>
-                                <td class="text-right">@String.Format("{0:N0}", item.DonGia) VNĐ</td>
-                                <td class="text-right">@String.Format("{0:N0}", item.DonGia * item.SoLuong) VNĐ</td>
-                                <td> @item.DatTour_ChiTiet.Select(s=>s.DatTour.NgayDatHang)</td>
-                            </tr>
-                            stt++;
-                        }
-                    }*@
+                }              
             </tbody>
         </table>
     </div>
