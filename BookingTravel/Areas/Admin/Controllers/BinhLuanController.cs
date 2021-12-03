@@ -110,7 +110,11 @@ namespace BookingTravel.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(binhLuan).State = EntityState.Modified;
+                BinhLuan bl = db.BinhLuan.Find(binhLuan.ID);
+                bl.NgayDang = bl.NgayDang;
+                bl.KhachHang_ID = bl.KhachHang_ID;
+
+                db.Entry(bl).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

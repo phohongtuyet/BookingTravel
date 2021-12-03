@@ -22,10 +22,14 @@
                     new SelectListItem { Value = "4", Text = "Hướng dẫn viên"}
                 }, "Value", "Text"), new { @class = "form-control select2Serve", @multiple = "multiple" })
                 @Html.ValidationMessageFor(model => model.selectedServe, "", new { @class = "text-danger" })
+                @if (ViewBag.error != null)
+                {
+                    <span class="badge badge bg-danger mt-2">@ViewBag.error</span>
+                }
             </div>
 
             <div class="form-group mt-2">
-                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Details", "Tour")
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index", "Tour")
             </div>
         }
 

@@ -70,7 +70,8 @@ namespace BookingTravel.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ChiTietDiaDiemThamQuan ct, int id)
         {
-           
+           if(ct.selectedLocation != null && ct.Tinh != null)
+           {
                 foreach (var n in ct.selectedLocation)
                 {
                     if (n != null && n > 0)
@@ -86,8 +87,16 @@ namespace BookingTravel.Areas.Admin.Controllers
                         db.SaveChanges();
                     }
                 }
-            
-            return RedirectToAction("Details", "Tour", new { id = id });
+                return RedirectToAction("Details", "Tour", new { id = id });
+
+            }
+            else
+            {
+                ViewBag.error = "Chưa chọn địa điểm tham quan !!!";
+                return View(ct);
+            }
+
+
 
         }
 

@@ -19,13 +19,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 			return View();
 		}
 
-		/*
-		public ActionResult Tour()
-		{
-			var tour = db.Tour.Include(t => t.ChiTietPhuongTien).Include(h => h.HinhAnh).Include(ct => ct.ChiTietDiaDiemThamQuan).Where(r => r.SoLuong > 0).ToList();
-			return View(tour);
-		}
-		*/
+		
 		public ActionResult Unauthorized() // xác thực người dùng
 		{
 			return View();
@@ -152,5 +146,57 @@ namespace BookingTravel.Areas.Admin.Controllers
 
 			return View(datHang);
 		}
+
+		//Đổi mật khẩu
+		public ActionResult ChangePassword()
+		{
+			return View();
+
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult ChangePassword([Bind(Include = "MatKhau,MatKhauMoi,XacNhanMatKhauMoi")] NhanVienChangePassword nhanvienChangePassword)
+		{
+			if (ModelState.IsValid)
+			{
+				int makh = Convert.ToInt32(Session["MaNhanVien"]);
+				NhanVien nhanvien = db.NhanVien.Find(makh);
+				if (nhanvien == null)
+				{
+					return HttpNotFound();
+				}
+
+				nhanvienChangePassword.MatKhau = SHA1.ComputeHash(nhanvienChangePassword.MatKhau);
+
+				if (nhanvien.MatKhau == nhanvienChangePassword.MatKhau)
+				{
+					nhanvienChangePassword.MatKhauMoi = SHA1.ComputeHash(nhanvienChangePassword.MatKhauMoi);
+					nhanvienChangePassword.XacNhanMatKhauMoi = nhanvienChangePassword.MatKhauMoi;
+
+					nhanvien.MatKhau = nhanvienChangePassword.MatKhauMoi;
+					nhanvien.XacNhanMatKhau = nhanvienChangePassword.MatKhauMoi;
+
+					db.Entry(nhanvien).State = EntityState.Modified;
+					db.SaveChanges();
+					// Xóa SESSION
+					Session.RemoveAll();
+
+					// Quay về trang chủ
+					return RedirectToAction("Login");
+				}
+				else
+				{
+					ViewBag.error = "Mật khẩu cũ không đúng !!!";
+					return View();
+				}
+
+
+			}
+			return View(nhanvienChangePassword);
+		}
 	}
+
+
+
 }

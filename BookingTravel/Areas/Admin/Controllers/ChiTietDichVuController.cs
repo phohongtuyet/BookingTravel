@@ -50,18 +50,26 @@ namespace BookingTravel.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ChiTietDichVu ct, int id)//truyền id
         {
-            foreach (var n in ct.selectedServe) // tìm dịch vụ trong mảng
-            {
-                var service = new ChiTietDichVu
+            if(ct.selectedServe != null) //nếu không chọn thì báo lỗi
+            {              
+                foreach (var n in ct.selectedServe) // tìm dịch vụ trong mảng
                 {
-                    DichVu = n, // lưu dịch vụ
-                    Tour_ID = id // lưu id của tour truyền vào
-                };
-                db.ChiTietDichVu.Add(service);
-                db.SaveChanges();
+                    var service = new ChiTietDichVu
+                    {
+                        DichVu = n, // lưu dịch vụ
+                        Tour_ID = id // lưu id của tour truyền vào
+                    };
+                    db.ChiTietDichVu.Add(service);
+                    db.SaveChanges();
+                }
+                SetAlert("Cập nhật thành công dịch vụ của Tour", "success");
+                return RedirectToAction("Details", "Tour", new { id = id });
             }
-            SetAlert("Cập nhật thành công dịch vụ của Tour", "success");
-            return RedirectToAction("Details", "Tour", new { id = id });
+            else
+            {
+                ViewBag.error = "Chưa chọn dịch vụ !!!";
+                return View(ct);
+            }    
         }
 
         // GET: ChiTietDichVu/Edit/5

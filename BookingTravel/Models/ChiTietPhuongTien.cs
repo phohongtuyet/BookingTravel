@@ -19,8 +19,8 @@ namespace BookingTravel.Models
         public Nullable<int> Tour_ID { get; set; }
 
         [Display(Name = "Phương tiện ")]
-        [Required(ErrorMessage = "Chưa chọn phương tiện!")]
         public Nullable<int> PhuongTien_ID { get; set; }
+
         public List<int> selectedTranpost { get; set; }
 
         public virtual PhuongTien PhuongTien { get; set; }

@@ -56,6 +56,8 @@ namespace BookingTravel.Models
 
         [Display(Name = "Đơn giá")]
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Đơn giá không được bỏ trống!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Vui lòng nhập số lớn hơn 1")]
         public Nullable<int> DonGia { get; set; }
 
         [Display(Name = "Số lượng")]
@@ -73,11 +75,14 @@ namespace BookingTravel.Models
         [Display(Name = "Hình ảnh ")]
         public IEnumerable<HttpPostedFileBase> DuLieuHinhAnh { get; set; }
 
+        [Required(ErrorMessage = "Chưa chọn địa điểm tham quan!")]
         public List<int> selectedLocation { get; set; }
 
+        [Required(ErrorMessage = "Chưa chọn phương tiện tham quan!")]
         public List<int> selectedTranpost { get; set; }
 
         [Display(Name = "Dịch vụ")]
+        [Required(ErrorMessage = "Chưa chọn dịch vụ!")]
         public List<int> selectedServe { get; set; }
 
         [Display(Name = "Tỉnh")]

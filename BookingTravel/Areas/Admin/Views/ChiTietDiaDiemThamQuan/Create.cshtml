@@ -88,12 +88,16 @@
                         @Html.Label("Địa danh")
                         @Html.DropDownListFor(model => model.selectedLocation, Enumerable.Empty<SelectListItem>(), "", new { @class = "form-control select2", @multiple = "multiple", @id = "ChiTietDiaDiemThamQuan" })
                         @Html.ValidationMessageFor(model => model.selectedLocation, "", new { @class = "text-danger" })
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="badge badge bg-danger mt-2">@ViewBag.error</span>
+                        }
                     </div>
                 </div>
             </div>
 
             <div class="form-group mt-2">
-                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Details", "Tour")
+                <input type="submit" value="Thêm mới" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index", "Tour")
             </div>
         }
     </div>
