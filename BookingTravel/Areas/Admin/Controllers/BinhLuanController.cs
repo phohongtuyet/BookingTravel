@@ -73,7 +73,7 @@ namespace BookingTravel.Areas.Admin.Controllers
 
                 db.BinhLuan.Add(binhLuan);
                 db.SaveChanges();
-               // return RedirectToAction("Index");
+                // return RedirectToAction("Index");
                 return RedirectToAction("Detail", "Home", new { id = binhLuan.BaiViet_ID, area = "" });
 
             }
@@ -81,7 +81,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             ViewBag.BaiViet_ID = new SelectList(db.BaiViet, "ID", "TieuDe", binhLuan.BaiViet_ID);
             ViewBag.KhachHang_ID = new SelectList(db.KhachHang, "ID", "HoVaten", binhLuan.KhachHang_ID);
             return View(binhLuan);
-             
+
         }
 
         // GET: BinhLuan/Edit/5
@@ -114,7 +114,7 @@ namespace BookingTravel.Areas.Admin.Controllers
                 bl.NgayDang = bl.NgayDang;
                 bl.KhachHang_ID = bl.KhachHang_ID;
 
-                db.Entry(bl).State = EntityState.Modified;
+                db.Entry(binhLuan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

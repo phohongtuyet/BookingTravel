@@ -4,7 +4,8 @@
     ViewBag.Title = "Đơn hàng của tôi";
 }
 
-<link href="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
 
 <div class="card mt-3">
     <h5 class="card-header">Đơn hàng của   @Session["HoTenKhachHang"].ToString()</h5>
@@ -34,15 +35,17 @@
                     </tr>
                     stt++;
 
-                }              
+                }
             </tbody>
         </table>
     </div>
 </div>
 
 @section Scripts{
-    <script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
 
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#Panigation').DataTable({
                 "language": {
