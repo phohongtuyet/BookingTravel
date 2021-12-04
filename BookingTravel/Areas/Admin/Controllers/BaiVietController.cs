@@ -141,10 +141,11 @@ namespace BookingTravel.Areas.Admin.Controllers
                 else
                     bv.KiemDuyet = 0;
 
-                if (baiViet.TrangThaiBinhLuan.HasValue)
-                    bv.TrangThaiBinhLuan = 1;
+                if (Convert.ToBoolean(Session["Quyen"]) == true)
+                    baiViet.TrangThaiBinhLuan = 1;
                 else
-                    bv.TrangThaiBinhLuan = 0;
+                    baiViet.TrangThaiBinhLuan = 0;
+
 
 
                 db.Entry(bv).State = EntityState.Modified;

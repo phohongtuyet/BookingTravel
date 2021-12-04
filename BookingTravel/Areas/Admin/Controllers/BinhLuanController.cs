@@ -146,6 +146,7 @@ namespace BookingTravel.Areas.Admin.Controllers
             BinhLuan binhLuan = db.BinhLuan.Find(id);
             db.BinhLuan.Remove(binhLuan);
             db.SaveChanges();
+            SetAlert("Xóa thành công", "success");
             return RedirectToAction("Index");
         }
 

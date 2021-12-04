@@ -37,16 +37,7 @@
                 @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
 
             </div>
-
-
-
-            <div class="form-group">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="TrangThaiBinhLuan" name="TrangThaiBinhLuan" value="1" />
-                    <label class="custom-control-label" for="TrangThaiBinhLuan">Cho phép bình luận bài viết này.</label>
-                </div>
-            </div>
-
+           
             <div class="form-group mt-2">
                 <input type="submit" value="Cập nhật" class="btn btn-info" /> hoặc @Html.ActionLink("Quay về danh sách", "Index")
             </div>
