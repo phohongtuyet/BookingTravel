@@ -114,7 +114,14 @@
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
+                            <li class="nav-item">
+                                <a href="@Url.Action("LichPhanCong", "BangPhanCong")" class="nav-link active" style="background-color: #85dce7; color: black">
+                                       <i class="fas fa-calendar-alt"></i>
+                                    <p>
+                                      Lịch hướng dẫn
+                                    </p>
+                                </a>                              
+                            </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link active" style="background-color: #85dce7; color: black">
                                     <i class="nav-icon fas fa-user"></i>
@@ -173,137 +180,137 @@
                                 </li>
 
                             }
-                                <li class="nav-item">
-                                    <a href="@Url.Action("Tour","Tour")" class="nav-link active" style="background-color: #85dce7; color: black">
-                                        <i class="fas fa-cart-plus"></i>
-                                        <p>Đặt Tour cho khách hàng </p>
-                                    </a>
+                            <li class="nav-item">
+                                <a href="@Url.Action("Tour","Tour")" class="nav-link active" style="background-color: #85dce7; color: black">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <p>Đặt Tour cho khách hàng </p>
+                                </a>
 
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
-                                        <i class="nav-icon fa fa-paper-plane"></i>
-                                        <p>
-                                            Quản lý bài viết
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
+                                    <i class="nav-icon fa fa-paper-plane"></i>
+                                    <p>
+                                        Quản lý bài viết
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "BaiViet")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Bài viết</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "BinhLuan")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Bình luận</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
+                                    <i class="nav-icon fas fa-sitemap"></i>
+                                    <p>
+                                        Quản lý danh mục
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "PhuongTien")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Phương tiện</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "KhachSan")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Khách sạn</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "DiaDiemThamQuan")" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Địa điểm tham quan</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
+                                    <i class="nav-icon fa fa-globe"></i>
+                                    <p>
+                                        Quản lý Tour
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "Tour")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tour</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                                @if (Convert.ToInt32(Session["Quyen"]) == 1)
+                                {
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <a href="@Url.Action("Index", "BaiViet")" class="nav-link">
+                                            <a href="@Url.Action("Index", "BangPhanCong")" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>
-                                                <p>Bài viết</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "BinhLuan")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Bình luận</p>
+                                                <p>Phân công hướng dẫn</p>
                                             </a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
-                                        <i class="nav-icon fas fa-sitemap"></i>
-                                        <p>
-                                            Quản lý danh mục
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "PhuongTien")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Phương tiện</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "KhachSan")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Khách sạn</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "DiaDiemThamQuan")" class="nav-link ">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Địa điểm tham quan</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
-                                        <i class="nav-icon fa fa-globe"></i>
-                                        <p>
-                                            Quản lý Tour
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "Tour")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Tour</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    @if (Convert.ToInt32(Session["Quyen"]) == 1)
-                                    {
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="@Url.Action("Index", "BangPhanCong")" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Phân công hướng dẫn</p>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    }
+                                }
 
 
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
-                                        <i class="nav-icon fa fa-shopping-bag"></i>
-                                        <p>
-                                            Quản lý đặt Tour
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Index", "DatTour")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Đặt tour</p>
-                                            </a>
-                                        </li>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link active" style="background-color: #85dce7; color:black">
+                                    <i class="nav-icon fa fa-shopping-bag"></i>
+                                    <p>
+                                        Quản lý đặt Tour
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Index", "DatTour")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Đặt tour</p>
+                                        </a>
+                                    </li>
 
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="" class="nav-link active" style="background-color: #85dce7; color:black">
-                                        <i class="fas fas-user"></i>
-                                        <p>
-                                            Tài khoản <i class="right fas fa-angle-left"></i>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link active" style="background-color: #85dce7; color:black">
+                                    <i class="fas fas-user"></i>
+                                    <p>
+                                        Tài khoản <i class="right fas fa-angle-left"></i>
 
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("ChangePassword", "Home")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Đổi mật khẩu</p>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="@Url.Action("Logout", "Home")" class="nav-link">
-                                                <i class="far fa-circle nav-icon"></i>
-                                                <p>Đăng xuất</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("ChangePassword", "Home")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Đổi mật khẩu</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Logout", "Home")" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Đăng xuất</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </nav>
                     <!-- /.sidebar-menu -->
 

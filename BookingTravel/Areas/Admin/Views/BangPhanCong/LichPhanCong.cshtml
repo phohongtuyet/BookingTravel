@@ -1,0 +1,67 @@
+﻿@model IEnumerable<BookingTravel.Models.BangPhanCong>
+
+@{
+    ViewBag.Title = "Lịch hướng dẫn";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<div class="card mt-3">
+    <div class="card-body">
+            
+        <table id="Panigation" class="table table-bordered table-hover display">
+            <thead>
+                <tr>
+                    <th width="5%">#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tour.TenTour)
+                    </th>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayBD)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NgayKT)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1; }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tour.TenTour)
+                        </td>
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayBD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayKT)
+                        </td>                       
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#Panigation').DataTable({
+            "language": {
+                "lengthMenu": "Số dòng _MENU_  trên trang ",
+                "zeroRecords": "Không tìm thấy!!!",
+                "info": "Trang  _PAGE_ của _PAGES_",
+                "infoEmpty": "Không có sẵn dữ liệu",
+                "infoFiltered": "(được lọc từ tổng _MAX_  dữ liệu)"
+            }
+        });
+    });
+</script>
+
+}

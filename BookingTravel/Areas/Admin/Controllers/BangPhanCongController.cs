@@ -21,6 +21,13 @@ namespace BookingTravel.Areas.Admin.Controllers
             return View(bangPhanCong.ToList());
         }
 
+        public ActionResult LichPhanCong()
+        {
+            int manv = Convert.ToInt32( Session["MaNhanVien"]);
+            var lich = db.BangPhanCong.Include(b => b.NhanVien).Include(b => b.Tour).Where(b=>b.NhanVien_ID == manv);
+            return View(lich.ToList());
+        }
+
         // GET: BangPhanCong/Details/5
         public ActionResult Details(int? id)
         {
