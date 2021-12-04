@@ -63,23 +63,24 @@ namespace BookingTravel.Controllers
         public ActionResult MyOrders()
         {
             int makh = Convert.ToInt32(Session["MaKhachHang"]);
-            var a = (from dh in db.DatTour
-                     join od in db.DatTour_ChiTiet on dh.ID equals od.DatTour_ID
-                     join t in db.Tour on od.Tour_ID equals t.ID
-                     join ct in db.DatTour_ChiTiet on dh.ID equals ct.DatTour_ID
-                     join dhang in db.DatTour on ct.DatTour_ID equals dhang.ID
-                     join kh in db.KhachHang on dhang.KhachHang_ID equals kh.ID
-                     where (kh.ID == makh)
-                     group od by t.TenTour into sa
-                     select new Myorders()
-                     {
-                         TenTour = sa.Key,
-                         SoLuong = sa.Sum(g => g.SoLuong),
-                         DonGia = sa.Select(t => t.DonGia).FirstOrDefault(),
-                         NgayDatHang = sa.Select(t => t.DatTour.NgayDatHang).FirstOrDefault()
-                     }).ToList();
+            var Myorders = (from dh in db.Tour
+                            join ct in db.DatTour_ChiTiet on dh.ID equals ct.Tour_ID
+                            join ha in db.HinhAnh on dh.ID equals ha.Tour_ID
+                            join dhang in db.DatTour on ct.DatTour_ID equals dhang.ID
+                            join kh in db.KhachHang on dhang.KhachHang_ID equals kh.ID
+                            where (kh.ID == makh)
 
-            return View(a);
+                            select new Myorders()
+                            {
+                                TenTour = dh.TenTour,
+                                DonGia = ct.DonGia,
+                                ID = kh.ID,
+                                SoLuong = ct.SoLuong,
+                                NgayDatHang = dhang.NgayDatHang
+
+                            }).Distinct().OrderByDescending(dhang => dhang.NgayDatHang).ToList();
+
+            return View(Myorders);
         }
 
         public ActionResult Review()
