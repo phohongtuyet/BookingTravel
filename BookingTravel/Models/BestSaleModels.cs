@@ -67,6 +67,7 @@ namespace BookingTravel.Models
         public Nullable<int> DonGia { get; set; }
         public Nullable<int> SoLuong { get; set; }
         public Nullable<System.DateTime> NgayDatHang { get; set; }
+        public Nullable<short> TinhTrang { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HinhAnh> HinhAnh { get; set; }

@@ -19,9 +19,9 @@ namespace BookingTravel.Areas.Admin.Controllers
             }
             else
             {
-                if (Session["Quyen"].ToString().ToLower() == "FALSE")
+                if (Session["Quyen"].ToString().ToLower() == "false")
                 {
-                    if (controllerName != "KhachHang" && controllerName != "Tour" && controllerName != "DatHang" && controllerName != "DatHang_ChiTiet")
+                    if (controllerName != "KhachHang" && controllerName != "Tour" && controllerName != "DatTour" && controllerName != "DatTour_ChiTiet" && controllerName != "BaiViet" && controllerName != "BinhLuan" && controllerName != "KhachSan" && controllerName != "DiaDiemThamQuan" && controllerName != "PhuongTien" && controllerName != "BangPhanCong")
                     {
                         filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { action = "Unauthorized", controller = "Home" }));
                     }

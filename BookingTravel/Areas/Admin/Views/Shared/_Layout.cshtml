@@ -196,12 +196,24 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="@Url.Action("Index", "BaiViet")" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Bài viết</p>
-                                        </a>
-                                    </li>
+                                    @if (Convert.ToInt32(Session["Quyen"]) == 1)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("Index", "BaiViet")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Bài viết</p>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("MyPost", "BaiViet")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Bài viết</p>
+                                            </a>
+                                        </li>
+                                    }
                                     <li class="nav-item">
                                         <a href="@Url.Action("Index", "BinhLuan")" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
@@ -296,6 +308,15 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
+                                    @if (Convert.ToInt32(Session["Quyen"]) == 1)
+                                    {
+                                        <li class="nav-item">
+                                            <a href="@Url.Action("MyPost", "BaiViet")" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Bài viết của tôi   </p>
+                                            </a>
+                                        </li>
+                                    }
                                     <li class="nav-item">
                                         <a href="@Url.Action("ChangePassword", "Home")" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>

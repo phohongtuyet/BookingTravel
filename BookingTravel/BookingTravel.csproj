@@ -2391,6 +2391,7 @@
     <Content Include="Areas\Admin\Views\DatTour\DoanhThuTour.cshtml" />
     <Content Include="Areas\Admin\Views\Home\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\BangPhanCong\LichPhanCong.cshtml" />
+    <Content Include="Areas\Admin\Views\BaiViet\MyPost.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />

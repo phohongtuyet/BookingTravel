@@ -20,7 +20,14 @@ namespace BookingTravel.Areas.Admin.Controllers
             var baiViet = db.BaiViet.Include(b => b.NhanVien);
             return View(baiViet.ToList());
         }
-
+        
+        // bai viet cua toi
+        public ActionResult MyPost()
+        {
+            int nv = Convert.ToInt32(Session["MaNhanVien"]);
+            var baiViet = db.BaiViet.Include(b => b.NhanVien).Where(bv=>bv.NhanVien_ID == nv);
+            return View(baiViet.ToList());
+        }
 
         // GET: Admin/BaiViet/Approved/1
         public ActionResult Approved(int id)

@@ -125,8 +125,8 @@ namespace BookingTravel.Areas.Admin.Controllers
 						ct.SoLuong = Convert.ToInt16(item.soLuongTrongGio);
 						ct.DonGia = item.tour.DonGia;
 						db.DatTour_ChiTiet.Add(ct);
-						var dongho = db.Tour.Find(item.tour.ID);
-						dongho.SoLuong -= item.soLuongTrongGio;
+						var tour = db.Tour.Find(item.tour.ID);
+						tour.SoLuong -= item.soLuongTrongGio;
 						db.SaveChanges();
 					}
 
