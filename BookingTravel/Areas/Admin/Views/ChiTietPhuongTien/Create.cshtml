@@ -14,7 +14,7 @@
 
             <div class="form-group">
                 @Html.Label("Phương tiện")
-                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" requied })
+                @Html.ListBox("selectedTranpost", new MultiSelectList(ViewBag.PhuongTien_ID, "Value", "text"), new { @class = "form-control chosenTranpost select2Tranpost" })
                 @Html.ValidationMessageFor(model => model.selectedTranpost, "", new { @class = "text-danger" })
             </div>
 
